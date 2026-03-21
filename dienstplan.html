@@ -18,6 +18,35 @@
             padding: 12px 24px; border-radius: 8px; cursor: pointer; font-weight: bold;
             transition: all 0.3s ease; font-size: 14px;
         }
+        /* --- NAVIGATION BUTTONS --- */
+        .nav-bar {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px 25px;
+            border-radius: 25px;
+            border: 2px solid var(--falken-gold);
+            font-weight: bold;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-link:hover {
+            background: var(--falken-gold);
+            color: var(--falken-blue);
+            transform: translateY(-2px);
+        }
         .nav-btn:hover { background-color: #eef1f5; transform: translateY(-2px); }
         .nav-btn.active { background-color: #00102d; color: #ffdc00; border-color: #ffdc00; box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
 
