@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medikamenten-Freigabe Stadt Falkenfurt</title>
+    <style>
+        :root {
+            --falken-blue: #000e2b;
+            --falken-gold: #ffd700;
+            --bg-light: #f4f4f4;
+            --indikation-blue: #e6f0ff;
+            --ki-red: #ffe6e6;
+            --nfs-blue: #0056b3;
+            --rs-green: #28a745;
+            --na-red: #c80000;
+        }
+
+        body {
+            font-family: 'Helvetica', Arial, sans-serif;
+            background-color: var(--bg-light);
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        header {
+            background-color: var(--falken-blue);
+            color: white;
+            padding: 20px;
+            border-bottom: 5px solid var(--falken-gold);
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .header-top {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 10px;
+            width: 100%;
+            max-width: 900px;
+        }
+
+        .logo { max-height: 100px; }
+
+        .title-group {
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-title {
+            font-size: 2.2em;
+            font-weight: bold;
+            margin: 0;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .signature {
+            font-size: 0.9em;
+            color: var(--falken-gold);
+            margin-top: 5px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+
+        .search-container {
+            width: 90%;
+            max-width: 500px;
+            margin: 15px 0;
+        }
+
+        #medSearch {
+            width: 100%;
+            padding: 12px;
+            border-radius: 25px;
+            border: 2px solid var(--falken-gold);
+            font-size: 1em;
+            outline: none;
+            box-sizing: border-box;
+            background-color: white;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .tab-btn {
+            padding: 8px 18px;
+            border: 2px solid var(--falken-gold);
+            background: transparent;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        .tab-btn.active { background-color: var(--falken-gold); color: var(--falken-blue); }
+
+        .container { max-width: 850px; margin: 20px auto; padding: 10px; }
+
+        .med-card {
+            background: white;
+            border: 2px solid var(--falken-blue);
+            margin-bottom: 30px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .med-header {
+            background-color: #f5f5f5;
+            padding: 12px 15px;
+            font-size: 1.3em;
+            font-weight: bold;
+            border-bottom: 2px solid var(--falken-blue);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .tag { font-size: 0.5em; padding: 4px 8px; border-radius: 4px; color: white; text-transform: uppercase; }
+        .tag-rs { background-color: var(--rs-green); }
+        .tag-nfs { background-color: var(--nfs-blue); }
+        .tag-na { background-color: var(--na-red); }
+
+        .grid-row { display: grid; grid-template-columns: 1fr 1fr; }
+        .section-box { padding: 12px; border: 1px solid #eee; font-size: 0.9em; }
+        .section-title { font-weight: bold; font-size: 0.8em; margin-bottom: 5px; color: var(--falken-blue); text-transform: uppercase; border-bottom: 1px solid rgba(0,0,0,0.05); }
+
+        .indikation { background-color: var(--indikation-blue); }
+        .ki { background-color: var(--ki-red); }
+
+        .dosis-center { background-color: var(--falken-gold); padding: 8px; text-align: center; font-weight: bold; border-top: 1px solid var(--falken-blue); border-bottom: 1px solid var(--falken-blue); }
+        .dosis-grid { display: grid; grid-template-columns: 1fr 1fr; }
+        .dosis-box { padding: 10px; border: 1px solid #eee; text-align: center; font-size: 0.85em; }
+
+        .besonderheiten { border: 2px solid #c80000; padding: 12px; margin: 10px; font-style: italic; font-size: 0.85em; background-color: #fffafa; }
+        .bes-title { color: #c80000; font-weight: bold; font-style: normal; margin-bottom: 3px; text-transform: uppercase; }
+
+        .footer-sig { text-align: right; padding: 5px 15px; font-size: 0.7em; color: #777; font-style: italic; }
+        .gen-hint { text-align: center; padding: 20px; background: #eee; margin-top: 20px; border-radius: 5px; font-weight: bold; color: #666; font-size: 0.9em; }
+
+        @media (max-width: 600px) { 
+            .grid-row, .dosis-grid { grid-template-columns: 1fr; } 
+            .header-top { flex-direction: column; text-align: center; gap: 10px; }
+            .title-group { text-align: center; }
+            .main-title { font-size: 1.6em; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-top">
+        <img src="https://r2.fivemanage.com/duNnRRRqkxrMPfikEWhQR/Bild_2026-03-21_105520774-removebg-preview.png" alt="Logo Falkenfurt" class="logo">
+        <div class="title-group">
+            <h1 class="main-title">RETTUNGSDIENST FALKENFURT</h1>
+            <div class="signature">Freigabe ÄLRD Dr. med. Leon Müller | Stand: 21.03.2026</div>
+        </div>
+    </div>
+    
+    <div class="search-container">
+        <input type="text" id="medSearch" placeholder="Medikament oder Wirkstoff suchen..." onkeyup="searchMeds()">
+    </div>
+
+    <div class="nav-tabs">
+        <button class="tab-btn active" onclick="switchView('rs', this)">RS</button>
+        <button class="tab-btn" onclick="switchView('nfs', this)">NFS</button>
+        <button class="tab-btn" onclick="switchView('na', this)">NA</button>
+    </div>
+</header>
+
+<div class="container" id="med-container"></div>
+
+<script>
+    const rs_data = [
+        { name: "Suprarenin", wirkstoff: "Adrenalin", ind: "Herz-Lungen-Wiederbelebung (Reanimation).", ki: "Keine in der Notfallsituation.", erw: "REA: 1mg alle 3-5min. i.v.", kind: "REA: max. 1mg alle 3-5min. i.v.", app: "i.v. | i.o.", bes: "Wirkdauer 3-5 min. Nur Notkompetenz!" },
+        { name: "Glucose", wirkstoff: "Glucose", ind: "Hypoglykämie (Blutzuckerabfall).", ki: "Keine relevanten KI.", erw: "10ml G10 in 250ml VEL i.v. | p.o.", kind: "Nur Oral-Gabe (p.o.).", app: "i.v. | p.o.", bes: "Alternativ Dextro-Energy. Zugang prüfen!" },
+        { name: "NaCl 0,9 %", wirkstoff: "Natriumchloridlösung", ind: "Trägerlösung; Spüllösung.", ki: "Keine relevanten KI.", erw: "Nach Indikation (max. 500ml).", kind: "Nach Indikation (max. 500ml).", app: "i.v. | i.o. | lokal", bes: "Keine besondere Lagerung nötig." },
+        { name: "Jonosteril", wirkstoff: "Isotone Elektrolytlösung", ind: "Volumensubstitution.", ki: "Keine nennenswerten KI.", erw: "500 - 1000 mL i.v.", kind: "500 mL i.v.", app: "i.v.", bes: "Möglichst warme Infusion." }
+    ];
+
+    const nfs_data = [
+        { name: "Akrinor", wirkstoff: "Cafedrin + Theodrenalin", ind: "Hypotonie", ki: "Glaukom, schnelle Rhythmusstörungen", erw: "1 ml fraktioniert titriert i.v. (max. 3 Amp/Tag)", kind: "Keine klare Empfehlung", app: "i.v. | i.m.", bes: "Blutdrucksteigernd, beta- und alpha-Wirkung." },
+        { name: "Suprarenin", wirkstoff: "Adrenalin", ind: "Reanimation, Bradykardie, Anaphylaxie, Pseudokrupp", ki: "/", erw: "REA: 1mg alle 3-5min | Anaphylaxie: 0,5mg", kind: "REA: max 1mg | Anaphylaxie: 0,15-0,3mg", app: "i.v. | i.m. | Inhalation", bes: "Bei Bradykardie 1mg auf 100ml NaCl." },
+        { name: "Urapidil", wirkstoff: "Urapidil", ind: "Hypertensive Krise (RR syst > 220 / diast > 120)", ki: "Aortenstenose", erw: "10-50 mg i.v. langsam", kind: "Keine Empfehlung", app: "i.v.", bes: "Alpha-1-Blocker, senkt RR." },
+        { name: "Diazepam", wirkstoff: "Diazepam", ind: "Erregung, ACS, Krampfanfälle", ki: "Ateminsuffizienz, Myasthenia gravis", erw: "2,5 mg (max. 5 mg)", kind: "<15kg: 5mg | >15kg: 10mg (rektal)", app: "i.v. | i.o. | rektal", bes: "Wirkdauer < 15 Std." },
+        { name: "Midazolam", wirkstoff: "Midazolam", ind: "ACS, Sedation, Krampfanfall", ki: "Myasthenia gravis", erw: "Sedierung: 2mg | Krampf: 10mg", kind: "Nasal: <10kg: 2,5mg | 10-20kg: 5mg | >20kg: 10mg", app: "i.v. | i.n.", bes: "Max. 1ml pro Nasenloch." },
+        { name: "Morphin", wirkstoff: "Morphinhydrochlorid", ind: "ACS (NRS > 5), Schmerzen NRS > 8", ki: "GCS < 14, SpO2 < 92%, AF < 10, HF < 50", erw: "2mg alle 2min (bis max. 10mg)", kind: "Nicht empfohlen", app: "i.v. | i.o.", bes: "Monitoring zwingend." },
+        { name: "Ketamin", wirkstoff: "Esketaminhydrochlorid", ind: "Trauma-Schmerz, Schrittmacher", ki: "ACS, Hypertonie (>180/100)", erw: "Analgesie: 0,125mg/kg | Narkose: 0,5-1,0mg/kg", kind: "Analgesie: 0,25mg/kg | Narkose: 0,5-1,0mg/kg", app: "i.v.", bes: "Psycho-Nebenwirkungen beachten." },
+        { name: "Novalgin", wirkstoff: "Metamizol", ind: "Abdominale Schmerzen, Koliken", ki: "Schwangerschaft", erw: ">53kg: 1g in 500ml VEL über 15min", kind: "<53kg: 0,5mg in 500ml VEL über 15min", app: "i.v.", bes: "Schnelle Gabe vermeiden." },
+        { name: "Paracetamol", wirkstoff: "Paracetamol", ind: "Schmerzen, Fieber", ki: "Leberinsuffizienz", erw: "1g i.v. über 15min", kind: "15mg/kg KG i.v.", app: "i.v. | p.o. | rektal", bes: "Maximale Tagesdosis beachten." },
+        { name: "Vomex", wirkstoff: "Dimenhydrinat", ind: "Übelkeit, Erbrechen", ki: "Glaukom, Epilepsie", erw: "62-125mg i.v. langsam", kind: "1,25mg/kg KG i.v.", app: "i.v. | i.m. | rektal", bes: "Sedierung möglich." },
+        { name: "VEL", wirkstoff: "Vollelektrolytlösung", ind: "Volumen, Offenhalten", ki: "Keine", erw: "Nach Indikation", kind: "Nach Indikation", app: "i.v. | i.o.", bes: "Balancierte Lösung." }
+    ];
+
+    const na_data = [
+        { name: "Fentanyl", wirkstoff: "Fentanyl", ind: "Narkose, Schmerzen NRS >6", ki: "Fehlende Beatmungsmöglichkeit", erw: "0,05-0,1 mg (Analgesie) / 0,2-0,3 mg (Narkose)", kind: "1-3 ug/kg", app: "i.v., i.m.", bes: "100-125x stärker als Morphin, Monitoring!" },
+        { name: "Piritramid", wirkstoff: "Dipidolor", ind: "Starke Schmerzen", ki: "Atemdepression, Ileus", erw: "7,5-15 mg i.v. langsam (max. 60mg/Tag)", kind: "keine Empfehlung", app: "i.v., s.c.", bes: "Weniger Histaminfreisetzung als Morphin" },
+        { name: "Sufentanil", wirkstoff: "Sufentanil", ind: "Narkoseeinleitung, Analgesie", ki: "Atemdepression, Schock", erw: "5-10 ug i.v. fraktioniert", kind: "keine Empfehlung", app: "i.v.", bes: "Sehr potent, Atemdepression!" },
+        { name: "Propofol", wirkstoff: "Propofol", ind: "Narkoseeinleitung, Dauersedierung", ki: "Herz-Kreislauf-Erkrankung, Schwangerschaft", erw: "100ml / 250ml nach Bedarf", kind: "100ml / 250ml nach Bedarf", app: "i.v.", bes: "Wirkdauer 5-8 Min. Atemwegssicherung!" },
+        { name: "Thiopental", wirkstoff: "Trapanal", ind: "Narkoseeinleitung, Krampfstatus", ki: "Schock, Asthma", erw: "3-5 mg/kg KG i.v.", kind: "keine Empfehlung", app: "i.v.", bes: "Atem- & Kreislaufdepression" },
+        { name: "Metoprolol", wirkstoff: "Beloc", ind: "Herz-Rhythmusstörungen, Hypertonie", ki: "Bradykardie, kardiogener Schock, Asthma", erw: "2,5-5 mg i.v. (max. 15 mg)", kind: "keine Empfehlung", app: "i.v.", bes: "Beta-1-selektiv, Vorsicht bei COPD" },
+        { name: "Flumazenil", wirkstoff: "Anexate", ind: "Benzodiazepin-Antagonisierung", ki: "Epilepsie, Mischintox", erw: "0,2 mg i.v. (max. 1 mg)", kind: "0,01 mg/kg KG i.v.", app: "i.v.", bes: "Krampfauslösung möglich, kurze HWZ" },
+        { name: "Naloxon", wirkstoff: "Narcanti", ind: "Opioidintoxikation", ki: "Abhängigkeit (Entzug)", erw: "0,1-0,2 mg i.v. bis Atemantrieb", kind: "0,01 mg/kg KG i.v.", app: "i.v., i.m., i.n.", bes: "Re-Narkosegefahr!" },
+        { name: "Bluttransfusion", wirkstoff: "Blutplasma", ind: "Blutverlust, Gerinnungsstörung", ki: "keine relevanten KI", erw: "100ml bis 1000ml", kind: "100ml bis 1000ml", app: "i.v.", bes: "Gekühlte Lagerung" }
+    ];
+
+    let currentType = 'rs';
+
+    function render(type) {
+        currentType = type;
+        const container = document.getElementById('med-container');
+        container.innerHTML = '';
+        let data, tagClass, label;
+
+        if(type === 'rs') { data = rs_data; tagClass = 'tag-rs'; label = 'RS'; }
+        else if(type === 'nfs') { data = nfs_data; tagClass = 'tag-nfs'; label = 'NFS'; }
+        else { data = na_data; tagClass = 'tag-na'; label = 'NA'; }
+
+        data.forEach(m => {
+            const card = document.createElement('div');
+            card.className = 'med-card';
+            card.setAttribute('data-name', m.name.toLowerCase());
+            card.setAttribute('data-wirkstoff', m.wirkstoff.toLowerCase());
+            card.innerHTML = `
+                <div class="med-header">
+                    <span>${m.name.toUpperCase()} <small>(${m.wirkstoff})</small></span>
+                    <span class="tag ${tagClass}">${label}</span>
+                </div>
+                <div class="grid-row">
+                    <div class="section-box indikation"><div class="section-title">Indikation</div>${m.ind}</div>
+                    <div class="section-box ki"><div class="section-title">Kontraindikation</div>${m.ki}</div>
+                </div>
+                <div class="dosis-center">DOSIERUNG & APPLIKATION</div>
+                <div class="dosis-grid">
+                    <div class="dosis-box"><strong>Erwachsene</strong><br>${m.erw}</div>
+                    <div class="dosis-box"><strong>Kinder</strong><br>${m.kind}</div>
+                </div>
+                <div class="besonderheiten">
+                    <div class="bes-title">Cave / Besonderheiten</div>
+                    <strong>App:</strong> ${m.app || 'i.v.'}<br>${m.bes}
+                </div>
+                <div class="footer-sig">Freigabe ÄLRD Müller | 21.03.2026</div>
+            `;
+            container.appendChild(card);
+        });
+
+        if(type === 'na') {
+            const hint = document.createElement('div');
+            hint.className = 'gen-hint';
+            hint.innerText = "Selbstverständlich sind alle anderen Medikamente die nicht aufgelistet sind freigegeben (Generalfreigabe).";
+            container.appendChild(hint);
+        }
+        searchMeds(); 
+    }
+
+    function switchView(type, btn) {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('medSearch').value = ''; 
+        render(type);
+    }
+
+    function searchMeds() {
+        const input = document.getElementById('medSearch').value.toLowerCase();
+        const cards = document.querySelectorAll('.med-card');
+        
+        cards.forEach(card => {
+            const name = card.getAttribute('data-name');
+            const wirkstoff = card.getAttribute('data-wirkstoff');
+            
+            if (name.includes(input) || wirkstoff.includes(input)) {
+                card.style.display = "block";
+            } else {
+                card.style.display = "none";
+            }
+        });
+    }
+
+    render('rs');
+</script>
+</body>
+</html>
