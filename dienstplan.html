@@ -121,36 +121,29 @@
 <div class="container" id="schedule-list"></div>
 
 <script>
-    const allPlans = {
+ const allPlans = {
         notarzt: [
             { m: "März", kw: 11, s: "16.03.", e: "22.03.", d: "Dr. med. Leon Müller", c: "color-blue", f: "2026-03-16" },
             { m: "März", kw: 12, s: "23.03.", e: "29.03.", d: "Dr. med. Mathis Lehmann", c: "color-red", f: "2026-03-23" },
             { m: "April", kw: 13, s: "30.03.", e: "05.04.", d: "Dr. med. Leon Müller", c: "color-blue", f: "2026-03-30" },
-            { m: "April", kw: 14, s: "06.04.", e: "12.04.", d: "Dr. med. Mathis Lehmann", c: "color-red", f: "2026-04-06" },
-            { m: "April", kw: 15, s: "13.04.", e: "19.04.", d: "Dr. med. Leon Müller", c: "color-blue", f: "2026-04-13" },
-            { m: "April", kw: 16, s: "20.04.", e: "26.04.", d: "Dr. med. Mathis Lehmann", c: "color-red", f: "2026-04-20" },
-            { m: "April", kw: 17, s: "27.04.", e: "03.05.", d: "Dr. med. Leon Müller", c: "color-blue", f: "2026-04-27" }
+            { m: "April", kw: 14, s: "06.04.", e: "12.04.", d: "Dr. med. Mathis Lehmann", c: "color-red", f: "2026-04-06" }
         ],
         orgl: [
             { m: "März", kw: 11, s: "16.03.", e: "22.03.", d: "Jan Moser", c: "color-green", f: "2026-03-16" },
             { m: "März", kw: 12, s: "23.03.", e: "29.03.", d: "Thomas Schäfer", c: "color-petrol", f: "2026-03-23" },
             { m: "April", kw: 13, s: "30.03.", e: "05.04.", d: "Jan Moser", c: "color-green", f: "2026-03-30" },
-            { m: "April", kw: 14, s: "06.04.", e: "12.04.", d: "Thomas Schäfer", c: "color-petrol", f: "2026-04-06" },
-            { m: "April", kw: 15, s: "13.04.", e: "19.04.", d: "Jan Moser", c: "color-green", f: "2026-04-13" },
-            { m: "April", kw: 16, s: "20.04.", e: "26.04.", d: "Thomas Schäfer", c: "color-petrol", f: "2026-04-20" }
+            { m: "April", kw: 14, s: "06.04.", e: "12.04.", d: "Thomas Schäfer", c: "color-petrol", f: "2026-04-06" }
         ],
         elrd: [
-            { m: "März", kw: 11, s: "16.03.", e: "22.03.", d: "Dr. med. Leon Müller", c: "color-blue", f: "2026-03-16" },
-            { m: "März", kw: 12, s: "23.03.", e: "29.03.", d: "Jan Moser", c: "color-green", f: "2026-03-23" },
+            { m: "März", kw: 11, s: "16.03.", e: "22.03.", d: "Thomas Schäfer", c: "color-petrol", f: "2026-03-16" }, // Getauscht mit Moser
+            { m: "März", kw: 12, s: "23.03.", e: "29.03.", d: "Jan Moser", c: "color-green", f: "2026-03-23" },    // Getauscht mit Schäfer
             { m: "April", kw: 13, s: "30.03.", e: "05.04.", d: "Thomas Schäfer", c: "color-petrol", f: "2026-03-30" },
-            { m: "April", kw: 14, s: "06.04.", e: "12.04.", d: "Dr. med. Leon Müller", c: "color-blue", f: "2026-04-06" },
-            { m: "April", kw: 15, s: "13.04.", e: "19.04.", d: "Jan Moser", c: "color-green", f: "2026-04-13" },
-            { m: "April", kw: 16, s: "20.04.", e: "26.04.", d: "Thomas Schäfer", c: "color-petrol", f: "2026-04-20" }
+            { m: "April", kw: 14, s: "06.04.", e: "12.04.", d: "Jan Moser", c: "color-green", f: "2026-04-06" }
         ],
         lna: [
-            { m: "März", kw: 11, s: "16.03.", e: "22.03.", d: "Dr. med. Leon Müller", c: "color-blue", f: "2026-03-16" },
+            { m: "März", kw: 11, s: "16.03.", e: "22.03.", d: "Dr. med. Mathis Lehmann", c: "color-red", f: "2026-03-16" }, // Vertretung für Müller
             { m: "März", kw: 12, s: "23.03.", e: "29.03.", d: "Dr. med. Leon Müller", c: "color-blue", f: "2026-03-23" },
-            { m: "April", kw: 13, s: "30.03.", e: "05.04.", d: "Dr. med. Leon Müller", c: "color-blue", f: "2026-03-30" },
+            { m: "April", kw: 13, s: "30.03.", e: "05.04.", d: "Dr. med. Mathis Lehmann", c: "color-red", f: "2026-03-30" },
             { m: "April", kw: 14, s: "06.04.", e: "12.04.", d: "Dr. med. Leon Müller", c: "color-blue", f: "2026-04-06" }
         ]
     };
