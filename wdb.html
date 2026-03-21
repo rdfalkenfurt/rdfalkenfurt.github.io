@@ -1,0 +1,2462 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algorithmen/Leitlinien - Falkenfurt</title>
+    <style>
+        :root {
+            --falken-blue: #000e2b;
+            --falken-gold: #ffd700;
+            --bg-light: #f4f4f4;
+            --process-bg: #ffffff;
+            --arrow-color: #000e2b;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-light);
+            margin: 0; padding: 0;
+        }
+
+        /* --- NEUER HEADER BEREICH --- */
+        header {
+            background-color: var(--falken-blue);
+            color: white;
+            padding: 20px;
+            border-bottom: 5px solid var(--falken-gold);
+            text-align: center;
+            position: sticky; top: 0; z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .header-top {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 25px;
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        .logo { max-height: 100px; }
+
+        .title-group {
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-title {
+            font-size: 1.8em;
+            font-weight: bold;
+            margin: 0;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .signature {
+            font-size: 0.9em;
+            color: var(--falken-gold);
+            margin-top: 5px;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+
+        .search-container { 
+            margin-top: 15px; 
+            width: 90%;
+            max-width: 500px;
+        }
+
+        #algoSearch {
+            width: 100%; 
+            padding: 12px;
+            border-radius: 25px; 
+            border: 2px solid var(--falken-gold);
+            font-size: 1em;
+            outline: none;
+            box-sizing: border-box;
+            background-color: white;
+        }
+
+        /* --- DEINE BESTEHENDEN BOX-STYLES (ERHALTEN) --- */
+        .container { max-width: 900px; margin: 20px auto; padding: 10px; }
+
+        .algo-card {
+            background: white;
+            border: 3px solid var(--falken-blue);
+            margin-bottom: 40px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+
+        .algo-title {
+            background: var(--falken-blue);
+            color: var(--falken-gold);
+            padding: 10px;
+            margin: -20px -20px 20px -20px;
+            font-size: 1.4em;
+            font-weight: bold;
+            text-align: center;
+            text-transform: uppercase;
+        }
+
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .node {
+            background: var(--process-bg);
+            border: 2px solid var(--falken-blue);
+            padding: 12px 20px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 550px;
+            text-align: center;
+            font-size: 0.95em;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .node strong { display: block; color: var(--falken-blue); margin-bottom: 5px; text-transform: uppercase; font-size: 0.8em; }
+        .arrow { font-size: 20px; color: var(--arrow-color); margin: 5px 0; }
+
+        .decision {
+            background: #fff8e1;
+            border: 2px dashed #ffa000;
+            clip-path: polygon(10% 0%, 90% 0%, 100% 50%, 90% 100%, 10% 100%, 0% 50%);
+            padding: 15px 30px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        .action-highlight { background: #e3f2fd; border-left: 10px solid #1976d2; text-align: left; }
+        .med-highlight { background: #fff3e0; border-left: 10px solid #fb8c00; text-align: left; }
+        .critical { background: #ffebee; border-left: 10px solid #c62828; text-align: left; }
+
+        .side-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+            border-top: 2px solid #eee;
+            padding-top: 15px;
+        }
+
+        .info-box { background: #f9f9f9; padding: 10px; border-radius: 5px; font-size: 0.85em; }
+        .info-title { font-weight: bold; color: #555; border-bottom: 1px solid #ddd; margin-bottom: 5px; }
+
+        @media (max-width: 600px) { 
+            .side-info { grid-template-columns: 1fr; } 
+            .header-top { flex-direction: column; text-align: center; gap: 10px; }
+            .title-group { text-align: center; }
+            .main-title { font-size: 1.3em; }
+            .logo { max-height: 80px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-top">
+        <img src="https://r2.fivemanage.com/duNnRRRqkxrMPfikEWhQR/Bild_2026-03-21_105520774-removebg-preview.png" alt="Logo Falkenfurt" class="logo">
+        
+        <div class="title-group">
+            <h1 class="main-title">ALGORITHMEN & LEITLINIEN</h1>
+            <div class="signature">RETTUNGSDIENST FALKENFURT | Freigabe ÄLRD Dr. med. Leon Müller</div>
+        </div>
+    </div>
+    
+    <div class="search-container">
+        <input type="text" id="algoSearch" placeholder="Suche (z.B. Vital, Zugang, K12)..." onkeyup="search()">
+    </div>
+</header>
+
+<div class="container">
+    </div>
+
+</body>
+</html>
+
+
+
+    <div id="algos-bereich" style="scroll-margin-top: 100px; margin-top: 50px; border-top: 4px solid #000e2b; padding-top: 20px;">
+        <h2 style="text-align: center; color: #000e2b;"></h2>
+        
+        </div>
+</div>
+
+<div class="algo-card" style="border: 2px solid var(--falken-blue); max-width: 950px; margin: 20px auto; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+    <div class="algo-title" style="background: var(--falken-blue); color: var(--falken-gold); padding: 15px; text-transform: uppercase; font-weight: bold; text-align: center; letter-spacing: 1.5px; border-bottom: 4px solid var(--falken-gold);">
+        Inhaltsverzeichnis: Algorithmen & Leitlinien
+    </div>
+    <div style="padding: 20px; background: #ffffff;">
+
+        <div style="margin-bottom: 20px;">
+            <div style="background: #eceff1; padding: 8px 12px; font-weight: bold; color: var(--falken-blue); border-left: 5px solid #e30613;">I. REANIMATION & HERZKREISLAUF</div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 10px; font-size: 0.85em;">
+                <div>1. <strong>Kreislaufstillstand Erwachsene - CPR</strong></div>
+                <div>2. <strong>Post-Reanimationsphase (ROSC)</strong></div>
+                <div>3. <strong>Akutes Koronarsyndrom (ACS)</strong></div>
+                <div>4. <strong>Hypertensiver Notfall</strong></div>
+                <div>5. <strong>Bedrohliche Bradykardie</strong></div>
+                <div>6. <strong>Bedrohliche Tachykardie</strong></div>
+                <div>11. <strong>VHF breitkomplexig (Metoprolol)</strong></div>
+                <div>34. <strong>Reversible Ursachen (4Hs & HITS)</strong></div>
+            </div>
+        </div>
+
+        <div style="margin-bottom: 20px;">
+            <div style="background: #eceff1; padding: 8px 12px; font-weight: bold; color: var(--falken-blue); border-left: 5px solid #00aeef;">II. INTERNISTISCHE NOTFÄLLE</div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 10px; font-size: 0.85em;">
+                <div>7. <strong>Akute obstruktive Atemwegserkrankung</strong></div>
+                <div>8. <strong>Sepsis / septischer Schock</strong></div>
+                <div>9. <strong>Abdominelle Koliken</strong></div>
+                <div>10. <strong>Anaphylaktische Reaktion</strong></div>
+                <div>12. <strong>Verdacht auf Lungenembolie</strong></div>
+                <div>13. <strong>Hypoglykämie (BZ ≤ 60 mg/dl)</strong></div>
+                <div>18. <strong>Hyperglykämie</strong></div>
+                <div>20. <strong>Akutes Abdomen</strong></div>
+            </div>
+        </div>
+
+        <div style="margin-bottom: 20px;">
+            <div style="background: #eceff1; padding: 8px 12px; font-weight: bold; color: var(--falken-blue); border-left: 5px solid #ff9800;">III. NEUROLOGIE, TRAUMA & SCHOCK</div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 10px; font-size: 0.85em;">
+                <div>14. <strong>Verdacht auf Schlaganfall</strong></div>
+                <div>16. <strong>Management hämorrhagischer Schock</strong></div>
+                <div>17. <strong>Hypotonie / Schock</strong></div>
+                <div>19. <strong>Schädel-Hirn-Trauma (SHT)</strong></div>
+                <div>21. <strong>TVT / Kompartment / Fraktur</strong></div>
+                <div>39. <strong>Starke Schmerzzustände</strong></div>
+            </div>
+        </div>
+
+        <div style="margin-bottom: 20px;">
+            <div style="background: #eceff1; padding: 8px 12px; font-weight: bold; color: var(--falken-blue); border-left: 5px solid #607d8b;">IV. DIAGNOSTIK & ASSESSMENT</div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 10px; font-size: 0.85em;">
+                <div>22. <strong>Referenzwerte Vitalparameter</strong></div>
+                <div>29. <strong>Primary Assessment (ABCDE)</strong></div>
+                <div>30. <strong>Glasgow Coma Scale (GCS)</strong></div>
+                <div>31. <strong>Patientenübergabe (ISOBAR)</strong></div>
+                <div>32. <strong>SAMPLER (+S) Schema</strong></div>
+                <div>33. <strong>OPQRST (Schmerz/Beschwerden)</strong></div>
+                <div>35. <strong>qSOFA-Score (Sepsis)</strong></div>
+                <div>36. <strong>BE-FAST (Schlaganfall)</strong></div>
+                <div>37. <strong>FAST + 4D (Schlaganfall)</strong></div>
+                <div>40. <strong>NACA-Einteilung (Index)</strong></div>
+            </div>
+        </div>
+
+        <div style="margin-bottom: 20px;">
+            <div style="background: #eceff1; padding: 8px 12px; font-weight: bold; color: var(--falken-blue); border-left: 5px solid #4caf50;">V. MAẞNAHMEN & TECHNIK</div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 10px; font-size: 0.85em;">
+                <div>23. <strong>Basismaßnahme: I.v. Zugang</strong></div>
+                <div>24. <strong>Basismaßnahme: Intraossär (i.o.)</strong></div>
+                <div>25. <strong>Basismaßnahme: Guedl- / Wendl-Tubus</strong></div>
+                <div>26. <strong>Thoraxentlastungspunktion (Monaldi)</strong></div>
+                <div>27. <strong>Endotracheale Intubation (ETI)</strong></div>
+                <div>28. <strong>Supraglottische Atemwege (SGA)</strong></div>
+            </div>
+        </div>
+
+        <div style="margin-bottom: 10px;">
+            <div style="background: #eceff1; padding: 8px 12px; font-weight: bold; color: var(--falken-blue); border-left: 5px solid #9c27b0;">VI. ORGANISATION & RECHT</div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 10px; font-size: 0.85em;">
+                <div>38. <strong>Einsatzstelle: 4S-Konzept</strong></div>
+                <div>41. <strong>Erforderlichkeit Notarzt</strong></div>
+                <div>42. <strong>Beförderung von Patienten</strong></div>
+                <div>43. <strong>Ablehnung durch Patienten</strong></div>
+                <div>44. <strong>Verzicht / Ablehnung (NotSan)</strong></div>
+            </div>
+        </div>
+
+        <div style="border-top: 1px solid #ddd; margin-top: 20px; padding-top: 10px; text-align: center; font-size: 0.75em; color: #999;">
+            Zuletzt aktualisiert: März 2026 | Rettungsdienst Falkenfurt | Freigabe durch Dr. med. Leon Müller | ÄRLD
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div style="background: #000e2b; color: #ffd700; padding: 10px; text-align: center; font-weight: bold; border-radius: 5px; margin: 40px 0 20px 0;">
+        ALGORITHMEN
+    </div>
+</div>
+
+
+<div class="container" id="content">
+    
+    <div class="algo-card" data-search="k12 cpr reanimation kreislaufstillstand hits adrenalin amiodaron">
+        <div class="algo-title">K 12 - Kreislaufstillstand Erwachsene - CPR</div>
+        
+        <div class="step">
+            <div class="node critical"><strong>Einstieg</strong>Keine Reaktion | Keine Atmung bzw. Schnappatmung</div>
+            <div class="arrow">↓</div>
+            <div class="node action-highlight">
+                <strong>Sofortmaßnahmen</strong>
+                Atemwege freimachen | Defi/EKG-Monitor anschließen | Thoraxkompression bis Defi bereit
+            </div>
+            <div class="arrow">↓</div>
+            <div class="node decision">RHYTHMUSANALYSE</div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px;">
+            <div class="step">
+                <div class="node" style="border-color: #ffd700; background: #fffde7;"><strong>VF / PVT</strong>Schock indiziert: 1 x Schock 200 J*</div>
+                <div class="arrow">↓</div>
+                <div class="node">Sofort CPR 30:2 für 2min<br>(Gesicherter Weg: HDM durchgehend)</div>
+                <div class="arrow">↓</div>
+                <div class="node med-highlight">
+                    <strong>Medikation</strong>
+                    <b>Nach 3. Schock:</b><br>
+                    • Adrenalin 1 mg i.v.<br>
+                    • Amiodaron 300 mg i.v.<br>
+                    <b>Nach 5. Schock:</b><br>
+                    • Amiodaron 150 mg i.v.<br>
+                    • Adrenalin alle 3-5 min
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="node" style="border-color: #cfd8dc; background: #f5f5f5;"><strong>PEA / Asystolie</strong>Kein Schock indiziert</div>
+                <div class="arrow">↓</div>
+                <div class="node">Sofort CPR 30:2 für 2min<br>(Gesicherter Weg: HDM durchgehend)</div>
+                <div class="arrow">↓</div>
+                <div class="node med-highlight" style="border-left-color: #d32f2f;">
+                    <strong>Medikation</strong>
+                    • <b>Adrenalin 1 mg i.v. baldmöglichst !!!</b><br>
+                    • Alle 3-5 min wiederholen
+                </div>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="node" style="border-style: double; border-width: 4px; border-color: #1976d2;">
+                <strong>ROSC</strong>Wiederherstellung eines Spontankreislaufes (siehe K 14)
+            </div>
+            <div class="arrow">↓</div>
+            <div class="node critical" style="background: #ff5722; color: white;">
+                <strong>Behandlung „HITS“</strong>
+                Katecholamine | Sedierung | Beatmung | Therap. Hypothermie | Narkose
+            </div>
+        </div>
+
+        <div class="side-info">
+            <div class="info-box">
+                <div class="info-title">Qualität CPR:</div>
+                • Frequenz 100-120/min | Tiefe 5-6 cm | Entlastung | Wechsel alle 2 min<br>
+                • O2-Gabe 100% | Absaugung | Zugang i.v./i.o.<br>
+                • Kapnometrie/-graphie | HITS erkennen/beheben
+            </div>
+            <div class="info-box">
+                <div class="info-title">Ursachen „HITS“</div>
+                <b>H</b>ypoxie, <b>H</b>ypovolämie, <b>H</b>ypoglykämie, <b>H</b>ypothermie, <b>H</b>ypo-/Hyperkaliämie<br>
+                <b>I</b>ntoxikation, <b>T</b>hrombeembolie, <b>S</b>pannungspneu, Herzbeuteltamponade
+            </div>
+        </div>
+        <div class="side-info">
+            <div class="info-box" style="border-top: 2px solid #d32f2f;">
+                <div class="info-title">Abbruch Algorithmus:</div>
+                • Spontanatmung tritt ein<br>
+                • Notarzt-Entscheid (Abbruch)<br>
+                • Eigenschutz (Erschöpfung)
+            </div>
+        </div>
+    </div>
+
+    <div class="algo-card" data-search="k14 rosc post-rosc bz glucose midazolam map stemi">
+        <div class="algo-title">K 14 - Post-Reanimationsphase (ROSC)</div>
+        
+        <div class="step">
+            <div class="node action-highlight"><strong>Einstieg</strong>12-Kanal-EKG | ROSC nachgewiesen</div>
+            <div class="arrow">↓</div>
+            <div class="node decision">Patient erwacht spontan?</div>
+            <div class="arrow">↓</div>
+            <div class="node decision">Toleriert der Patient die Beatmung? (Nein -> z.B. Midazolam i.v.)</div>
+            <div class="arrow">↓</div>
+            <div class="node decision">HF 50 - 130 / min?</div>
+            <div class="arrow">↓</div>
+            <div class="node decision">MAP 65 - 100 mmHg? (Nein -> Katecholamine erwägen)</div>
+            <div class="arrow">↓</div>
+            <div class="node decision">etCO2 35 - 40 mmHg? (Normoventilation)</div>
+            <div class="arrow">↓</div>
+            <div class="node decision">Körpertemperatur <= 36 °C? (Hyperthermie vermeiden)</div>
+            <div class="arrow">↓</div>
+            <div class="node decision">BZ > 60 mg/dl?</div>
+            <div class="arrow" style="color: #c62828;">Nein ↓</div>
+            <div class="node med-highlight" style="border-left-color: #c62828;">
+                <strong>Glucose-Gabe i.v.</strong>
+                • Erw: 8-10 g Glucose i.v.<br>
+                • Kinder -12J: 0,2g/kg (1:1 mit NaCl verdünnt)
+            </div>
+            <div class="arrow">↓</div>
+            <div class="node decision">SpO2 94 - 98 %?</div>
+            <div class="arrow">↓</div>
+            <div class="node decision">12-K-EKG: V.a. STEMI?</div>
+            <div class="arrow">↓</div>
+            <div class="node critical">Transport geeignete Zielklinik (PCI-Bereitschaft) | 30° OK-Hochlage</div>
+        </div>
+
+        <div class="side-info">
+            <div class="info-box">
+                <div class="info-title">Analgosedierung bei Bedarf:</div>
+                <b>Midazolam:</b><br>
+                • > 50 kg KG: 5 mg i.v.<br>
+                • bis 50 kg KG: 1 mg / 10 kg KG i.v.
+            </div>
+            <div class="info-box">
+                <div class="info-title">Diagnostische Hinweise:</div>
+                • MAP = (syst + 2x diast) / 3<br>
+                • Einmalig HbCO Bestimmung (V.a. CO-Intox)<br>
+                • CO2-Abfall kann zirkulatorisch bedingt sein!
+            </div>
+        </div>
+    </div>
+
+    <div class="algo-card" data-search="k1 acs herzinfarkt stemi ass heparin nitro">
+        <div class="algo-title">K 1 - Akutes Koronarsyndrom (ACS)</div>
+        <div class="step">
+            <div class="node"><strong>Symptomatik</strong>Schmerz, Enge, Ausstrahlung, Dyspnoe, Kaltschweiß</div>
+            <div class="arrow">↓</div>
+            <div class="node action-highlight">ABCDE | 12-Kanal-EKG (< 10 min) | OK-Hochlage | Monitoring</div>
+            <div class="arrow">↓</div>
+            <div class="node med-highlight"><strong>Medikation</strong>ASS 500 mg i.v./p.o. | Heparin 5000 IE (bei STEMI)</div>
+            <div class="arrow">↓</div>
+            <div class="node decision">Nitro möglich? (RR > 100, kein Hinterwandinfarkt, keine PDE-5-Hemmer)</div>
+            <div class="arrow">↓</div>
+            <div class="node">Analgesie (NRS > 5) | Transport PCI-Zentrum</div>
+        </div>
+    </div>
+
+    <div class="algo-card" data-search="k4 hypertonie hochdruck urapidil kopfschmerz sehstörung">
+        <div class="algo-title">K 4 - Hypertensiver Notfall</div>
+        <div class="step">
+            <div class="node decision">RR syst > 220 mmHg und/oder RR diast > 120 mmHg?</div>
+            <div class="arrow">Ja ↓</div>
+            <div class="node decision">Begleitsymptome (Angina Pectoris / Dyspnoe)?</div>
+            <div class="arrow">Nein ↓</div>
+            <div class="node decision">Andere Organsymptome (Kopfschmerz, Sehstörung, Schwindel, V.a. Aortendissektion)?</div>
+            <div class="arrow">Ja ↓</div>
+            <div class="node med-highlight">
+                <strong>Urapidil</strong>
+                • lt. Algorithmus M 23<br>
+                • 5 mg i.v. über 1 Minute
+            </div>
+            <div class="arrow">↓</div>
+            <div class="node">RR-Kontrolle nach 3 Minuten</div>
+            <div class="arrow">↓</div>
+            <div class="node decision">RR syst <= 220 mmHg?</div>
+            <div class="arrow">Ja ↓</div>
+            <div class="node critical" style="background: #ff5722; color: white;">Ärztliche Entscheidung über weitere Therapie</div>
+        </div>
+        <div class="side-info">
+            <div class="info-box">
+                <div class="info-title">Ziel:</div>
+                Nicht die optimale Blutdruckeinstellung (Schlaganfallgefahr!), sondern die Absenkung von Extremwerten um ca. 10-15 %.
+            </div>
+            <div class="info-box">
+                <div class="info-title">Beachte:</div>
+                Bei Nitro-Kontraindikation ggf. im Urapidil-Schenkel bleiben. Bei Angina Pectoris/Dyspnoe weiter mit Algorithmus K 1 bzw. K 2.
+            </div>
+        </div>
+    </div>
+
+    <div class="algo-card" data-search="k3 bradykardie atropin adrenalin pacing hf">
+        <div class="algo-title">K 3 - Bedrohliche Bradykardie</div>
+        <div class="step">
+            <div class="node decision">HF < 60 / min ?</div>
+            <div class="arrow">Ja ↓</div>
+            <div class="node decision">symptomatisch ? (häufig bei HF < 40/min)</div>
+            <div class="arrow">Ja ↓</div>
+            <div class="node decision">AV-Block II Typ Mobitz oder AV-Block III ?</div>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 20px;">
+            <div class="step">
+                <div class="node" style="border-color: #ffd700;"><strong>Nein</strong></div>
+                <div class="arrow">↓</div>
+                <div class="node med-highlight">Atropin 0,5 mg i.v.</div>
+                <div class="arrow">↓</div>
+                <div class="node decision">Besserungstendenz nach 3 min?</div>
+                <div class="arrow">Nein ↓</div>
+                <div class="node med-highlight">Atropin 0,5 mg i.v. alle 3-5 min (Max: 3 mg)</div>
+            </div>
+            <div class="step">
+                <div class="node" style="border-color: #c62828;"><strong>Ja</strong></div>
+                <div class="arrow">↓</div>
+                <div class="node critical">Kein Atropin! (Gefahr des totalen AV-Blocks)</div>
+                <div class="arrow">↓</div>
+                <div class="node med-highlight">
+                    <strong>Adrenalin:</strong><br>
+                    Pumpe: 2µg/min (1,2ml/h)<br>
+                    Tropf: 1mg/500ml (1 Tr./3s)
+                </div>
+            </div>
+        </div>
+        <div class="step">
+            <div class="node decision">HF > 50 / min ?</div>
+            <div class="arrow">Nein ↓</div>
+            <div class="node" style="border-color: #ffd700; border-style: dashed;">Vorbereitung transthorakales Pacing | Reanimationsbereitschaft</div>
+            <div class="arrow">↓</div>
+            <div class="node critical">Ärztliche Entscheidung über weitere Therapie</div>
+        </div>
+    </div>
+    <div class="algo-card" data-search="k2 tachykardie kardioversion amiodaron instabil herzrasen">
+        <div class="algo-title">K 2 - Bedrohliche Tachykardie</div>
+        <div class="step">
+            <div class="node action-highlight">
+                <strong>Initialmaßnahmen</strong>
+                ABCDE-Schema | Monitoring (AF, HF, EKG, SpO2, RR) | 12-Kanal-EKG | Sauerstoffgabe nach Bedarf | venöser Zugang
+            </div>
+            <div class="arrow">↓</div>
+            <div class="node decision">Kritisch-instabiler Patient?*</div>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
+            <div class="step">
+                <div class="node" style="border-color: #ffd700;"><strong>NEIN (Stabil)</strong></div>
+                <div class="arrow">↓</div>
+                <div class="node">Kontinuierliche Überwachung</div>
+                <div class="arrow">↓</div>
+                <div class="node">
+                    Ursachensuche | Regelmäßige Schmalkomplextachykardie: <b>Valsalva-Manöver</b> (kein Karotisdruckversuch!)
+                </div>
+            </div>
+            <div class="step">
+                <div class="node" style="border-color: #c62828;"><strong>JA (Instabil)</strong></div>
+                <div class="arrow">↓</div>
+                <div class="node decision">Bewusstlosigkeit / massive Instabilität?</div>
+                <div class="arrow">Ja ↓</div>
+                <div class="node critical" style="background: #e3f2fd; color: #0d47a1; border: 2px solid #1976d2; text-align: center;">
+                    <strong>ELEKTRISCHE KARDIOVERSION</strong>
+                </div>
+                <div class="arrow">Nein ↓</div>
+                <div class="node med-highlight">
+                    <strong>Amiodaron 300 mg</strong><br>
+                    als Kurzinfusion über 20 min
+                </div>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="node" style="border-style: dashed;">
+                Vorbereitung Notfallkardioversion & Kurznarkose (in Absprache mit Notarzt)
+            </div>
+        </div>
+
+        <div class="side-info">
+            <div class="info-box">
+                <div class="info-title">*Kriterien Instabilität:</div>
+                • <b>Schock:</b> Blässe, Schwitzen, Kaltschweißigkeit, RRsys < 90 mmHg<br>
+                • <b>Synkope:</b> Bewusstseinsverlust/Eintrübung<br>
+                • <b>Herzversagen:</b> Lungenödem, gestaute Halsvenen<br>
+                • <b>Ischämie:</b> Thoraxschmerz (Angina pectoris), Infarktzeichen im EKG
+            </div>
+            <div class="info-box">
+                <div class="info-title">Wichtiger Hinweis:</div>
+                Bei Verschlechterung des Zustandes jederzeit Re-Assessment. Bei Bewusstlosigkeit und klinischer Instabilität sofortige Kardioversion anstreben.
+            </div>
+        </div>
+    </div>
+    <div class="algo-card" data-search="k5 asthma copd atemnot salbutamol ipratropium prednisolon">
+        <div class="algo-title">K 5 - Akute obstruktive Atemwegserkrankung</div>
+        <div class="step">
+            <div class="node action-highlight">
+                <strong>Basismaßnahmen</strong>
+                ABCDE | Monitoring (RR, HF, EKG, SaO2) | Atemoberkörperhochlagerung | Lippenbremse | O2-Gabe | Beruhigung
+            </div>
+            <div class="arrow">↓</div>
+            <div class="node">Venöser Zugang (wenn zeitnah möglich) | Ggf. langsame VEL-Infusion</div>
+            <div class="arrow">↓</div>
+            <div class="node med-highlight">
+                <strong>Salbutamol Fertiginhalat</strong><br>
+                2 Amp. à 1,25 mg in 2,5 ml (= 2,5 mg in 5 ml) mit O2 vernebeln<br>
+                <small>(nach 15 min wiederholbar)</small>
+            </div>
+            <div class="arrow">↓</div>
+            <div class="node med-highlight" style="border-left-color: #fb8c00;">
+                <strong>Bei unzureichender Besserung: Ipratropiumbromid</strong><br>
+                2 Amp. à 0,25 mg in 2 ml (= 0,5 mg in 4 ml) mit O2 vernebeln<br>
+                <small>(nach 30 min wiederholbar)</small>
+            </div>
+            <div class="arrow">↓</div>
+            <div class="node">Ggf. Prednisolon (nach lokalen Vorgaben)</div>
+            <div class="arrow">↓</div>
+            <div class="node decision">Nachlassen der Symptome?</div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
+            <div class="step">
+                <div class="node" style="border-color: #ffd700;"><strong>JA</strong></div>
+                <div class="arrow">↓</div>
+                <div class="node">Fortsetzen der Standardbehandlung | Transport</div>
+            </div>
+            <div class="step">
+                <div class="node" style="border-color: #c62828;"><strong>NEIN (Schwerer Anfall)</strong></div>
+                <div class="arrow">↓</div>
+                <div class="node critical">
+                    <strong>Notarzt-Nachforderung</strong><br>
+                    Ggf. Reproterol 0,09 mg i.v. | Magnesiumsulfat 2 g i.v. | NIV-Beitmetung / Intubation
+                </div>
+            </div>
+        </div>
+
+        <div class="side-info">
+            <div class="info-box">
+                <div class="info-title">Symptome:</div>
+                Dyspnoe, exspiratorischer Stridor, Giemen, Orthopnoe, SpO2 < 90%, "Silent Chest" (Gefahr!).
+            </div>
+            <div class="info-box">
+                <div class="info-title">Kontraindikationen Salbutamol:</div>
+                Überdosierung mit Beta-Mimetika, Tachykardie > 150/min, Tachyarrhythmie, kreißende Schwangere.
+            </div>
+        </div>
+    </div>
+    <div class="algo-card" data-search="k17 sepsis septischer schock infektion qsofa vel noradrenalin">
+        <div class="algo-title">K 17 - Sepsis / septischer Schock</div>
+        
+        <div class="step">
+            <div class="node action-highlight">
+                <strong>Einstieg & Verdacht</strong>
+                V.a. Infektion (Pneumonie, Harnwegsinfekt, Peritonitis...) + mind. 2 qSOFA-Kriterien
+            </div>
+            <div class="arrow">↓</div>
+            <div class="node">Basismaßnahmen nach ABCDE | Monitoring | O2-Gabe bei SpO2 < 90%</div>
+            <div class="arrow">↓</div>
+            <div class="node decision">Patient stabil?</div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
+            <div class="step">
+                <div class="node" style="border-color: #ffd700;"><strong>JA</strong></div>
+                <div class="arrow">↓</div>
+                <div class="node med-highlight">
+                    <b>VEL-Infusion 500 – 1000 ml</b><br>
+                    (Richtwert: 30ml/kg KG über 30 min)
+                </div>
+                <div class="arrow">↓</div>
+                <div class="node decision">Transportfähig?</div>
+            </div>
+            <div class="step">
+                <div class="node" style="border-color: #c62828;"><strong>NEIN / Instabil</strong></div>
+                <div class="arrow">↓</div>
+                <div class="node critical">
+                    <strong>Notarzt nachfordern</strong><br>
+                    2. großlumiger Zugang | VEL-Infusion fortführen
+                </div>
+                <div class="arrow">↓</div>
+                <div class="node med-highlight" style="background: #ffebee; border-left: 10px solid #c62828;">
+                    <strong>Katecholamingabe (NA):</strong><br>
+                    <b>Noradrenalin</b> (5mg/50ml NaCl)<br>
+                    Flussrate: 0,6 – 12 ml/h<br>
+                    (Ziel MAD mind. 65 mmHg)
+                </div>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="node" style="border-style: double;">
+                <strong>Zielklinik-Anmeldung:</strong> V.a. Sepsis / Septischer Schock
+            </div>
+            <div class="arrow">↓</div>
+            <div class="node">Transport (Ziel: Ankunft spätestens 60 min nach Notrufeingang)</div>
+        </div>
+
+        <div class="side-info">
+            <div class="info-box">
+                <div class="info-title">qSOFA-Kriterien (mind. 2):</div>
+                • <b>Atemfrequenz:</b> >= 22 / min<br>
+                • <b>Vigilanz:</b> eingeschränkt (GCS < 15)<br>
+                • <b>Blutdruck:</b> RR syst <= 100 mmHg
+            </div>
+            <div class="info-box">
+                <div class="info-title">Symptome:</div>
+                Fieber/Schüttelfrost (nicht immer!), Tachypnoe, Hypotonie, reduzierte Urinausscheidung, Marmorierung der Haut.
+            </div>
+        </div>
+    </div>
+    <div class="algo-card" data-search="k11 kolik gallenkolik nierenkolik buscopan metamizol bauch">
+        <div class="algo-title">K 11 - Abdominelle Koliken</div>
+        <div class="step">
+            <div class="node action-highlight"><strong>Einstieg</strong> V.a. Gallen- oder Nierenkolik | Basismaßnahmen | Lagerung</div>
+            <div class="arrow">↓</div>
+            <div class="node">Venöser Zugang | Langsame VEL-Infusion 500 ml</div>
+            <div class="arrow">↓</div>
+            <div class="node decision">Stabil? (RRsys > 100, HF 50-130, SpO2 > 92%)</div>
+            <div class="arrow">Ja ↓</div>
+            <div class="node med-highlight">
+                <strong>Butylscopolamin (Buscopan)</strong><br>
+                20 mg i.v. langsam
+            </div>
+            <div class="arrow">↓</div>
+            <div class="node med-highlight" style="border-left-color: #fb8c00;">
+                <strong>Bei Bedarf erwägen: Metamizol</strong><br>
+                1 g i.v. langsam (2 min) ODER 1,5 g in die Infusion
+            </div>
+            <div class="arrow">↓</div>
+            <div class="node decision">Besserung der Beschwerden?</div>
+            <div class="arrow">Ja ↓</div>
+            <div class="node">Transport geeignete Klinik / Fachpraxis</div>
+        </div>
+
+        <div class="side-info">
+            <div class="info-box">
+                <div class="info-title">Wichtig:</div>
+                Besondere Aufklärungspflicht bei Metamizol! Nicht lebensbedrohliche Situation, Ziel ist Transportfähigkeit.
+            </div>
+            <div class="info-box">
+                <div class="info-title">Leitlinien:</div>
+                • Nierenkolik: Metamizol empfohlen, Buscopan nicht.<br>
+                • Gallenkolik: Metamizol möglich, Buscopan empfohlen.
+            </div>
+        </div>
+    </div>
+    <div class="algo-card" data-search="15 anaphylaxie allergie schock adrenalin urticaria stridor">
+        <div class="algo-title">15 - Anaphylaktische Reaktion</div>
+        
+        <div class="step">
+            <div class="node action-highlight">
+                <strong>Initialmaßnahmen</strong>
+                Stopp der Allergenzufuhr (falls möglich) | ABCDE-Schema
+            </div>
+            <div class="arrow">↓</div>
+            <div class="node decision">
+                A-, B- oder C-Problem?<br>
+                <small>(Atemnot? Schocksymptome?)</small>
+            </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
+            <div class="step">
+                <div class="node" style="border-color: #ffd700;"><strong>NEIN / Stadium I-II</strong></div>
+                <div class="arrow">↓</div>
+                <div class="node decision">Zunehmend schwere Allgemeinsymptome?</div>
+                <div class="arrow">Nein ↓</div>
+                <div class="node">Venöser Zugang | Vollelektrolytlösung (VEL) langsam</div>
+                <div class="arrow">↓</div>
+                <div class="node med-highlight" style="background: #fce4ec; border-left-color: #d81b60;">
+                    <strong>Erwägen:</strong><br>
+                    H1-Blocker | H2-Blocker | Corticosteroid
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="node" style="border-color: #c62828;"><strong>JA / Stadium II+ bis IV</strong></div>
+                <div class="arrow">↓</div>
+                <div class="node critical" style="background: #ffff00; color: black; border: 2px solid black;">
+                    <strong>ADRENALIN 0,3 mg i.m.</strong><br>
+                    <small>(Kinder bis 12 J.: 0,15 mg i.m.)</small><br>
+                    Außenseite mittleres Oberschenkeldrittel
+                </div>
+                <div class="arrow">↓</div>
+                <div class="node decision">Stridor vorhanden?</div>
+                <div class="arrow">Ja ↓</div>
+                <div class="node med-highlight">
+                    <strong>Inhalativ:</strong><br>
+                    • Inspiratorisch: Adrenalin (M 12)<br>
+                    • Exspiratorisch: Salbutamol (M 10/11)
+                </div>
+                <div class="arrow">↓</div>
+                <div class="node">
+                    Venöser Zugang | VEL-Bolus:<br>
+                    Erw: 500-1000 ml | Kind: 20 ml/kg KG
+                </div>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="node critical" style="border-style: double; border-width: 4px;">
+                <strong>Stadium IV:</strong> Reanimationsbereitschaft! Ggf. Umsteigen in CPR-Algorithmus
+            </div>
+        </div>
+
+        <div class="side-info">
+            <div class="info-box">
+                <div class="info-title">Definition Kind:</div>
+                Bis zum vollendeten 12. Lebensjahr.
+            </div>
+            <div class="info-box">
+                <div class="info-title">Hinweise:</div>
+                • Bei Stadium III/IV immer Adrenalin i.m. Priorität!<br>
+                • Zweiter venöser Zugang bei schwerem Verlauf erwägen.<br>
+                • Adrenalin-Tropf nur nach ärztlicher Entscheidung.
+            </div>
+        </div>
+    </div>
+
+<div class="algo-card">
+    <div class="algo-title" style="background: var(--falken-blue); color: var(--falken-gold); padding: 10px; text-transform: uppercase; font-weight: bold;">
+        Algorithmus: VHF breitkomplexig (Metoprolol)
+    </div>
+    <div style="padding: 15px; background: white;">
+
+        <div style="border: 1px solid #0054a6; border-radius: 5px; margin-bottom: 10px; overflow: hidden;">
+            <div style="background: #e3f2fd; padding: 5px 10px; font-weight: bold; border-bottom: 1px solid #ddd; font-size: 0.85em; color: #0054a6;">
+                INITIALBEFUND
+            </div>
+            <div style="padding: 10px; font-size: 0.9em; background: #fdfaf4;">
+                Tachykardie? Breiter QRS? Monomorph? <strong>ABSOLUT unregelmäßig?</strong><br>
+                ➔ Verdacht auf <strong>Vorhofflimmern + Schenkelblock</strong>
+            </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px;">
+            <div style="border: 2px solid #d32f2f; border-radius: 5px; background: #fdf2f2; padding: 8px; font-size: 0.85em;">
+                <strong>JA: Bedarfstachykardie?</strong><br>
+                Reversible Ursache? (Schock, Sepsis...)<br>
+                ➔ <strong>KEINE Metoprolol-Gabe!</strong>
+            </div>
+            <div style="border: 1px solid #ddd; border-radius: 5px; background: #fafafa; padding: 8px; font-size: 0.85em;">
+                <strong>NEIN:</strong><br>
+                Weiter im Algorithmus.
+            </div>
+        </div>
+
+        <div style="border: 1px solid #ffcb05; border-radius: 5px; margin-bottom: 10px; overflow: hidden; background: #fffde7;">
+            <div style="padding: 10px; font-size: 0.85em;">
+                <strong>Bedrohliche Zeichen vorhanden?</strong> (Ischämie, Herzinsuffizienz, Schock, Synkope)<br>
+                ➔ JA: <strong>Algorithmus Notfallkardioversion</strong><br>
+                ➔ NEIN: Weiter zur medikamentösen Therapie.
+            </div>
+        </div>
+
+        <div style="border: 1px solid #2e7d32; border-radius: 5px; margin-bottom: 10px; overflow: hidden;">
+            <div style="background: #ffed00; color: black; padding: 5px 10px; font-weight: bold; text-align: center; font-size: 1em;">
+                METOPROLOL 2,5 MG I.V. (LANGSAM)
+            </div>
+            <div style="padding: 10px; font-size: 0.85em; background: #f1f8e9;">
+                <strong>Ausschluss:</strong> RR<sub>syst</sub> ≤ 120 mmHg, Asthma, β-Blocker-Allergie<br>
+                <strong>Gabe:</strong> 2,5 mg (= 2,5 ml) i.v. langsam.
+            </div>
+        </div>
+
+        <div style="border: 1px solid #0054a6; border-radius: 5px; margin-bottom: 10px; overflow: hidden;">
+            <div style="background: #cfd8dc; color: #263238; padding: 5px 10px; font-weight: bold; font-size: 0.85em;">
+                HEPARIN-GABE ERWÄGEN
+            </div>
+            <div style="padding: 10px; font-size: 0.85em; background: #eceff1;">
+                <strong>Gabe:</strong> 5.000 I.E. Heparin i.v.<br>
+                <strong>Kontra:</strong> Aktive Blutung, frischer Schlaganfall, orale Antikoagulation.
+            </div>
+        </div>
+
+        <div style="padding: 8px; border: 2px solid #2e7d32; background: #e8f5e9; border-radius: 5px; text-align: center; font-size: 0.85em;">
+            <strong>Reevaluation nach 5 Min:</strong><br>
+            Falls RR > 120 & HF > 100: <strong>Metoprolol-Wdh.</strong> (max. 15 mg).
+        </div>
+
+    </div>
+    <span style="display:none;">metoprolol heparin vorhofflimmern vhf rhythmusstörung tachykardie algorithmus dbrd</span>
+</div>
+
+<div class="algo-card">
+    <div class="algo-title" style="background: var(--falken-blue); color: var(--falken-gold); padding: 10px; text-transform: uppercase; font-weight: bold;">
+        Algorithmus: Verdacht auf Lungenembolie
+    </div>
+    <div style="padding: 15px; background: white;">
+
+        <div style="border: 1px solid #0054a6; border-radius: 5px; margin-bottom: 10px; overflow: hidden;">
+            <div style="background: #e3f2fd; padding: 5px 10px; font-weight: bold; border-bottom: 1px solid #ddd; font-size: 0.85em; color: #0054a6;">
+                1. INITIALMASSNAHMEN & DIAGNOSTIK
+            </div>
+            <div style="padding: 10px; font-size: 0.9em; background: #fdfaf4;">
+                • <strong>ABCDE</strong>-Schema (ggf. parallel ACS-Ausschluss)<br>
+                • Lagerung, O₂-Gabe 15 l/min, Monitoring (EKG, SpO₂, 12-Kanal-EKG)<br>
+                • Anlage i.v.-Zugang
+            </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px;">
+            <div style="border: 1px solid #ffcb05; border-radius: 5px; background: #fffde7; padding: 8px; font-size: 0.85em;">
+                <strong>Genfer Score ≥ 2?</strong><br>
+                Verschlusszeichen, Puls ≥ 95/min, Alter > 65, vorangegangene OP/Fraktur?
+            </div>
+            <div style="border: 1px solid #d32f2f; border-radius: 5px; background: #fdf2f2; padding: 8px; font-size: 0.85em;">
+                <strong>Ausschluss suchen:</strong><br>
+                ACS, Aortendissektion, Pneumothorax, Schock.
+            </div>
+        </div>
+
+        <div style="border: 1px solid #d32f2f; border-radius: 5px; margin-bottom: 10px; overflow: hidden;">
+            <div style="background: #d32f2f; color: white; padding: 5px 10px; font-weight: bold; font-size: 0.85em;">
+                2. KEINE HEPARIN-GABE BEI:
+            </div>
+            <div style="padding: 10px; font-size: 0.85em; background: #fdf2f2;">
+                • Hinweisen für <strong>aktive Blutung</strong><br>
+                • Verdacht auf <strong>Aortendissektion</strong> (RR-Differenz Arme > 20 mmHg, reißender Schmerz)<br>
+                • Bekannter Heparin-Allergie
+            </div>
+        </div>
+
+        <div style="border: 1px solid #2e7d32; border-radius: 5px; margin-bottom: 10px; overflow: hidden;">
+            <div style="background: #ffed00; color: black; padding: 5px 10px; font-weight: bold; text-align: center; font-size: 1em;">
+                HEPARIN 80 I.E. / KG KG I.V.
+            </div>
+            <div style="padding: 10px; font-size: 0.85em; background: #f1f8e9;">
+                <strong>Gewichtsadaptierte Dosierung:</strong><br>
+                • < 50 kg: 4.000 I.E. | 60-70 kg: 5.500 I.E.<br>
+                • 80-90 kg: 7.200 I.E. | 90-100 kg: 8.000 I.E.<br>
+                <strong>Zusatz:</strong> Bei Hypotension 500 ml VEL-Bolus.
+            </div>
+        </div>
+
+        <div style="padding: 8px; border: 2px solid #0054a6; background: #e3f2fd; border-radius: 5px; text-align: center; font-size: 0.85em;">
+            <strong>Erwäge Notfallsonografie</strong> (Rechtsherzbelastung?)<br>
+            Thrombolysetherapie durch NA nur im schweren Schock / Reanimation!
+        </div>
+
+    </div>
+    <span style="display:none;">lungenembolie lae heparin genfer score dyspnoe thoraxschmerz tachykardie</span>
+</div>
+
+<div class="algo-card">
+    <div class="algo-title" style="background: var(--falken-blue); color: var(--falken-gold); padding: 10px; text-transform: uppercase; font-weight: bold;">
+        Algorithmus: Hypoglykämie (BZ ≤ 60 mg/dl)
+    </div>
+    <div style="padding: 15px; background: white;">
+
+        <div style="border: 1px solid #0054a6; border-radius: 5px; margin-bottom: 10px; overflow: hidden;">
+            <div style="background: #e3f2fd; padding: 5px 10px; font-weight: bold; border-bottom: 1px solid #ddd; font-size: 0.85em; color: #0054a6;">
+                1. INITIALPHASE
+            </div>
+            <div style="padding: 10px; font-size: 0.9em; background: #fdfaf4;">
+                • <strong>ABCDE</strong>-Herangehensweise<br>
+                • <strong>BZ-Messung</strong> (Grenzwert: ≤ 60 mg/dl oder 3,3 mmol/l)
+            </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px;">
+            <div style="border: 1px solid #d32f2f; border-radius: 5px; background: #fdf2f2; padding: 8px; font-size: 0.85em;">
+                <strong>BEWUSSTSEINSGETRÜBT?</strong><br>
+                • Stabile Seitenlage<br>
+                • <strong>i.v.-Zugang legen</strong>
+            </div>
+            <div style="border: 1px solid #2e7d32; border-radius: 5px; background: #f1f8e9; padding: 8px; font-size: 0.85em;">
+                <strong>WACH / SCHLUCKFÄHIG?</strong><br>
+                • Lagerung nach Kreislauf<br>
+                • <strong>Orale Zufuhr</strong> möglich
+            </div>
+        </div>
+
+        <div style="border: 1px solid #2e7d32; border-radius: 5px; margin-bottom: 10px; overflow: hidden;">
+            <div style="background: #ffed00; color: black; padding: 5px 10px; font-weight: bold; text-align: center; font-size: 1em;">
+                GABE VON 5–10 g GLUCOSE
+            </div>
+            <div style="padding: 10px; font-size: 0.85em; background: #fafafa;">
+                • <strong>i.v. Weg:</strong> 25–50 ml Glucose 20%<br>
+                • <strong>Oraler Weg:</strong> 5–10 g Glucose oral (z.B. Saft, Plättchen)<br>
+                • <strong>Sonderfall:</strong> Bei Alkoholabusus/Mangelernährung zusätzlich <strong>100 mg Thiamin (Vit. B1) i.v.</strong>
+            </div>
+        </div>
+
+        <div style="border: 1px solid #ddd; border-radius: 5px; overflow: hidden;">
+            <div style="background: #f5f5f5; padding: 5px 10px; font-weight: bold; font-size: 0.85em;">
+                4. KONTROLLE (NACH 2-3 MINUTEN)
+            </div>
+            <div style="padding: 10px; font-size: 0.85em;">
+                • BZ-Kontrollmessung & ABCDE-Check<br>
+                • <strong>BZ nicht ausgeglichen?</strong> ➔ Erneute Gabe<br>
+                • <strong>Symptome bleiben trotz BZ-Anstieg?</strong> ➔ Suche nach anderen Ursachen!
+            </div>
+        </div>
+
+    </div>
+    <span style="display:none;">hypoglykämie unterzuckerung glucose bz-wert diabetes thiamin b1 insulin schock</span>
+</div>
+
+<div class="algo-card">
+    <div class="algo-title" style="background: var(--falken-blue); color: var(--falken-gold); padding: 10px; text-transform: uppercase; font-weight: bold;">
+        Algorithmus: Verdacht auf Schlaganfall
+    </div>
+    <div style="padding: 15px; background: white;">
+
+        <div style="border: 1px solid #0054a6; border-radius: 5px; margin-bottom: 10px; overflow: hidden;">
+            <div style="background: #e3f2fd; padding: 5px 10px; font-weight: bold; border-bottom: 1px solid #ddd; font-size: 0.85em; color: #0054a6;">
+                1. INITIALPHASE & DIAGNOSTIK
+            </div>
+            <div style="padding: 10px; font-size: 0.9em; background: #fdfaf4;">
+                • <strong>ABCDE</strong>-Herangehensweise<br>
+                • <strong>BZ-Messung</strong> (Ausschluss Hypoglykämie, Ziel: 70–200 mg/dl)<br>
+                • <strong>Anamnese:</strong> Symptombeginn (Time of onset)?
+            </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px;">
+            <div style="border: 1px solid #ffcb05; border-radius: 5px; background: #fffde7; padding: 8px; font-size: 0.85em;">
+                <strong>BE-FAST CHECK</strong><br>
+                • <strong>B</strong>alance / <strong>E</strong>yes<br>
+                • <strong>F</strong>ace / <strong>A</strong>rm / <strong>S</strong>peech<br>
+                • <strong>T</strong>ime (Zeitkritisch!)
+            </div>
+            <div style="border: 1px solid #d32f2f; border-radius: 5px; background: #fdf2f2; padding: 8px; font-size: 0.85em;">
+                <strong>VITALE BEDROHUNG?</strong><br>
+                • RR<sub>sys</sub> ≥ 220 mmHg?<br>
+                • RR<sub>dia</sub> ≥ 120 mmHg?<br>
+                • GCS ≤ 8 (Atemwege!)
+            </div>
+        </div>
+
+        <div style="border: 1px solid #2e7d32; border-radius: 5px; margin-bottom: 10px; overflow: hidden;">
+            <div style="background: #ffed00; color: black; padding: 5px 10px; font-weight: bold; text-align: center; font-size: 1em;">
+                VERSORGUNG & TRANSPORT
+            </div>
+            <div style="padding: 10px; font-size: 0.85em; background: #fafafa;">
+                • <strong>Lagerung:</strong> Oberkörper 30° hoch<br>
+                • <strong>i.v. Zugang:</strong> 500 ml kristalloide Infusion<br>
+                • <strong>Ziel:</strong> Transport in Stroke Unit mit Voranmeldung
+            </div>
+        </div>
+
+        <div style="border: 1px solid #ddd; border-radius: 5px; overflow: hidden;">
+            <div style="background: #f5f5f5; padding: 5px 10px; font-weight: bold; font-size: 0.85em;">
+                4. ZEITZIELE
+            </div>
+            <div style="padding: 10px; font-size: 0.85em;">
+                • Versorgungszeit vor Ort: <strong>< 25 Minuten</strong><br>
+                • Präklinische Gesamtzeit: <strong>< 60 Minuten</strong>
+            </div>
+        </div>
+
+    </div>
+    <span style="display:none;">schlaganfall apoplex stroke be-fast zeitfenster stroke unit neurologie</span>
+</div>
+
+<div class="algo-card">
+    <div class="algo-title" style="background: var(--falken-blue); color: var(--falken-gold); padding: 10px; text-transform: uppercase; font-weight: bold;">
+        Algorithmus: Verdacht auf Schlaganfall
+    </div>
+    <div style="padding: 15px; background: white;">
+
+        <div style="border: 1px solid #0054a6; border-radius: 5px; margin-bottom: 10px; overflow: hidden;">
+            <div style="background: #e3f2fd; padding: 5px 10px; font-weight: bold; border-bottom: 1px solid #ddd; font-size: 0.85em; color: #0054a6;">
+                1. INITIALPHASE & DIAGNOSTIK
+            </div>
+            <div style="padding: 10px; font-size: 0.9em; background: #fdfaf4;">
+                • <strong>ABCDE</strong>-Herangehensweise<br>
+                • <strong>BZ-Messung</strong> (Ausschluss Hypoglykämie, Ziel: 70–200 mg/dl)<br>
+                • <strong>Anamnese:</strong> Wann zuletzt symptomfrei (Time of onset)?
+            </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px;">
+            <div style="border: 1px solid #ffcb05; border-radius: 5px; background: #fffde7; padding: 8px; font-size: 0.85em;">
+                <strong>BE-FAST CHECK</strong><br>
+                • <strong>B</strong>alance / <strong>E</strong>yes<br>
+                • <strong>F</strong>ace / <strong>A</strong>rm / <strong>S</strong>peech<br>
+                • <strong>T</strong>ime (Zeitkritisch!)
+            </div>
+            <div style="border: 1px solid #d32f2f; border-radius: 5px; background: #fdf2f2; padding: 8px; font-size: 0.85em;">
+                <strong>VITALE BEDROHUNG?</strong><br>
+                • RR<sub>sys</sub> ≥ 220 mmHg?<br>
+                • RR<sub>dia</sub> ≥ 120 mmHg?<br>
+                • GCS ≤ 8 (Atemwege!)
+            </div>
+        </div>
+
+        <div style="border: 1px solid #2e7d32; border-radius: 5px; margin-bottom: 10px; overflow: hidden;">
+            <div style="background: #ffed00; color: black; padding: 5px 10px; font-weight: bold; text-align: center; font-size: 1em;">
+                VERSORGUNG & TRANSPORT
+            </div>
+            <div style="padding: 10px; font-size: 0.85em; background: #fafafa;">
+                • <strong>Lagerung:</strong> Oberkörper 30° hoch<br>
+                • <strong>i.v. Zugang:</strong> 500 ml kristalloide Infusion<br>
+                • <strong>Ziel:</strong> Transport in Stroke Unit mit Voranmeldung
+            </div>
+        </div>
+
+        <div style="border: 1px solid #ddd; border-radius: 5px; overflow: hidden;">
+            <div style="background: #f5f5f5; padding: 5px 10px; font-weight: bold; font-size: 0.85em;">
+                4. ZEITZIELE
+            </div>
+            <div style="padding: 10px; font-size: 0.85em;">
+                • Versorgungszeit vor Ort: <strong>< 25 Minuten</strong><br>
+                • Präklinische Gesamtzeit: <strong>< 60 Minuten</strong>
+            </div>
+        </div>
+
+    </div>
+    <span style="display:none;">schlaganfall apoplex stroke be-fast zeitfenster stroke unit neurologie</span>
+</div>
+
+<div class="algo-card">
+    <div class="algo-title" style="background: var(--falken-blue); color: var(--falken-gold); padding: 10px; text-transform: uppercase; font-weight: bold;">
+        Management des hämorrhagischen Schocks
+    </div>
+    <div style="padding: 15px; background: white;">
+
+        <div style="border: 1px solid #0054a6; border-radius: 5px; margin-bottom: 10px; overflow: hidden;">
+            <div style="background: #e3f2fd; padding: 5px 10px; font-weight: bold; border-bottom: 1px solid #ddd; font-size: 0.85em; color: #0054a6;">
+                1. INITIALPHASE & BLUTUNGSKONTROLLE
+            </div>
+            <div style="padding: 10px; font-size: 0.9em; background: #fdfaf4;">
+                • <strong>X-ABCDE</strong>-Herangehensweise (X = kritische Blutung zuerst!)<br>
+                • <strong>Äußere Blutung:</strong> Manuelle Kompression, Druckverband, ggf. Tourniquet<br>
+                • <strong>Innere Blutung:</strong> Beckenschlinge bei Trauma erwägen, Wärmeerhalt konsequent
+            </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px;">
+            <div style="border: 1px solid #d32f2f; border-radius: 5px; background: #fdf2f2; padding: 8px; font-size: 0.85em;">
+                <strong>UNSTABILE BLUTUNG</strong><br>
+                • <strong>Permissive Hypotension:</strong><br>
+                • Ziel-RR<sub>syst</sub> 80–90 mmHg<br>
+                • Ausnahme: SHT / Schwangerschaft (normaler RR)
+            </div>
+            <div style="border: 1px solid #2e7d32; border-radius: 5px; background: #f1f8e9; padding: 8px; font-size: 0.85em;">
+                <strong>KONTROLLIERTE BLUTUNG</strong><br>
+                • 1.000 ml kristalloide Lösung<br>
+                • Ziel: <strong>Normaler Blutdruck</strong>
+            </div>
+        </div>
+
+        <div style="border: 1px solid #2e7d32; border-radius: 5px; margin-bottom: 10px; overflow: hidden;">
+            <div style="background: #ffed00; color: black; padding: 5px 10px; font-weight: bold; text-align: center; font-size: 1em;">
+                TRANEXAMSÄURE (TXA) GABE
+            </div>
+            <div style="padding: 10px; font-size: 0.85em; background: #fafafa;">
+                • <strong>Dosis:</strong> 1g TXA in 100 ml NaCl 0,9% als Kurzinfusion (10 Min.)<br>
+                • <strong>Zeitfenster:</strong> Nur innerhalb von 3 Std. nach Trauma!<br>
+                • <strong>Ausschluss:</strong> Allergie, akute Thrombose/Embolie
+            </div>
+        </div>
+
+        <div style="border: 1px solid #ddd; border-radius: 5px; overflow: hidden;">
+            <div style="background: #f5f5f5; padding: 5px 10px; font-weight: bold; font-size: 0.85em;">
+                4. ZÜGIGER TRANSPORT
+            </div>
+            <div style="padding: 10px; font-size: 0.85em;">
+                • "The first clot is the best clot!" (Bewegungen vermeiden)<br>
+                • Transportpriorität vor langwierigen Maßnahmen<br>
+                • Bei fehlendem Effekt der Volumengabe an innere Blutungen denken!
+            </div>
+        </div>
+
+    </div>
+    <span style="display:none;">hämorrhagischer schock trauma blutung tranexamsäure txa tourniquet volumen beckenschlinge</span>
+</div>
+
+<div class="algo-card">
+    <div class="algo-title" style="background: var(--falken-blue); color: var(--falken-gold); padding: 10px; text-transform: uppercase; font-weight: bold;">
+        Algorithmus: Hypotonie / Schock
+    </div>
+    <div style="padding: 15px; background: white;">
+        <div style="border: 1px solid #0054a6; border-radius: 5px; margin-bottom: 10px; overflow: hidden;">
+            <div style="background: #e3f2fd; padding: 5px 10px; font-weight: bold; border-bottom: 1px solid #ddd; font-size: 0.85em; color: #0054a6;">
+                1. INITIALPHASE & URSACHENSUCHE
+            </div>
+            <div style="padding: 10px; font-size: 0.9em; background: #fdfaf4;">
+                • <strong>ABCDE</strong>-Schema<br>
+                • Ursache klären: Volumenmangel? Pumpprogram? Anaphylaxie? Sepsis?
+            </div>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px;">
+            <div style="border: 1px solid #d32f2f; border-radius: 5px; background: #fdf2f2; padding: 8px; font-size: 0.85em;">
+                <strong>KRITISCH?</strong><br>
+                • Schockzeichen (Rekap > 2s)<br>
+                • Vigilanzminderung<br>
+                • qSOFA positiv?
+            </div>
+            <div style="border: 1px solid #2e7d32; border-radius: 5px; background: #f1f8e9; padding: 8px; font-size: 0.85em;">
+                <strong>LAGERUNG</strong><br>
+                • Schocklagerung (Beine hoch)<br>
+                • Ausnahme: Kardiogen (30° hoch)
+            </div>
+        </div>
+        <div style="border: 1px solid #2e7d32; border-radius: 5px; margin-bottom: 10px; overflow: hidden;">
+            <div style="background: #ffed00; color: black; padding: 5px 10px; font-weight: bold; text-align: center; font-size: 1em;">
+                VOLUMENSUBSTITUTION
+            </div>
+            <div style="padding: 10px; font-size: 0.85em; background: #fafafa;">
+                • <strong>Kristalloide:</strong> 500 – 1.000 ml VEL als Bolus<br>
+                • <strong>Ziel:</strong> RR<sub>syst</sub> > 90 mmHg (bei Trauma 80-90 mmHg)
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="algo-card">
+    <div class="algo-title" style="background: var(--falken-blue); color: var(--falken-gold); padding: 10px; text-transform: uppercase; font-weight: bold;">
+        Algorithmus: Hyperglykämie
+    </div>
+    <div style="padding: 15px; background: white;">
+        <div style="border: 1px solid #0054a6; border-radius: 5px; margin-bottom: 10px; overflow: hidden;">
+            <div style="background: #e3f2fd; padding: 5px 10px; font-weight: bold; border-bottom: 1px solid #ddd; font-size: 0.85em; color: #0054a6;">
+                1. DIAGNOSTIK
+            </div>
+            <div style="padding: 10px; font-size: 0.9em; background: #fdfaf4;">
+                • <strong>BZ-Messung</strong> (> 250 mg/dl / 13,9 mmol/l)<br>
+                • Symptome: Polydipsie, Exsikkose, Kußmaul-Atmung?
+            </div>
+        </div>
+        <div style="border: 1px solid #2e7d32; border-radius: 5px; margin-bottom: 10px; overflow: hidden;">
+            <div style="background: #ffed00; color: black; padding: 5px 10px; font-weight: bold; text-align: center; font-size: 1em;">
+                THERAPIE: FLÜSSIGKEIT
+            </div>
+            <div style="padding: 10px; font-size: 0.85em; background: #fafafa;">
+                • <strong>Volumen:</strong> 1.000 ml VEL i.v. (langsam)<br>
+                • <strong>ACHTUNG:</strong> Kein Insulin durch Rettungsdienst (Gefahr Hirnödem)!
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="algo-card">
+    <div class="algo-title" style="background: var(--falken-blue); color: var(--falken-gold); padding: 10px; text-transform: uppercase; font-weight: bold;">
+        Algorithmus: SHT
+    </div>
+    <div style="padding: 15px; background: white;">
+        <div style="border: 1px solid #0054a6; border-radius: 5px; margin-bottom: 10px; overflow: hidden;">
+            <div style="background: #e3f2fd; padding: 5px 10px; font-weight: bold; font-size: 0.85em; color: #0054a6;">
+                1. EVALUATION (GCS)
+            </div>
+            <div style="padding: 10px; font-size: 0.9em; background: #fdfaf4;">
+                • <strong>SHT Leicht:</strong> GCS 13-15 | <strong>Mittel:</strong> 9-12 | <strong>Schwer:</strong> ≤ 8<br>
+                • Pupillenkontrolle (Anisokorie?)
+            </div>
+        </div>
+        <div style="border: 1px solid #d32f2f; border-radius: 5px; margin-bottom: 10px; overflow: hidden; background: #fdf2f2;">
+            <div style="padding: 10px; font-size: 0.85em;">
+                <strong>GCS ≤ 8?</strong> ➔ Atemwegssicherung (Intubation) erwägen!
+            </div>
+        </div>
+        <div style="border: 1px solid #2e7d32; border-radius: 5px; overflow: hidden;">
+            <div style="background: #ffed00; color: black; padding: 5px 10px; font-weight: bold; text-align: center;">
+                MASSNAHMEN
+            </div>
+            <div style="padding: 10px; font-size: 0.85em; background: #fafafa;">
+                • HWS-Immobilisation (Stifneck)<br>
+                • Oberkörper 30° hoch (CPP sichern)<br>
+                • Ziel-RR<sub>syst</sub> > 120 mmHg
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="algo-card">
+    <div class="algo-title" style="background: var(--falken-blue); color: var(--falken-gold); padding: 10px; text-transform: uppercase; font-weight: bold;">
+        Algorithmus: Akutes Abdomen
+    </div>
+    <div style="padding: 15px; background: white;">
+        <div style="border: 1px solid #0054a6; border-radius: 5px; margin-bottom: 10px; overflow: hidden;">
+            <div style="background: #e3f2fd; padding: 5px 10px; font-weight: bold; font-size: 0.85em; color: #0054a6;">
+                1. BASISDIAGNOSTIK
+            </div>
+            <div style="padding: 10px; font-size: 0.9em; background: #fdfaf4;">
+                • <strong>OPQRST</strong> (Schmerzcharakteristik)<br>
+                • Auskultation/Palpation (Abwehrspannung?)
+            </div>
+        </div>
+        <div style="border: 1px solid #d32f2f; border-radius: 5px; margin-bottom: 10px; background: #fdf2f2; padding: 8px; font-size: 0.85em;">
+            <strong>AUSSCHLUSS:</strong> ACS (Hinterwandinfarkt), Aortendissektion, Ileus
+        </div>
+        <div style="border: 1px solid #2e7d32; border-radius: 5px; overflow: hidden;">
+            <div style="background: #ffed00; color: black; padding: 5px 10px; font-weight: bold; text-align: center;">
+                MASSNAHMEN
+            </div>
+            <div style="padding: 10px; font-size: 0.85em; background: #fafafa;">
+                • Knierollenlagerung (Entlastung Bauchdecke)<br>
+                • Nahrungskarenz ("Nüchtern") & i.v. Zugang<br>
+                • Analgesie nach ärztlicher Rücksprache
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="algo-card">
+    <div class="algo-title" style="background: var(--falken-blue); color: var(--falken-gold); padding: 10px; text-transform: uppercase; font-weight: bold;">
+        Extremitäten: TVT / Kompartment / Fraktur
+    </div>
+    <div style="padding: 15px; background: white;">
+
+        <div style="border: 1px solid #0054a6; border-radius: 5px; margin-bottom: 10px; overflow: hidden;">
+            <div style="background: #e3f2fd; padding: 5px 10px; font-weight: bold; border-bottom: 1px solid #ddd; font-size: 0.85em; color: #0054a6;">
+                TIEFE VENENTHROMBOSE (TVT)
+            </div>
+            <div style="padding: 10px; font-size: 0.9em; background: #fdfaf4;">
+                • <strong>Leitsymptom:</strong> Einseitige Beinschwellung & Rötung<br>
+                • <strong>Schmerz:</strong> Druckschmerz bei Palpation (Wade/Leiste)<br>
+                • <strong>Vitalwerte:</strong> Oft Tachykardie (Cave: Lungenembolie!)
+            </div>
+        </div>
+
+        <div style="border: 1px solid #d32f2f; border-radius: 5px; margin-bottom: 10px; overflow: hidden;">
+            <div style="background: #fdf2f2; padding: 5px 10px; font-weight: bold; border-bottom: 1px solid #d32f2f; font-size: 0.85em; color: #d32f2f;">
+                KOMPARTMENTSYNDROM (6x P) - ZEITKRITISCH!
+            </div>
+            <div style="padding: 10px; font-size: 0.85em; display: grid; grid-template-columns: 1fr 1fr; gap: 5px;">
+                <div><strong>P</strong>ain (Schmerz)</div>
+                <div><strong>P</strong>aleness (Blässe)</div>
+                <div><strong>P</strong>ulslessness (Pulslos)</div>
+                <div><strong>P</strong>aresthesia (Kribbeln)</div>
+                <div><strong>P</strong>aralysis (Lähmung)</div>
+                <div><strong>P</strong>rostration (Erschöpfung)</div>
+            </div>
+        </div>
+
+        <div style="border: 1px solid #2e7d32; border-radius: 5px; margin-bottom: 10px; overflow: hidden;">
+            <div style="background: #ffed00; color: black; padding: 5px 10px; font-weight: bold; text-align: center; font-size: 1em;">
+                FRAKTURVERSORGUNG & DMS-CHECK
+            </div>
+            <div style="padding: 10px; font-size: 0.85em; background: #fafafa;">
+                <strong>DMS-Check zwingend VOR und NACH Schienung:</strong><br>
+                • <strong>D</strong>urchblutung (Puls, Rekap-Zeit)<br>
+                • <strong>M</strong>otorik (Zehen/Finger bewegen)<br>
+                • <strong>S</strong>ensibilität (Gefühl vorhanden?)
+            </div>
+        </div>
+
+        <div style="border: 1px solid #ddd; border-radius: 5px; overflow: hidden;">
+            <div style="background: #f5f5f5; padding: 5px 10px; font-weight: bold; font-size: 0.85em;">
+                GEMEINSAME MASSNAHMEN
+            </div>
+            <div style="padding: 10px; font-size: 0.85em;">
+                • <strong>TVT:</strong> Bein flach lagern, KEINE Massage, Immobilisation.<br>
+                • <strong>Fraktur/Kompartment:</strong> Schienung, Analgesie, Kühlung (nur Fraktur).
+            </div>
+        </div>
+
+    </div>
+    <span style="display:none;">tvt thrombose kompartment fraktur dms-check schwellung schmerz puls 6p</span>
+</div>
+
+</div>
+
+<script>
+    function search() {
+        let input = document.getElementById('algoSearch').value.toLowerCase();
+        let cards = document.getElementsByClassName('algo-card');
+        for (let i = 0; i < cards.length; i++) {
+            let filter = cards[i].getAttribute('data-search');
+            cards[i].style.display = filter.includes(input) ? "" : "none";
+        }
+    }
+</script>
+
+<div class="container" id="main-content">
+    
+ <div class="algo-card">
+        <div class="algo-title" style="background: var(--falken-blue); color: var(--falken-gold); padding: 10px; text-transform: uppercase; font-weight: bold;">
+            Referenzwerte Vitalparameter
+        </div>
+        <table style="width: 100%; border-collapse: collapse; background: white;">
+            <thead>
+                <tr style="background: #eee; color: #333;">
+                    <th style="padding: 12px; border: 1px solid #ddd; text-align: left;">Parameter</th>
+                    <th style="padding: 12px; border: 1px solid #ddd; text-align: left;">Normwert</th>
+                    <th style="padding: 12px; border: 1px solid #ddd; text-align: left;">Bedeutung</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid #ddd;"><strong>HF</strong></td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">60 – 100 /min</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">Herzschläge pro Minute</td>
+                </tr>
+                <tr style="background: #f9f9f9;">
+                    <td style="padding: 10px; border: 1px solid #ddd;"><strong>Blutdruck</strong></td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">ca. 120/80 mmHg</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">Druck in den Arterien</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid #ddd;"><strong>SpO₂</strong></td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">95 – 100 %</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">Sauerstoffsättigung</td>
+                </tr>
+                <tr style="background: #f9f9f9;">
+                    <td style="padding: 10px; border: 1px solid #ddd;"><strong>AF</strong></td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">12 – 18 /min</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">Atemzüge pro Minute</td>
+                </tr>
+                <tr>
+                    <td style="padding: 10px; border: 1px solid #ddd;"><strong>etCO₂</strong></td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">35 – 45 mmHg</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;">CO₂-Gehalt Ausatemluft</td>
+                </tr>
+            </tbody>
+        </table>
+        <span style="display:none;">vitals blutdruck puls atmung sättigung maßnahmen</span>
+    </div>
+
+    <div class="algo-card">
+        <div class="algo-title" style="background: var(--falken-blue); color: var(--falken-gold); padding: 10px; text-transform: uppercase; font-weight: bold;">
+            Basismaßnahme: I.v. Zugang
+        </div>
+        <div style="padding: 15px; background: white;">
+            <p style="margin-top: 0;">Der <strong>I.v. Zugang</strong> ist eine zwingend notwendige Basismaßnahme.</p>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px;">
+                <div style="border: 1px solid #ddd; border-left: 10px solid #ffd600; padding: 10px; background: #fff;">
+                    <strong>Gelb 24G</strong><br>22 ml/min
+                </div>
+                <div style="border: 1px solid #ddd; border-left: 10px solid #0056b3; padding: 10px; background: #fff;">
+                    <strong>Blau 22G</strong><br>36 ml/min
+                </div>
+                <div style="border: 1px solid #ddd; border-left: 10px solid #d81b60; padding: 10px; background: #fff;">
+                    <strong>Rosa 20G</strong><br>61 ml/min
+                </div>
+                <div style="border: 1px solid #ddd; border-left: 10px solid #2e7d32; padding: 10px; background: #fff;">
+                    <strong>Grün 18G</strong><br>103 ml/min
+                </div>
+                <div style="border: 1px solid #ddd; border-left: 10px solid #757575; padding: 10px; background: #fff;">
+                    <strong>Grau 16G</strong><br>196 ml/min
+                </div>
+                <div style="border: 1px solid #ddd; border-left: 10px solid #ef6c00; padding: 10px; background: #fff;">
+                    <strong>Orange 14G</strong><br>343 ml/min
+                </div>
+            </div>
+
+            <div style="margin-top: 15px; font-size: 0.85em; color: #666; border-top: 1px solid #eee; padding-top: 10px;">
+                Komponenten: Injektionsventil, Griffplatte, Blutfängerstopfen.
+            </div>
+        </div>
+        <span style="display:none;">zugang nadel kanüle vene infusion spritze maßnahmen</span>
+    </div>
+
+    </div>
+    <div class="algo-card">
+    <div class="algo-title" style="background: var(--falken-blue); color: var(--falken-gold); padding: 10px; text-transform: uppercase; font-weight: bold;">
+        Basismaßnahme: Intraossärer Zugang (i.o.)
+    </div>
+    <div style="padding: 15px; background: white;">
+        <p style="margin-top: 0;"><strong>Indikation:</strong> Patient mit HKS (oder drohend), wenn ein venöser Zugang innerhalb von 90 Sek. nicht möglich ist.</p>
+        
+        <div style="background: #fdf2d0; border-left: 5px solid #ffd700; padding: 10px; margin-bottom: 15px; font-size: 0.9em;">
+            <strong>Bevorzugter Zugang:</strong> Proximale Tibia (medial [innen] von Tuberositas tibiae). <br>
+            <em>Cave: Bei Frakturen auf der betroffenen Seite!</em>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; font-size: 0.9em;">
+            <div style="border: 1px solid #ddd; padding: 10px; border-radius: 5px;">
+                <strong style="color: var(--falken-blue);">Durchführung:</strong>
+                <ul style="margin: 5px 0; padding-left: 20px;">
+                    <li>Punktionsort desinfizieren (30s)</li>
+                    <li>Nadel senkrecht durchstechen bis Knochenkontakt</li>
+                    <li>Bohren mit leichtem Druck bis Widerstandsverlust</li>
+                    <li>Trokar herausschrauben</li>
+                    <li><strong>Wichtig:</strong> Mit 10 ml NaCl-Bolus spülen!</li>
+                </ul>
+            </div>
+            <div style="border: 1px solid #ddd; padding: 10px; border-radius: 5px;">
+                <strong style="color: var(--falken-blue);">Lagekontrolle:</strong>
+                <ul style="margin: 5px 0; padding-left: 20px;">
+                    <li>Sicher platzierte Nadel</li>
+                    <li>Blut an der Trokarspitze</li>
+                    <li>Gewünschte Pharmaka-Effekte</li>
+                    <li>Druckinfusion mit 300 mmHg</li>
+                </ul>
+            </div>
+        </div>
+
+        <div style="margin-top: 15px; font-size: 0.85em; color: #666; border-top: 1px solid #eee; padding-top: 10px;">
+            <strong>Merkregel:</strong> Kein Bolus - Kein Fluss! | Schulungspflicht je nach Instrumententyp (z.B. EZ-IO).
+        </div>
+    </div>
+    <span style="display:none;">i.o. zugang knochenbohrer reanimation tibia intraossär maßnahmen nadel bohrer</span>
+</div>
+
+<div class="algo-card">
+    <div class="algo-title" style="background: var(--falken-blue); color: var(--falken-gold); padding: 10px; text-transform: uppercase; font-weight: bold;">
+        Basismaßnahme: Guedl- / Wendl-Tubus
+    </div>
+    <div style="padding: 15px; background: white;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            
+            <div style="border-right: 2px solid #eee; padding-right: 15px;">
+                <h3 style="margin-top: 0; color: #d32f2f;">Guedl-Tubus (Oropharyngeal)</h3>
+                <p style="font-size: 0.9em;">Starrer Kunststoffschlauch, der <strong>über den Mund</strong> eingeführt wird.</p>
+                <ul style="font-size: 0.85em; padding-left: 18px;">
+                    <li><strong>Funktion:</strong> Anheben der Zunge, Freihalten des Rachenraums.</li>
+                    <li><strong>Indikation:</strong> Nur bei <strong>tief bewusstlosen</strong> Patienten ohne Schutzreflexe.</li>
+                    <li><strong>Cave:</strong> Kann starken Würgereflex auslösen!</li>
+                </ul>
+            </div>
+
+            <div>
+                <h3 style="margin-top: 0; color: #2e7d32;">Wendl-Tubus (Nasopharyngeal)</h3>
+                <p style="font-size: 0.9em;">Flexibler Schlauch, der <strong>durch die Nase</strong> eingeführt wird.</p>
+                <ul style="font-size: 0.85em; padding-left: 18px;">
+                    <li><strong>Funktion:</strong> Sicherstellung der Atemwege hinter der Zunge.</li>
+                    <li><strong>Indikation:</strong> Patienten mit <strong>erhaltenem Würgereflex</strong> oder Kieferklemme.</li>
+                    <li><strong>Vorteil:</strong> Wird besser toleriert, da der Gaumen nicht berührt wird.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div style="margin-top: 15px; background: #e3f2fd; border-left: 5px solid var(--falken-blue); padding: 10px; font-size: 0.9em;">
+            <strong>Wichtig:</strong> Beide Tuben sind die <strong>erste Stufe der Atemwegssicherung</strong> (Airway-Management) und dienen der Vorbereitung für eine Maskenbeatmung oder spätere Intubation.
+        </div>
+    </div>
+    <span style="display:none;">guedl wendl tubus airway beatmung atemwege nase mund zunge airwaymanagement maßnahmen</span>
+</div>
+
+<div class="algo-card">
+    <div class="algo-title" style="background: var(--falken-blue); color: var(--falken-gold); padding: 10px; text-transform: uppercase; font-weight: bold;">
+        Maßnahme: Thoraxentlastungspunktion (Monaldi)
+    </div>
+    <div style="padding: 15px; background: white;">
+        <div style="background: #ffebee; border-left: 5px solid #d32f2f; padding: 10px; margin-bottom: 15px; font-size: 0.9em;">
+            <strong>Indikation:</strong> Unter Reanimation bei V.a. Spannungspneumothorax (einseitig abgeschwächtes Atemgeräusch, Instabilität, obere Einflussstauung).
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+            <div>
+                <strong style="color: var(--falken-blue);">Punktionsort (Monaldi):</strong>
+                <p style="font-size: 0.9em; background: #f9f9f9; padding: 10px; border-radius: 5px; border: 1px solid #ddd;">
+                    <strong>2. ICR</strong> (Intercostalraum) am Oberrand der 3. Rippe in der <strong>Medioclavicularlinie</strong>.<br>
+                    <small>Hilfspunkt: Angulus Ludovici.</small>
+                </p>
+            </div>
+            <div>
+                <strong style="color: var(--falken-blue);">Durchführung:</strong>
+                <ul style="font-size: 0.85em; padding-left: 18px; margin-top: 5px;">
+                    <li>Desinfektion des Punktionsortes</li>
+                    <li>Hintere Verschlusskappe der VWK entfernen</li>
+                    <li>Stich am Oberrand der Rippe (Gefäßschutz)</li>
+                    <li>Größtmögliche VWK oder Thoraxnadel verwenden</li>
+                    <li>Erfolgsprüfung: Zischen, ROSC, Besserung Beatmung</li>
+                </ul>
+            </div>
+        </div>
+
+        <div style="margin-top: 15px; font-size: 0.85em; color: #666; border-top: 1px solid #eee; padding-top: 10px;">
+            <strong>Verlaufskontrolle:</strong> Zyklische Reevaluation nach ABCDE-Schema bis zur Einlage einer Thoraxdrainage durch den Notarzt.
+        </div>
+    </div>
+    <span style="display:none;">thorax punktion monaldi spannungspneumothorax icr lunge entlastung nadel thoraxnadel reanimation maßnahmen</span>
+</div>
+
+<div class="algo-card">
+    <div class="algo-title" style="background: var(--falken-blue); color: var(--falken-gold); padding: 10px; text-transform: uppercase; font-weight: bold;">
+        Maßnahme: Endotracheale Intubation (ETI)
+    </div>
+    <div style="padding: 15px; background: white;">
+        <p style="margin-top: 0;">Die <strong>ETI</strong> dient der ultimativen Sicherung der Atemwege und der effektiven Beatmung bei bewusstlosen Patienten oder respiratorischem Versagen.</p>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+            <div style="border: 1px solid #ddd; padding: 10px; border-radius: 5px; background: #fdfdfd;">
+                <strong style="color: var(--falken-blue);">Indikationen:</strong>
+                <ul style="font-size: 0.85em; padding-left: 18px; margin-top: 5px;">
+                    <li>Tiefe Bewusstlosigkeit (GCS < 9)</li>
+                    <li>Herz-Kreislauf-Stillstand</li>
+                    <li>Schweres Schädel-Hirn-Trauma</li>
+                    <li>Drohende Aspiration</li>
+                </ul>
+            </div>
+            <div style="border: 1px solid #ddd; padding: 10px; border-radius: 5px; background: #fdfdfd;">
+                <strong style="color: var(--falken-blue);">Lagekontrolle:</strong>
+                <ul style="font-size: 0.85em; padding-left: 18px; margin-top: 5px;">
+                    <li><strong>Kapnometrie (etCO₂)</strong> - Goldstandard!</li>
+                    <li>Auskultation (beidseitig, Magen)</li>
+                    <li>Sichtbares Passieren der Stimmritze</li>
+                    <li>Heben und Senken des Thorax</li>
+                </ul>
+            </div>
+        </div>
+
+        <div style="margin-top: 15px; background: #eee; padding: 10px; border-radius: 5px;">
+            <strong>Cormack & Lehane Klassifikation (Sichtbarkeit):</strong>
+            <ul style="font-size: 0.85em; margin: 5px 0; display: grid; grid-template-columns: 1fr 1fr; gap: 5px;">
+                <li><strong>Grad I:</strong> Volle Sicht auf Stimmritze</li>
+                <li><strong>Grad II:</strong> Nur hintere Kommissur sichtbar</li>
+                <li><strong>Grad III:</strong> Nur Epiglottis sichtbar</li>
+                <li><strong>Grad IV:</strong> Nur Zungenbasis sichtbar</li>
+            </ul>
+        </div>
+    </div>
+    <span style="display:none;">eti eta intubation laryngoskop tubus beatmung cormack lehane airway maßnahmen</span>
+</div>
+
+<div class="algo-card">
+    <div class="algo-title" style="background: var(--falken-blue); color: var(--falken-gold); padding: 10px; text-transform: uppercase; font-weight: bold;">
+        Maßnahme: Supraglottische Atemwegssicherung (SGA)
+    </div>
+    <div style="padding: 15px; background: white;">
+        <p style="margin-top: 0;"><strong>Supraglottische Hilfen</strong> (z.B. Larynxtubus, Larynxmaske, i-gel) liegen oberhalb der Stimmritze und ermöglichen eine effektive Beatmung ohne Laryngoskopie.</p>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+            <div style="border: 1px solid #ddd; padding: 10px; border-radius: 5px; background: #e8f5e9;">
+                <strong style="color: #2e7d32;">Vorteile:</strong>
+                <ul style="font-size: 0.85em; padding-left: 18px; margin-top: 5px;">
+                    <li>Einfache und schnelle Platzierung</li>
+                    <li>Geringes Trauma-Risiko</li>
+                    <li>Anwendbar bei "Difficult Airway"</li>
+                    <li>Keine Unterbrechung der Herzdruckmassage nötig</li>
+                </ul>
+            </div>
+            <div style="border: 1px solid #ddd; padding: 10px; border-radius: 5px; background: #fffde7;">
+                <strong style="color: #f57f17;">Nachteile / Cave:</strong>
+                <ul style="font-size: 0.85em; padding-left: 18px; margin-top: 5px;">
+                    <li>Kein sicherer Aspirationsschutz</li>
+                    <li>Gefahr der Mageninsufflation bei hohem Beatmungsdruck</li>
+                    <li>Nur bei bewusstlosen Patienten (Areflexie)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div style="margin-top: 15px; padding: 10px; border: 1px solid #ddd; border-left: 5px solid var(--falken-blue);">
+            <strong style="color: var(--falken-blue);">Lagekontrolle & Sicherung:</strong>
+            <p style="font-size: 0.9em; margin: 5px 0;">
+                Wie bei der ETI ist die <strong>Kapnographie (etCO₂)</strong> die sicherste Methode. Zusätzlich auf Thoraxexkursionen und beidseitige Belüftung achten. Cuff-Druck (falls vorhanden) mittels Blockerspritze kontrollieren.
+            </p>
+        </div>
+
+        <div style="margin-top: 10px; font-size: 0.85em; color: #666; font-style: italic;">
+            Bekannte Systeme: Larynxtubus (LTS-D), Larynxmaske (LMA), i-gel (kein Cuff nötig).
+        </div>
+    </div>
+    <span style="display:none;">sga larynxtubus larynxmaske igel airway beatmung supraglottisch atemwege lts-d lma maßnahmen</span>
+</div>
+
+<div class="algo-card">
+    <div class="algo-title" style="background: var(--falken-blue); color: var(--falken-gold); padding: 10px; text-transform: uppercase; font-weight: bold;">
+        Schema: Primary Assessment (Ersteinschätzung)
+    </div>
+    <div style="padding: 15px; background: white;">
+        <table style="width: 100%; border-collapse: collapse; font-size: 0.9em;">
+            <tr style="border-bottom: 2px solid #eee;">
+                <td style="background: #a32a8e; color: white; width: 60px; text-align: center; font-size: 2em; font-weight: bold; padding: 10px;">X</td>
+                <td style="padding: 10px;">
+                    <strong>Exsanguination (Ausblutung)</strong><br>
+                    Lebensbedrohliche äußere Blutungen? Blutungsräume (Thorax, Abdomen, Becken, Oberschenkel)?
+                </td>
+                <td style="padding: 10px; background: #fdf2fb;">
+                    • Druckverband / Tourniquet<br>• Beckenschlinge<br>• HWS-Immobilisation
+                </td>
+            </tr>
+            <tr style="border-bottom: 2px solid #eee;">
+                <td style="background: #e30613; color: white; width: 60px; text-align: center; font-size: 2em; font-weight: bold; padding: 10px;">A</td>
+                <td style="padding: 10px;">
+                    <strong>Airway (Atemweg)</strong><br>
+                    Ansprechbar? Atemwege frei? (Inspektion, Stridor, Trachea-Verlegung)
+                </td>
+                <td style="padding: 10px; background: #fff1f1;">
+                    • Atemwege freimachen<br>• Absaugbereitschaft<br>• Atemwegssicherung
+                </td>
+            </tr>
+            <tr style="border-bottom: 2px solid #eee;">
+                <td style="background: #ffed00; color: black; width: 60px; text-align: center; font-size: 2em; font-weight: bold; padding: 10px;">B</td>
+                <td style="padding: 10px;">
+                    <strong>Breathing (Belüftung)</strong><br>
+                    AF, Tiefe, Typ? Auskultation? Halsvenenstauung? Hautemphyseme?
+                </td>
+                <td style="padding: 10px; background: #ffffef;">
+                    • Sauerstoffgabe<br>• Assistierte / Kontrollierte Beatmung
+                </td>
+            </tr>
+            <tr style="border-bottom: 2px solid #eee;">
+                <td style="background: #4eab46; color: white; width: 60px; text-align: center; font-size: 2em; font-weight: bold; padding: 10px;">C</td>
+                <td style="padding: 10px;">
+                    <strong>Circulation (Kreislauf)</strong><br>
+                    Rekap-Zeit? Puls (QQR)? Haut (Kolorit, Temp, Feucht)?
+                </td>
+                <td style="padding: 10px; background: #f3faf3;">
+                    • Lagerung<br>• Zugang & Volumengabe
+                </td>
+            </tr>
+            <tr style="border-bottom: 2px solid #eee;">
+                <td style="background: #009640; color: white; width: 60px; text-align: center; font-size: 2em; font-weight: bold; padding: 10px;">D</td>
+                <td style="padding: 10px;">
+                    <strong>Disability (Neurologie)</strong><br>
+                    Pupillen? Grobmotorik? GCS / AVPU? BE-FAST?
+                </td>
+                <td style="padding: 10px; background: #f0f7f2;">
+                    Monitoring & Reevaluation
+                </td>
+            </tr>
+            <tr>
+                <td style="background: #009ee3; color: white; width: 60px; text-align: center; font-size: 2em; font-weight: bold; padding: 10px;">E</td>
+                <td style="padding: 10px;">
+                    <strong>Exposure (Exploration)</strong><br>
+                    Körpertemp? Ödeme? Weitere Verletzungen / Symptome?
+                </td>
+                <td style="padding: 10px; background: #f0faff;">
+                    • Wärmeerhalt
+                </td>
+            </tr>
+        </table>
+    </div>
+    <span style="display:none;">xabcde schema assessment ersteinschätzung untersuchung trauma atmung kreislauf neurologie blutung</span>
+</div>
+
+<div class="algo-card">
+    <div class="algo-title" style="background: var(--falken-blue); color: var(--falken-gold); padding: 10px; text-transform: uppercase; font-weight: bold;">
+        Diagnostik: Glasgow Coma Scale (GCS)
+    </div>
+    <div style="padding: 15px; background: white;">
+        <table style="width: 100%; border-collapse: collapse; font-size: 0.85em; text-align: center;">
+            <thead>
+                <tr style="background: #f0f0f0;">
+                    <th style="padding: 8px; border: 1px solid #ddd;">Punkte</th>
+                    <th style="padding: 8px; border: 1px solid #ddd; background: #e3f2fd;">Augen öffnen (max 4)</th>
+                    <th style="padding: 8px; border: 1px solid #ddd; background: #f1f8e9;">Verbale Reaktion (max 5)</th>
+                    <th style="padding: 8px; border: 1px solid #ddd; background: #fff3e0;">Motorik (max 6)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td style="border: 1px solid #ddd; font-weight: bold;">6</td><td style="border: 1px solid #ddd;">-</td><td style="border: 1px solid #ddd;">-</td><td style="border: 1px solid #ddd;">Befolgt Aufforderung</td></tr>
+                <tr><td style="border: 1px solid #ddd; font-weight: bold;">5</td><td style="border: 1px solid #ddd;">-</td><td style="border: 1px solid #ddd;">Orientiert</td><td style="border: 1px solid #ddd;">Gezielte Abwehr</td></tr>
+                <tr><td style="border: 1px solid #ddd; font-weight: bold;">4</td><td style="border: 1px solid #ddd;">Spontan</td><td style="border: 1px solid #ddd;">Desorientiert</td><td style="border: 1px solid #ddd;">Ungezielte Abwehr</td></tr>
+                <tr><td style="border: 1px solid #ddd; font-weight: bold;">3</td><td style="border: 1px solid #ddd;">Auf Aufforderung</td><td style="border: 1px solid #ddd;">Inadäquat</td><td style="border: 1px solid #ddd;">Beugesynergismen</td></tr>
+                <tr><td style="border: 1px solid #ddd; font-weight: bold;">2</td><td style="border: 1px solid #ddd;">Auf Schmerzreiz</td><td style="border: 1px solid #ddd;">Unv. Laute</td><td style="border: 1px solid #ddd;">Strecksynergismen</td></tr>
+                <tr><td style="border: 1px solid #ddd; font-weight: bold;">1</td><td style="border: 1px solid #ddd;">Keine</td><td style="border: 1px solid #ddd;">Keine</td><td style="border: 1px solid #ddd;">Keine</td></tr>
+            </tbody>
+        </table>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px;">
+            <div style="background: #ffebee; padding: 10px; border-radius: 5px; border: 1px solid #ffcdd2;">
+                <strong>SHT Klassifizierung:</strong><br>
+                • 13-15: Leichtes SHT<br>
+                • 09-12: Mittelschweres SHT<br>
+                • 03-08: Schweres SHT
+            </div>
+            <div style="background: #fff9c4; padding: 10px; border-radius: 5px; border: 1px solid #fff176; text-align: center;">
+                <strong style="color: #d32f2f; font-size: 1.1em;">GCS ≤ 8</strong><br>
+                <span style="font-weight: bold;">"Ist der GCS acht, der Tubus lacht!"</span><br>
+                (Intubationsindikation prüfen)
+            </div>
+        </div>
+
+        <div style="margin-top: 10px; font-size: 0.8em; color: #777; font-style: italic;">
+            Merkhilfe: 4 Augen, Verbale 5 (V wie römisch 5), 6 Zylinder Motor.
+        </div>
+    </div>
+    <span style="display:none;">gcs glasgow coma scale neurologie bewußtsein trauma pupillen schädel hirn sht intubation motorik</span>
+</div>
+
+<div class="algo-card">
+    <div class="algo-title" style="background: var(--falken-blue); color: var(--falken-gold); padding: 10px; text-transform: uppercase; font-weight: bold;">
+        Schema: Patientenübergabe (ISOBAR)
+    </div>
+    <div style="padding: 15px; background: white;">
+        <table style="width: 100%; border-collapse: collapse; font-size: 0.9em;">
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="background: #ed1c24; color: white; width: 50px; text-align: center; font-size: 1.8em; font-weight: bold;">I</td>
+                <td style="padding: 10px;">
+                    <strong style="color: #ed1c24;">Identifikation</strong><br>
+                    Vorstellung des Patienten (Name, Alter).
+                </td>
+            </tr>
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="background: #ffcb05; color: black; width: 50px; text-align: center; font-size: 1.8em; font-weight: bold;">S</td>
+                <td style="padding: 10px;">
+                    <strong style="color: #bfa100;">Situation</strong><br>
+                    Einsatzereignis, Erstbefund, Diagnose, Unfallmechanismus, Kinematik, Rettung, Sonstiges.
+                </td>
+            </tr>
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="background: #fff200; color: black; width: 50px; text-align: center; font-size: 1.8em; font-weight: bold;">O</td>
+                <td style="padding: 10px;">
+                    <strong style="color: #b3a700;">Observations (Beobachtungen)</strong><br>
+                    Vitalparameter, xABCDE, OPQRST, BE-FAST, qSOFA, durchgeführte Maßnahmen, Verlauf.
+                </td>
+            </tr>
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="background: #8dc63f; color: white; width: 50px; text-align: center; font-size: 1.8em; font-weight: bold;">B</td>
+                <td style="padding: 10px;">
+                    <strong style="color: #8dc63f;">Background (Hintergrund)</strong><br>
+                    SAMPLER, Infektionsstatus, Impfstatus, Angehörige, Hausarzt, Patientenverfügung.
+                </td>
+            </tr>
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="background: #00a651; color: white; width: 50px; text-align: center; font-size: 1.8em; font-weight: bold;">A</td>
+                <td style="padding: 10px;">
+                    <strong style="color: #00a651;">Assessment (Aufgaben)</strong><br>
+                    Weiteres Vorgehen und anstehende Maßnahmen.
+                </td>
+            </tr>
+            <tr>
+                <td style="background: #00aeef; color: white; width: 50px; text-align: center; font-size: 1.8em; font-weight: bold;">R</td>
+                <td style="padding: 10px;">
+                    <strong style="color: #00aeef;">Request (Rückfragen)</strong><br>
+                    Abschluss: Rückfragen durch Teamleiter Klinik.
+                </td>
+            </tr>
+        </table>
+    </div>
+    <span style="display:none;">isobar schema übergabe krankenhaus klinik kommunikation assessment situation hintergrund</span>
+</div>
+
+<div class="algo-card">
+    <div class="algo-title" style="background: var(--falken-blue); color: var(--falken-gold); padding: 10px; text-transform: uppercase; font-weight: bold;">
+        Anamnese: SAMPLER (+S) Schema
+    </div>
+    <div style="padding: 15px; background: white;">
+        <table style="width: 100%; border-collapse: collapse; font-size: 0.9em;">
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="background: #e30613; color: white; width: 50px; text-align: center; font-size: 1.5em; font-weight: bold;">S</td>
+                <td style="padding: 10px;">
+                    <strong style="color: #e30613;">Symptoms (Symptome)</strong><br>
+                    Aktuelle Beschwerden und Schmerzen. (Abfrage via OPQRST)
+                </td>
+            </tr>
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="background: #ffcb05; color: black; width: 50px; text-align: center; font-size: 1.5em; font-weight: bold;">A</td>
+                <td style="padding: 10px;">
+                    <strong style="color: #bfa100;">Allergies (Allergien)</strong><br>
+                    Allergien oder Unverträglichkeiten? (Medikamente, Insekten, etc.)
+                </td>
+            </tr>
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="background: #fff200; color: black; width: 50px; text-align: center; font-size: 1.5em; font-weight: bold;">M</td>
+                <td style="padding: 10px;">
+                    <strong style="color: #b3a700;">Medication (Medikamente)</strong><br>
+                    Dauermedikation? Gerinnungshemmer?
+                </td>
+            </tr>
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="background: #8dc63f; color: white; width: 50px; text-align: center; font-size: 1.5em; font-weight: bold;">P</td>
+                <td style="padding: 10px;">
+                    <strong style="color: #8dc63f;">Past Medical History (Vorerkrankungen)</strong><br>
+                    Operationen? Genetische Disposition?
+                </td>
+            </tr>
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="background: #00a651; color: white; width: 50px; text-align: center; font-size: 1.5em; font-weight: bold;">L</td>
+                <td style="padding: 10px;">
+                    <strong style="color: #00a651;">Last (Letzte...)</strong><br>
+                    Mahlzeit, Stuhlgang, Regel, Krankenhausaufenthalt?
+                </td>
+            </tr>
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="background: #00aeef; color: white; width: 50px; text-align: center; font-size: 1.5em; font-weight: bold;">E</td>
+                <td style="padding: 10px;">
+                    <strong style="color: #00aeef;">Events (Ereignisse)</strong><br>
+                    Was war vor dem Vorfall? Was hat ihn ausgelöst?
+                </td>
+            </tr>
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="background: #0054a6; color: white; width: 50px; text-align: center; font-size: 1.5em; font-weight: bold;">R</td>
+                <td style="padding: 10px;">
+                    <strong style="color: #0054a6;">Risk Factors (Risikofaktoren)</strong><br>
+                    Diabetes? Alkohol? Raucher? Drogen?
+                </td>
+            </tr>
+            <tr>
+                <td style="background: #1d1d1b; color: white; width: 50px; text-align: center; font-size: 1.5em; font-weight: bold;">+S</td>
+                <td style="padding: 10px;">
+                    <strong>Schwangerschaft</strong><br>
+                    Mögliche Schwangerschaft bei weiblichen Patienten beachten!
+                </td>
+            </tr>
+        </table>
+    </div>
+    <span style="display:none;">sampler schema anamnese befragung patientenaufnahme diagnose hintergrund risikofaktoren</span>
+</div>
+
+<div class="algo-card">
+    <div class="algo-title" style="background: var(--falken-blue); color: var(--falken-gold); padding: 10px; text-transform: uppercase; font-weight: bold;">
+        Anamnese: OPQRST (Schmerz / Beschwerden)
+    </div>
+    <div style="padding: 15px; background: white;">
+        <table style="width: 100%; border-collapse: collapse; font-size: 0.9em;">
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="background: #e30613; color: white; width: 50px; text-align: center; font-size: 1.5em; font-weight: bold;">O</td>
+                <td style="padding: 10px;">
+                    <strong style="color: #e30613;">Onset (Beginn)</strong><br>
+                    Wann und wie haben die Beschwerden begonnen? Plötzlich oder schleichend?
+                </td>
+            </tr>
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="background: #ffcb05; color: black; width: 50px; text-align: center; font-size: 1.5em; font-weight: bold;">P</td>
+                <td style="padding: 10px;">
+                    <strong style="color: #bfa100;">Provocation / Palliation</strong><br>
+                    Verstärkung oder Linderung? (Lage, Atmung, Bewegung, Berührung)
+                </td>
+            </tr>
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="background: #fff200; color: black; width: 50px; text-align: center; font-size: 1.5em; font-weight: bold;">Q</td>
+                <td style="padding: 10px;">
+                    <strong style="color: #b3a700;">Quality (Charakter)</strong><br>
+                    Wie fühlt es sich an? (Stechend, dumpf, drückend, brennend)
+                </td>
+            </tr>
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="background: #8dc63f; color: white; width: 50px; text-align: center; font-size: 1.5em; font-weight: bold;">R</td>
+                <td style="padding: 10px;">
+                    <strong style="color: #8dc63f;">Radiation (Ausstrahlung)</strong><br>
+                    Wo ist der Schmerz? Strahlt er aus (z.B. linker Arm, Rücken)?
+                </td>
+            </tr>
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="background: #00a651; color: white; width: 50px; text-align: center; font-size: 1.5em; font-weight: bold;">S</td>
+                <td style="padding: 10px;">
+                    <strong style="color: #00a651;">Severity (Stärke)</strong><br>
+                    Skala 0-10 (NAS/NRS). Ggf. Facial Pain Scale nutzen.
+                </td>
+            </tr>
+            <tr>
+                <td style="background: #00aeef; color: white; width: 50px; text-align: center; font-size: 1.5em; font-weight: bold;">T</td>
+                <td style="padding: 10px;">
+                    <strong style="color: #00aeef;">Time (Verlauf)</strong><br>
+                    Veränderung im Verlauf? Dauerhaft oder kommend und gehend?
+                </td>
+            </tr>
+        </table>
+    </div>
+    <span style="display:none;">opqrst schema schmerz anamnese beschwerden onset provocation quality radiation severity time</span>
+</div>
+
+<div class="algo-card">
+    <div class="algo-title" style="background: var(--falken-blue); color: var(--falken-gold); padding: 10px; text-transform: uppercase; font-weight: bold;">
+        Reanimation: Reversible Ursachen (4Hs & HITS)
+    </div>
+    <div style="padding: 15px; background: white;">
+        <p style="margin-top: 0; font-size: 0.9em;">Diese Faktoren müssen während der CPR aktiv gesucht und nach Möglichkeit behandelt werden, um einen ROSC zu ermöglichen.</p>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+            <div style="border: 1px solid #ddd; border-radius: 5px; overflow: hidden;">
+                <div style="background: #e30613; color: white; padding: 5px 10px; font-weight: bold; text-align: center;">Die 4 Hs</div>
+                <ul style="list-style: none; padding: 10px; margin: 0; font-size: 0.95em; line-height: 1.8;">
+                    <li><strong>Hypoxie</strong> (Sauerstoffmangel)</li>
+                    <li><strong>Hypovolämie</strong> (Flüssigkeitsmangel)</li>
+                    <li><strong>Hypothermie</strong> (Unterkühlung)</li>
+                    <li><strong>Hypo-/Hyperkaliämie</strong> (Elektrolyte)</li>
+                </ul>
+            </div>
+
+            <div style="border: 1px solid #ddd; border-radius: 5px; overflow: hidden;">
+                <div style="background: #0054a6; color: white; padding: 5px 10px; font-weight: bold; text-align: center;">HITS</div>
+                <ul style="list-style: none; padding: 10px; margin: 0; font-size: 0.95em; line-height: 1.8;">
+                    <li><strong>Herzbeuteltamponade</strong></li>
+                    <li><strong>Intoxikation</strong> (Vergiftung)</li>
+                    <li><strong>Thrombembolie</strong> (Lunge/Herz)</li>
+                    <li><strong>Spannungspneumothorax</strong></li>
+                </ul>
+            </div>
+        </div>
+
+        <div style="margin-top: 15px; background: #f9f9f9; padding: 10px; border-radius: 5px; font-size: 0.85em; border-left: 5px solid var(--falken-gold);">
+            <strong>Korrekturmaßnahmen (Beispiele):</strong><br>
+            • Spannungspneu → <em>Thoraxpunktion (Monaldi)</em><br>
+            • Hypovolämie → <em>Kristalloide Infusionen / Blutprodukte</em><br>
+            • Hypoxie → <em>Atemwegssicherung (ETI/SGA) & 100% O₂</em>
+        </div>
+    </div>
+    <span style="display:none;">4hs hits reanimation cpr ursachen herzstillstand hypoxie hypovolämie intoxikation thrombose spannungspneu</span>
+</div>
+
+<div class="algo-card">
+    <div class="algo-title" style="background: var(--falken-blue); color: var(--falken-gold); padding: 10px; text-transform: uppercase; font-weight: bold;">
+        Diagnostik: qSOFA-Score (Sepsis-Screening)
+    </div>
+    <div style="padding: 15px; background: white;">
+        <p style="margin-top: 0; font-size: 0.9em;">Der <strong>quick SOFA</strong> dient der Identifizierung von Patienten mit hohem Risiko für eine Sepsis außerhalb der Intensivstation.</p>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px;">
+            <div style="border: 1px solid #ddd; background: #fffde7; padding: 10px; border-radius: 5px; text-align: center;">
+                <strong style="color: #f57f17;">Bewusstsein</strong><br>
+                Verändertes Bewusstsein<br>
+                <span style="font-size: 1.1em; font-weight: bold;">GCS < 15</span><br>
+                <small>1 Punkt</small>
+            </div>
+            <div style="border: 1px solid #ddd; background: #e3f2fd; padding: 10px; border-radius: 5px; text-align: center;">
+                <strong style="color: #0277bd;">Tachypnoe</strong><br>
+                Atemfrequenz<br>
+                <span style="font-size: 1.1em; font-weight: bold;">AF ≥ 22 /min</span><br>
+                <small>1 Punkt</small>
+            </div>
+            <div style="border: 1px solid #ddd; background: #ffebee; padding: 10px; border-radius: 5px; text-align: center;">
+                <strong style="color: #c62828;">Hypotonie</strong><br>
+                Systolischer RR<br>
+                <span style="font-size: 1.1em; font-weight: bold;">RR<sub>syst</sub> ≤ 100 mmHg</span><br>
+                <small>1 Punkt</small>
+            </div>
+        </div>
+
+        <div style="margin-top: 15px; padding: 10px; border: 2px solid #d32f2f; background: #fff5f5; border-radius: 5px; text-align: center;">
+            <strong style="color: #d32f2f;">Ergebnis: ≥ 2 Punkte</strong><br>
+            Verdacht auf <strong>Sepsis</strong>! Erhöhte Mortalität & intensivpflichtiges Risiko.<br>
+            <small>Maßnahme: Notarzt-Nachforderung & großzügige Volumengabe.</small>
+        </div>
+    </div>
+    <span style="display:none;">qsofa sepsis infektion blutvergiftung schock blutdruck atmung tachypnoe gcs diagnostik</span>
+</div>
+
+<div class="algo-card">
+    <div class="algo-title" style="background: var(--falken-blue); color: var(--falken-gold); padding: 10px; text-transform: uppercase; font-weight: bold;">
+        Diagnostik: BE-FAST (Schlaganfall-Screening)
+    </div>
+    <div style="padding: 15px; background: white;">
+        <table style="width: 100%; border-collapse: collapse; font-size: 0.9em;">
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="background: #e30613; color: white; width: 50px; text-align: center; font-size: 1.5em; font-weight: bold;">B</td>
+                <td style="padding: 10px;">
+                    <strong style="color: #e30613;">Balance (Gleichgewicht)</strong><br>
+                    Liegt eine plötzliche Gleichgewichtsstörung oder Gangunsicherheit vor?
+                </td>
+            </tr>
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="background: #ffcb05; color: black; width: 50px; text-align: center; font-size: 1.5em; font-weight: bold;">E</td>
+                <td style="padding: 10px;">
+                    <strong style="color: #bfa100;">Eyes (Augen)</strong><br>
+                    Akute Sehstörung, Doppelbilder oder Gesichtsfeldausfall vorhanden?
+                </td>
+            </tr>
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="background: #fff200; color: black; width: 50px; text-align: center; font-size: 1.5em; font-weight: bold;">F</td>
+                <td style="padding: 10px;">
+                    <strong style="color: #b3a700;">Face (Gesicht)</strong><br>
+                    Hängender Mundwinkel? Patient auffordern zu lächeln oder Stirn zu runzeln.
+                </td>
+            </tr>
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="background: #8dc63f; color: white; width: 50px; text-align: center; font-size: 1.5em; font-weight: bold;">A</td>
+                <td style="padding: 10px;">
+                    <strong style="color: #8dc63f;">Arms (Arme)</strong><br>
+                    Beide Arme ausstrecken und Handflächen umdrehen. Sinkt ein Arm ab?
+                </td>
+            </tr>
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="background: #00a651; color: white; width: 50px; text-align: center; font-size: 1.5em; font-weight: bold;">S</td>
+                <td style="padding: 10px;">
+                    <strong style="color: #00a651;">Speech (Sprache)</strong><br>
+                    Ist die Sprache verwaschen oder unlogisch? Einfachen Satz nachsprechen lassen.
+                </td>
+            </tr>
+            <tr>
+                <td style="background: #00aeef; color: white; width: 50px; text-align: center; font-size: 1.5em; font-weight: bold;">T</td>
+                <td style="padding: 10px;">
+                    <strong style="color: #00aeef;">Time (Zeit)</strong><br>
+                    Wann traten die Symptome erstmals auf? (Onset / Last Seen Well). Sofortiger Transport!
+                </td>
+            </tr>
+        </table>
+    </div>
+    <span style="display:none;">befast stroke schlaganfall apoplex diagnostik lähmung sehstörung gleichgewicht</span>
+</div>
+
+<div class="algo-card">
+    <div class="algo-title" style="background: var(--falken-blue); color: var(--falken-gold); padding: 10px; text-transform: uppercase; font-weight: bold;">
+        Diagnostik: FAST + 4D (Schlaganfall)
+    </div>
+    <div style="padding: 15px; background: white;">
+        <p style="margin-top: 0; font-size: 0.9em;">Zusätzliche Prüfung bei Verdacht auf posteriore Infarkte (Kleinhirn/Hirnstamm).</p>
+        <table style="width: 100%; border-collapse: collapse; font-size: 0.9em;">
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="background: #6200ea; color: white; width: 50px; text-align: center; font-size: 1.5em; font-weight: bold;">D</td>
+                <td style="padding: 10px;">
+                    <strong style="color: #6200ea;">Dizziness</strong><br>
+                    Dreh- und Schwankschwindel.
+                </td>
+            </tr>
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="background: #6200ea; color: white; width: 50px; text-align: center; font-size: 1.5em; font-weight: bold;">D</td>
+                <td style="padding: 10px;">
+                    <strong style="color: #6200ea;">Diplopic images</strong><br>
+                    Doppelbilder.
+                </td>
+            </tr>
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="background: #6200ea; color: white; width: 50px; text-align: center; font-size: 1.5em; font-weight: bold;">D</td>
+                <td style="padding: 10px;">
+                    <strong style="color: #6200ea;">Deficite in field of view</strong><br>
+                    Dysmetrie / Ataxie.
+                </td>
+            </tr>
+            <tr>
+                <td style="background: #6200ea; color: white; width: 50px; text-align: center; font-size: 1.5em; font-weight: bold;">D</td>
+                <td style="padding: 10px;">
+                    <strong style="color: #6200ea;">Dysmetria</strong><br>
+                    Gesichtsfelddefekte.
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div class="algo-card">
+    <div class="algo-title" style="background: var(--falken-blue); color: var(--falken-gold); padding: 10px; text-transform: uppercase; font-weight: bold;">
+        Einsatzstelle: 4S-Konzept
+    </div>
+    <div style="padding: 15px; background: white;">
+        <p style="margin-top: 0; font-size: 0.9em;">Strukturierte Beurteilung der Einsatzstelle vor Beginn der Patientenversorgung.</p>
+        <table style="width: 100%; border-collapse: collapse; font-size: 0.9em;">
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="background: #e30613; color: white; width: 50px; text-align: center; font-size: 1.5em; font-weight: bold;">S</td>
+                <td style="padding: 10px;">
+                    <strong style="color: #e30613;">Scene (Einsatzstelle)</strong><br>
+                    Beurteilung der Einsatzstelle (Lage, Erreichbarkeit).
+                </td>
+            </tr>
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="background: #ffcb05; color: black; width: 50px; text-align: center; font-size: 1.5em; font-weight: bold;">S</td>
+                <td style="padding: 10px;">
+                    <strong style="color: #bfa100;">Safety (Sicherheit)</strong><br>
+                    Sicherheit der Einsatzstelle & Eigenschutz der Einsatzkräfte.
+                </td>
+            </tr>
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="background: #fff200; color: black; width: 50px; text-align: center; font-size: 1.5em; font-weight: bold;">S</td>
+                <td style="padding: 10px;">
+                    <strong style="color: #b3a700;">Situation</strong><br>
+                    Anzahl der Patienten & Schweregrad der Verletzungen/Erkrankungen.
+                </td>
+            </tr>
+            <tr>
+                <td style="background: #00a651; color: white; width: 50px; text-align: center; font-size: 1.5em; font-weight: bold;">S</td>
+                <td style="padding: 10px;">
+                    <strong style="color: #00a651;">Support (Unterstützung)</strong><br>
+                    Nachforderung und Koordinierung weiterer Einsatzkräfte.
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div class="algo-card">
+    <div class="algo-title" style="background: var(--falken-blue); color: var(--falken-gold); padding: 10px; text-transform: uppercase; font-weight: bold;">
+        Management: Starke Schmerzzustände
+    </div>
+    <div style="padding: 15px; background: white;">
+        <p style="margin-top: 0; font-size: 0.9em;">Ziel der Analgesie: Schmerzlinderung (Ziel: NAS ≤ 5).</p>
+        <table style="width: 100%; border-collapse: collapse; font-size: 0.85em;">
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="background: #8dc63f; color: white; width: 50px; text-align: center; font-size: 1.2em; font-weight: bold;">NAS<br>≤ 5</td>
+                <td style="padding: 10px;">
+                    <strong>Basismaßnahmen:</strong><br>
+                    Lagerung, Ruhigstellung, Zuwendung. Fortführung der Standardbehandlung.
+                </td>
+            </tr>
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="background: #ffcb05; color: black; width: 50px; text-align: center; font-size: 1.2em; font-weight: bold;">NAS<br>> 5</td>
+                <td style="padding: 10px;">
+                    <strong>Medikamentöse Analgesie:</strong><br>
+                    Wahl des Mittels nach Substanzklasse, Ursache und Intensität.
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="padding: 10px; background: #fafafa;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 5px; text-align: center;">
+                        <div style="border: 1px solid #ddd; padding: 5px; background: #fffde7;">
+                            <strong>Leicht/Mittel</strong><br>Paracetamol / Metamizol
+                        </div>
+                        <div style="border: 1px solid #ddd; padding: 5px; background: #fffde7;">
+                            <strong>Sehr stark</strong><br>Esketamin (+ Midazolam)
+                        </div>
+                        <div style="border: 1px solid #ddd; padding: 5px; background: #fffde7;">
+                            <strong>Zentral stark</strong><br>Morphin / Fentanyl / Piritramid
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="algo-card">
+    <div class="algo-title" style="background: var(--falken-blue); color: var(--falken-gold); padding: 10px; text-transform: uppercase; font-weight: bold;">
+        Diagnostik: NACA-Einteilung (Index)
+    </div>
+    <div style="padding: 15px; background: white;">
+        <p style="margin-top: 0; font-size: 0.9em;">Der NACA-Index dient der statistischen Erfassung der Schwere von Unfällen oder Erkrankungen in der Notfallmedizin.</p>
+        <table style="width: 100%; border-collapse: collapse; font-size: 0.85em;">
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="background: #e8f5e9; color: #2e7d32; width: 40px; text-align: center; font-size: 1.3em; font-weight: bold;">0</td>
+                <td style="padding: 8px;"><strong>Keine</strong> Verletzung oder Erkrankung.</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="background: #c8e6c9; color: #1b5e20; width: 40px; text-align: center; font-size: 1.3em; font-weight: bold;">I</td>
+                <td style="padding: 8px;"><strong>Geringfügig:</strong> Keine ärztliche Intervention erforderlich (z. B. Prellung).</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="background: #fff9c4; color: #fbc02d; width: 40px; text-align: center; font-size: 1.3em; font-weight: bold;">II</td>
+                <td style="padding: 8px;"><strong>Leicht bis mäßig:</strong> Ambulante ärztliche Behandlung, keine Klinikeinweisung nötig.</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="background: #ffe082; color: #f57f17; width: 40px; text-align: center; font-size: 1.3em; font-weight: bold;">III</td>
+                <td style="padding: 8px;"><strong>Mäßig bis schwer:</strong> Stationäre Behandlung erforderlich, aber keine Lebensgefahr.</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="background: #ffcc80; color: #e65100; width: 40px; text-align: center; font-size: 1.3em; font-weight: bold;">IV</td>
+                <td style="padding: 8px;"><strong>Schwer (Notfall):</strong> Kurzfristige Lebensgefahr nicht auszuschließen (z. B. V.a. ACS).</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="background: #ffab91; color: #d84315; width: 40px; text-align: center; font-size: 1.3em; font-weight: bold;">V</td>
+                <td style="padding: 8px;"><strong>Akute Lebensgefahr:</strong> Massive Störung der Vitalfunktionen (z. B. Reanimation).</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="background: #ef9a9a; color: #c62828; width: 40px; text-align: center; font-size: 1.3em; font-weight: bold;">VI</td>
+                <td style="padding: 8px;"><strong>Reanimation:</strong> Herz-Lungen-Wiederbelebung erforderlich / erfolgreich.</td>
+            </tr>
+            <tr>
+                <td style="background: #b0be5c; color: white; width: 40px; text-align: center; font-size: 1.3em; font-weight: bold;">VII</td>
+                <td style="padding: 8px;"><strong>Tod:</strong> Feststellung des Todes vor oder an der Einsatzstelle.</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div class="algo-card">
+    <div class="algo-title" style="background: var(--falken-blue); color: var(--falken-gold); padding: 10px; text-transform: uppercase; font-weight: bold;">
+        Entscheidung: Erforderlichkeit Notarzt
+    </div>
+    <div style="padding: 15px; background: white;">
+        <p style="margin-top: 0; font-size: 0.9em;">Strukturierte Abfrage nach der initialen Patientenbeurteilung (ABCDE).</p>
+        <table style="width: 100%; border-collapse: collapse; font-size: 0.85em;">
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="background: #e30613; color: white; width: 40px; text-align: center; font-weight: bold;">1</td>
+                <td style="padding: 8px;"><strong>Vitale Bedrohung:</strong> Akute Lebensgefahr nach Einschätzung NotSan erwartbar?</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="background: #e30613; color: white; width: 40px; text-align: center; font-weight: bold;">2</td>
+                <td style="padding: 8px;"><strong>Atemweg:</strong> Gefährdeter Atemweg, der nicht gesichert werden kann (z.B. GCS ≤ 8, Trauma, Krampfanfall)?</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="background: #e30613; color: white; width: 40px; text-align: center; font-weight: bold;">3</td>
+                <td style="padding: 8px;"><strong>Atemnot:</strong> Kombination aus Atemnot + AF ≥ 25/Min / HF ≥ 110/Min + Zyanose / Hypotonie?</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="background: #e30613; color: white; width: 40px; text-align: center; font-weight: bold;">4</td>
+                <td style="padding: 8px;"><strong>Leitsymptome:</strong> Unkontrollierte Blutung, ACS, Bewusstlosigkeit oder Einklemmung?</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="background: #e30613; color: white; width: 40px; text-align: center; font-weight: bold;">5</td>
+                <td style="padding: 8px;"><strong>Geburt:</strong> Unmittelbar einsetzende Geburt?</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="background: #e30613; color: white; width: 40px; text-align: center; font-weight: bold;">6</td>
+                <td style="padding: 8px;"><strong>Therapie:</strong> Notarzt-Fertigkeiten erforderlich (Narkose, Thoraxdrainage, spezielles Rhythmusmanagement)?</td>
+            </tr>
+        </table>
+        <div style="margin-top: 10px; padding: 10px; background: #fdf2f2; border: 1px solid #d32f2f; border-radius: 5px; text-align: center; font-weight: bold;">
+            Bei "JA" in einem Feld: Nachforderung Notarzt & zügiger Transport!
+        </div>
+    </div>
+</div>
+
+<div class="algo-card">
+    <div class="algo-title" style="background: var(--falken-blue); color: var(--falken-gold); padding: 10px; text-transform: uppercase; font-weight: bold;">
+        Entscheidung: Beförderung von Patienten
+    </div>
+    <div style="padding: 15px; background: white;">
+        <p style="margin-top: 0; font-size: 0.9em;">Basierend auf ABCDE-Herangehensweise, Anamnese, Untersuchung und Monitoring.</p>
+        <table style="width: 100%; border-collapse: collapse; font-size: 0.85em;">
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="background: #8dc63f; color: white; width: 50px; text-align: center; font-weight: bold;">JA</td>
+                <td style="padding: 8px;">
+                    <strong>Beförderung erforderlich:</strong><br>
+                    Patient willigt in die Beförderung ein.
+                </td>
+            </tr>
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="background: #ffcb05; color: black; width: 50px; text-align: center; font-weight: bold;">CHECK</td>
+                <td style="padding: 8px;">
+                    <strong>Ablehnung durch Patient:</strong><br>
+                    Prüfung gemäß Checkliste (Aufklärung über Risiken, Hilfsangebote).
+                </td>
+            </tr>
+            <tr>
+                <td style="background: #e30613; color: white; width: 50px; text-align: center; font-weight: bold;">NEIN</td>
+                <td style="padding: 8px;">
+                    <strong>Keine Beförderung erforderlich:</strong><br>
+                    Beidseitiges Einvernehmen oder Ablehnung durch RD nach Checkliste möglich.
+                </td>
+            </tr>
+        </table>
+        <div style="margin-top: 10px; padding: 8px; background: #e3f2fd; border: 1px solid #00aeef; border-radius: 5px; font-size: 0.85em; text-align: center;">
+            <strong>Wichtig:</strong> Jede Ablehnung erfordert eine <strong>ausführliche Dokumentation</strong> der Aufklärung.
+        </div>
+    </div>
+</div>
+
+<div class="algo-card">
+    <div class="algo-title" style="background: var(--falken-blue); color: var(--falken-gold); padding: 10px; text-transform: uppercase; font-weight: bold;">
+        Checkliste: Ablehnung durch Patienten
+    </div>
+    <div style="padding: 15px; background: white;">
+        <p style="margin-top: 0; font-size: 0.85em;">Wird eine Frage mit <strong>JA</strong> beantwortet, ist eine Notarzt-Nachforderung dringend empfohlen!</p>
+        <table style="width: 100%; border-collapse: collapse; font-size: 0.8em;">
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="background: #e30613; color: white; width: 30px; text-align: center; font-weight: bold;">!</td>
+                <td style="padding: 6px;">Patient < 18 Jahre und nicht rechtlich betreut?</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="background: #e30613; color: white; width: 30px; text-align: center; font-weight: bold;">!</td>
+                <td style="padding: 6px;">Hinweise auf Drogen-, Medikamenteneinfluss oder Intoxikation?</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="background: #e30613; color: white; width: 30px; text-align: center; font-weight: bold;">!</td>
+                <td style="padding: 6px;">Neu aufgetretene Desorientierung oder Bewusstseinsstörung?</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="background: #e30613; color: white; width: 30px; text-align: center; font-weight: bold;">!</td>
+                <td style="padding: 6px;">Akute Lebensgefahr oder Suizidalität?</td>
+            </tr>
+            <tr>
+                <td style="background: #e30613; color: white; width: 30px; text-align: center; font-weight: bold;">!</td>
+                <td style="padding: 6px;">Bedenken oder Zweifel seitens des Notfallsanitäters?</td>
+            </tr>
+        </table>
+        <div style="margin-top: 10px; padding: 8px; background: #fff3e0; border: 1px solid #ff9800; font-size: 0.8em;">
+            <strong>Maßnahmen:</strong> Aufklärung über Risiken, Zeugen hinzuziehen, Unterschrift einholen und lückenlos dokumentieren.
+        </div>
+    </div>
+</div>
+
+<div class="algo-card">
+    <div class="algo-title" style="background: var(--falken-blue); color: var(--falken-gold); padding: 10px; text-transform: uppercase; font-weight: bold;">
+        Checkliste: Verzicht / Ablehnung (NotSan)
+    </div>
+    <div style="padding: 15px; background: white;">
+        <p style="margin-top: 0; font-size: 0.85em;">Wird eine der Fragen 1–18 mit <strong>JA</strong> beantwortet, ist eine Ablehnung oder ein Verzicht <u>nicht</u> anzuraten!</p>
+        <table style="width: 100%; border-collapse: collapse; font-size: 0.8em;">
+            <tr style="border-bottom: 1px solid #eee; background: #fdf2f2;">
+                <td style="padding: 6px; font-weight: bold; color: #d32f2f;">Kritische Punkte (Auszug):</td>
+                <td style="padding: 6px; text-align: right; font-weight: bold;">JA-Check</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="padding: 6px;">Patient < 18 Jahre oder Betreuer nicht erreichbar?</td>
+                <td style="text-align: center; background: #ffebee;">[ ]</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="padding: 6px;">Eingeschränkte Einwilligungsfähigkeit oder Hilflosigkeit?</td>
+                <td style="text-align: center; background: #ffebee;">[ ]</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="padding: 6px;">Neu aufgetretenes ABCDE-Problem oder akute Erkrankung?</td>
+                <td style="text-align: center; background: #ffebee;">[ ]</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="padding: 6px;">Hinweise auf Intoxikation oder starke Schmerzzustände?</td>
+                <td style="text-align: center; background: #ffebee;">[ ]</td>
+            </tr>
+            <tr style="border-bottom: 1px solid #eee;">
+                <td style="padding: 6px;">Verschlechterung des Zustands zu erwarten?</td>
+                <td style="text-align: center; background: #ffebee;">[ ]</td>
+            </tr>
+            <tr>
+                <td style="padding: 6px;">Bedenken/Zweifel seitens des Notfallsanitäters?</td>
+                <td style="text-align: center; background: #ffebee;">[ ]</td>
+            </tr>
+        </table>
+        
+        <div style="margin-top: 15px; padding: 10px; border: 1px solid #0054a6; background: #e3f2fd; border-radius: 5px; font-size: 0.85em;">
+            <strong>Dokumentationspflichten:</strong>
+            <ul style="margin: 5px 0; padding-left: 20px;">
+                <li>Einschätzung der Einwilligungsfähigkeit (orientiert zu Ort, Zeit, Person).</li>
+                <li>Aufklärung über Risiken und alternative Hilfsangebote (Hausarzt, 116 117).</li>
+                <li>Möglichst Betreuungsübernahme durch Angehörige sicherstellen.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+</div>
+
+
+
+
+
+A<style>
+    /* Alle gefundenen Treffer (Blau) */
+    .search-highlight { 
+        background-color: #007bff !important; 
+        color: white !important; 
+        border-radius: 2px;
+        padding: 0 1px;
+    }
+    /* Der aktuell ausgewählte Treffer (Gelb) */
+    .search-highlight.current-active { 
+        background-color: #ffc107 !important; 
+        color: black !important; 
+        box-shadow: 0 0 10px rgba(0,0,0,0.8);
+        font-weight: bold;
+        z-index: 9999;
+    }
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js"></script>
+
+<script>
+// "document.body" sorgt dafür, dass wirklich ALLES durchsucht wird
+let marker = new Mark(document.body); 
+let currentIndex = 0;
+let results = [];
+
+document.getElementById('algoSearch').addEventListener('input', function() {
+    let term = this.value.trim();
+    
+    // 1. Alle alten Markierungen entfernen
+    marker.unmark();
+    currentIndex = 0;
+    
+    // 2. Alle Karten/Elemente erst einmal wieder einblenden
+    let allCards = document.getElementsByClassName('algo-card');
+    if (term.length < 2) {
+        for(let card of allCards) card.style.display = "";
+        updateCount(0, 0);
+        return;
+    }
+
+    // 3. Markierung im gesamten Dokument durchführen
+    marker.mark(term, {
+        className: 'search-highlight',
+        separateWordSearch: false, // Sucht nach dem exakten Satz/Wort
+        acrossElements: true,      // Sucht auch über HTML-Grenzen hinweg
+        done: function(counter) {
+            results = document.querySelectorAll(".search-highlight");
+            updateCount(results.length > 0 ? 1 : 0, results.length);
+            
+            // 4. Nur die Karten einblenden, die einen Treffer enthalten
+            // (Andere Texte außerhalb von Karten bleiben sichtbar)
+            for(let card of allCards) {
+                let hasMatch = card.querySelectorAll(".search-highlight").length > 0;
+                card.style.display = hasMatch ? "" : "none";
+            }
+            
+            if (results.length > 0) {
+                currentIndex = 0;
+                jumpTo();
+            }
+        }
+    });
+});
+
+// Navigation (Pfeile)
+function navigateSearch(dir) {
+    if (results.length === 0) return;
+    
+    currentIndex += dir;
+    if (currentIndex < 0) currentIndex = results.length - 1;
+    if (currentIndex >= results.length) currentIndex = 0;
+    
+    jumpTo();
+    updateCount(currentIndex + 1, results.length);
+}
+
+// Zum Wort springen
+function jumpTo() {
+    results.forEach(el => el.classList.remove("current-active"));
+    let target = results[currentIndex];
+    
+    if(target) {
+        target.classList.add("current-active");
+        // Scrollt sanft zum gefundenen Wort in die Mitte des Bildschirms
+        target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+}
+
+function updateCount(curr, total) {
+    const counterDisplay = document.getElementById('match-count');
+    if(counterDisplay) {
+        counterDisplay.innerText = curr + "/" + total;
+    }
+}
+
+// Enter-Taste Support
+document.getElementById('algoSearch').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') {
+        e.preventDefault();
+        navigateSearch(1);
+    }
+});
+</script>
+
+</body>
+</html>
