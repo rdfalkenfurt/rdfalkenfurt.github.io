@@ -2,28 +2,39 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Zentraler Dienstplan - Rettungsdienst Falkenfurt</title>
+    <title>Dienstplan - Rettungsdienst Falkenfurt</title>
     <style>
-        body { font-family: 'Helvetica', 'Arial', sans-serif; background-color: #f0f2f5; margin: 0; padding: 20px; color: #1c1e21; }
-        
-        /* Falkenfurt Header Design */
-        .header { background-color: #00102d; color: white; padding: 30px; text-align: center; border-radius: 12px; border-bottom: 5px solid #ffdc00; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
-        .header h1 { margin: 0; font-size: 28px; letter-spacing: 2px; text-transform: uppercase; }
-        .header p { color: #ffdc00; font-weight: bold; margin: 10px 0 0 0; font-size: 14px; letter-spacing: 1px; }
-
-        /* Navigation */
-        .nav-container { display: flex; justify-content: center; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; }
-        .nav-btn { 
-            background-color: #fff; border: 2px solid #00102d; color: #00102d; 
-            padding: 12px 24px; border-radius: 8px; cursor: pointer; font-weight: bold;
-            transition: all 0.3s ease; font-size: 14px;
+        :root {
+            --falken-blue: #000e2b;
+            --falken-gold: #ffd700;
+            --bg-light: #f4f4f4;
         }
-        /* --- NAVIGATION BUTTONS --- */
+
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            background-color: var(--bg-light); 
+            margin: 0; padding: 0; 
+            display: flex; flex-direction: column; align-items: center;
+        }
+
+        /* --- HEADER & GLOBALE NAVIGATION --- */
+        header {
+            background-color: var(--falken-blue);
+            color: white;
+            padding: 30px;
+            border-bottom: 5px solid var(--falken-gold);
+            text-align: center;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .logo { max-height: 100px; margin-bottom: 10px; }
+
         .nav-bar {
             display: flex;
             justify-content: center;
             gap: 15px;
-            margin-top: 10px;
+            margin-top: 20px;
             flex-wrap: wrap;
         }
 
@@ -42,152 +53,148 @@
             gap: 8px;
         }
 
-        .nav-link:hover {
+        .nav-link:hover, .nav-active {
             background: var(--falken-gold);
             color: var(--falken-blue);
             transform: translateY(-2px);
         }
-        .nav-btn:hover { background-color: #eef1f5; transform: translateY(-2px); }
-        .nav-btn.active { background-color: #00102d; color: #ffdc00; border-color: #ffdc00; box-shadow: 0 4px 8px rgba(0,0,0,0.2); }
 
-        .container { max-width: 800px; margin: 0 auto; }
+        /* --- INTERNE ABTEILUNGS-STEUERUNG --- */
+        .sub-nav { 
+            display: flex; justify-content: center; gap: 10px; 
+            margin: 30px 0; flex-wrap: wrap; 
+        }
+
+        .dept-btn { 
+            background-color: #fff; border: 2px solid var(--falken-blue); color: var(--falken-blue); 
+            padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .dept-btn.active { 
+            background-color: var(--falken-blue); color: var(--falken-gold); 
+            border-color: var(--falken-gold); 
+        }
+
+        /* --- DIENSTPLAN KARTEN --- */
+        .container { max-width: 800px; width: 90%; margin-bottom: 50px; }
         
         .month-divider { 
             display: flex; align-items: center; margin: 35px 0 15px; 
-            font-weight: bold; color: #00102d; text-transform: uppercase; font-size: 16px;
+            font-weight: bold; color: var(--falken-blue); text-transform: uppercase; 
         }
         .month-divider::after { content: ""; flex: 1; height: 2px; background: #ddd; margin-left: 15px; }
 
-        /* --- DER HOVER EFFEKT --- */
         .week-card { 
-            background: white; border-radius: 10px; margin-bottom: 12px; 
-            display: flex; align-items: center; border-left: 8px solid #ccc;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05); 
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* Sanfter Übergang */
-            cursor: default;
+            background: white; border-radius: 10px; margin-bottom: 12px; display: flex; align-items: center; 
+            border-left: 8px solid #ccc; box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
-        .week-card:hover { 
-            transform: translateX(10px) scale(1.02); /* Schiebt Karte nach rechts und vergrößert sie */
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1); 
-            z-index: 10;
-        }
+        .week-card:hover { transform: translateX(10px) scale(1.02); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
 
         .week-info { padding: 15px 20px; width: 35%; border-right: 1px solid #f0f0f0; }
         .week-info span { display: block; font-size: 11px; color: #888; font-weight: bold; }
-        .week-info strong { font-size: 16px; color: #00102d; }
-
+        .week-info strong { font-size: 16px; color: var(--falken-blue); }
         .assigned-name { padding: 15px 20px; width: 65%; font-size: 18px; font-weight: bold; }
 
-        /* Farben */
-        .color-blue { border-left-color: #0056b3; } .color-blue .assigned-name { color: #0056b3; }
-        .color-green { border-left-color: #27ae60; } .color-green .assigned-name { color: #27ae60; }
-        .color-petrol { border-left-color: #16a085; } .color-petrol .assigned-name { color: #16a085; }
-        .color-red { border-left-color: #c0392b; } .color-red .assigned-name { color: #c0392b; }
+        .active-week { background-color: #fff9c4; border-top: 2px solid var(--falken-gold); border-bottom: 2px solid var(--falken-gold); }
+        .now-badge { background: var(--falken-gold); color: black; padding: 2px 8px; border-radius: 15px; font-size: 10px; margin-left: 8px; }
 
-        /* Aktuelle Woche Highlight */
-        .active-week { 
-            background-color: #fff9c4; 
-            border-top: 2px solid #ffdc00; 
-            border-bottom: 2px solid #ffdc00;
-        }
-        .now-badge { 
-            background: #ffdc00; color: black; padding: 2px 8px; 
-            border-radius: 15px; font-size: 10px; margin-left: 8px;
-            display: inline-block; vertical-align: middle;
-        }
+        /* Personen-Farben */
+        .color-mueller { border-left-color: #0056b3; color: #0056b3; }
+        .color-lehmann { border-left-color: #c0392b; color: #c0392b; }
+        .color-moser { border-left-color: #27ae60; color: #27ae60; }
+        .color-schaefer { border-left-color: #16a085; color: #16a085; }
     </style>
 </head>
 <body>
 
-<div class="header">
-    <h1>RETTUNGSDIENST FALKENFURT</h1>
-    <p id="plan-title">DIENSTPLAN ÜBERSICHT</p>
-</div>
-
-<div class="nav-container">
-    <button class="nav-btn active" id="btn-notarzt" onclick="showPlan('notarzt', 'NOTARZT (NEF)', this)">NOTARZT</button>
-    <button class="nav-btn" onclick="showPlan('orgl', 'ORG. LEITER (ORGL)', this)">ORGL</button>
-    <button class="nav-btn" onclick="showPlan('elrd', 'EINSATZLEITER (ELRD)', this)">ELRD</button>
-    <button class="nav-btn" onclick="showPlan('lna', 'LEITENDER NOTARZT (LNA)', this)">LNA</button>
-</div>
-
-        <nav class="nav-bar">
+<header>
+    <img src="https://r2.fivemanage.com/duNnRRRqkxrMPfikEWhQR/Bild_2026-03-21_105520774-removebg-preview.png" alt="Logo" class="logo">
+    <h1 style="margin: 0; letter-spacing: 2px;">INTRANET FALKENFURT</h1>
+    
+    <nav class="nav-bar">
         <a href="index.html" class="nav-link">🏠 INTRANET</a>
         <a href="medis.html" class="nav-link">💊 MEDIKAMENTE</a>
         <a href="wdb.html" class="nav-link">📋 LEITLINIEN (WDB)</a>
-        <a href="dienstplan.html" class="nav-link" nav-active>🗓️ DIENSTPLAN (DIENSTPLAN)</a>
+        <a href="dienstplan.html" class="nav-link nav-active">🗓️ DIENSTPLAN</a>
     </nav>
+</header>
+
+<div class="sub-nav">
+    <button class="dept-btn active" onclick="initPlan('notarzt', 'NOTARZT (NEF)', this)">NEF</button>
+    <button class="dept-btn" onclick="initPlan('orgl', 'ORG. LEITER (ORGL)', this)">ORGL</button>
+    <button class="dept-btn" onclick="initPlan('elrd', 'EINSATZLEITER (ELRD)', this)">ELRD</button>
+    <button class="dept-btn" onclick="initPlan('lna', 'LEITENDER NOTARZT (LNA)', this)">LNA</button>
+</div>
 
 <div class="container" id="schedule-list"></div>
 
+<footer style="margin: 40px 0 20px; color: #888; font-size: 0.8em;">
+    © 2026 Rettungsdienst Falkenfurt | Ärztliche Leitung Rettungsdienst
+</footer>
+
 <script>
- const allPlans = {
-        notarzt: [
-            { m: "März", kw: 11, s: "16.03.", e: "22.03.", d: "Dr. med. Leon Müller", c: "color-blue", f: "2026-03-16" },
-            { m: "März", kw: 12, s: "23.03.", e: "29.03.", d: "Dr. med. Mathis Lehmann", c: "color-red", f: "2026-03-23" },
-            { m: "April", kw: 13, s: "30.03.", e: "05.04.", d: "Dr. med. Leon Müller", c: "color-blue", f: "2026-03-30" },
-            { m: "April", kw: 14, s: "06.04.", e: "12.04.", d: "Dr. med. Mathis Lehmann", c: "color-red", f: "2026-04-06" }
-        ],
-        orgl: [
-            { m: "März", kw: 11, s: "16.03.", e: "22.03.", d: "Jan Moser", c: "color-green", f: "2026-03-16" },
-            { m: "März", kw: 12, s: "23.03.", e: "29.03.", d: "Thomas Schäfer", c: "color-petrol", f: "2026-03-23" },
-            { m: "April", kw: 13, s: "30.03.", e: "05.04.", d: "Jan Moser", c: "color-green", f: "2026-03-30" },
-            { m: "April", kw: 14, s: "06.04.", e: "12.04.", d: "Thomas Schäfer", c: "color-petrol", f: "2026-04-06" }
-        ],
-        elrd: [
-            { m: "März", kw: 11, s: "16.03.", e: "22.03.", d: "Thomas Schäfer", c: "color-petrol", f: "2026-03-16" }, // Getauscht mit Moser
-            { m: "März", kw: 12, s: "23.03.", e: "29.03.", d: "Jan Moser", c: "color-green", f: "2026-03-23" },    // Getauscht mit Schäfer
-            { m: "April", kw: 13, s: "30.03.", e: "05.04.", d: "Thomas Schäfer", c: "color-petrol", f: "2026-03-30" },
-            { m: "April", kw: 14, s: "06.04.", e: "12.04.", d: "Jan Moser", c: "color-green", f: "2026-04-06" }
-        ],
-        lna: [
-            { m: "März", kw: 11, s: "16.03.", e: "22.03.", d: "Dr. med. Mathis Lehmann", c: "color-red", f: "2026-03-16" }, // Vertretung für Müller
-            { m: "März", kw: 12, s: "23.03.", e: "29.03.", d: "Dr. med. Leon Müller", c: "color-blue", f: "2026-03-23" },
-            { m: "April", kw: 13, s: "30.03.", e: "05.04.", d: "Dr. med. Mathis Lehmann", c: "color-red", f: "2026-03-30" },
-            { m: "April", kw: 14, s: "06.04.", e: "12.04.", d: "Dr. med. Leon Müller", c: "color-blue", f: "2026-04-06" }
-        ]
+    const teams = {
+        notarzt: { members: ["Dr. med. Leon Müller", "Dr. med. Mathis Lehmann"], colors: ["color-mueller", "color-lehmann"] },
+        orgl:    { members: ["Jan Moser", "Thomas Schäfer"], colors: ["color-moser", "color-schaefer"] },
+        elrd:    { members: ["Thomas Schäfer", "Jan Moser", "Dr. med. Leon Müller"], colors: ["color-schaefer", "color-moser", "color-mueller"] },
+        lna:     { members: ["Dr. med. Leon Müller"], colors: ["color-mueller"] }
     };
 
-    function showPlan(key, title, btn) {
-        document.getElementById('plan-title').innerText = "DIENSTPLAN: " + title;
-        const list = document.getElementById('schedule-list');
-        list.innerHTML = "";
-        
-        document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    function getISOWeek(date) {
+        const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+        d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay() || 7));
+        const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+        return Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
+    }
+
+    function initPlan(type, title, btn) {
+        document.querySelectorAll('.dept-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
 
+        const list = document.getElementById('schedule-list');
+        list.innerHTML = "";
         const today = new Date();
-        let curM = "";
+        let lastMonth = -1;
 
-        allPlans[key].forEach(i => {
-            if (i.m !== curM) {
-                curM = i.m;
+        for (let i = -1; i < 11; i++) {
+            const d = new Date();
+            d.setDate(today.getDate() - (today.getDay() || 7) + 1 + (i * 7));
+            const kw = getISOWeek(d);
+            
+            if (d.getMonth() !== lastMonth) {
+                lastMonth = d.getMonth();
                 const div = document.createElement('div');
                 div.className = 'month-divider';
-                div.innerText = curM;
+                div.innerText = d.toLocaleDateString('de-DE', { month: 'long', year: 'numeric' });
                 list.appendChild(div);
             }
 
-            const start = new Date(i.f);
-            const end = new Date(start);
-            end.setDate(start.getDate() + 6);
-            end.setHours(23,59,59);
+            const team = teams[type];
+            const index = kw % team.members.length;
+            const person = team.members[index];
+            const color = team.colors[index];
 
-            const active = (today >= start && today <= end);
+            const end = new Date(d);
+            end.setDate(d.getDate() + 6);
+            const range = d.toLocaleDateString('de-DE', {day:'2-digit', month:'2-digit'}) + " - " + end.toLocaleDateString('de-DE', {day:'2-digit', month:'2-digit'});
+
+            const isThisWeek = (i === 0);
             const card = document.createElement('div');
-            card.className = `week-card ${i.c} ${active ? 'active-week' : ''}`;
+            card.className = `week-card ${color} ${isThisWeek ? 'active-week' : ''}`;
             card.innerHTML = `
                 <div class="week-info">
-                    <span>KW ${i.kw} ${active ? '<span class="now-badge">AKTUELL</span>' : ''}</span>
-                    <strong>${i.s} - ${i.e}</strong>
+                    <span>KW ${kw} ${isThisWeek ? '<span class="now-badge">AKTUELL</span>' : ''}</span>
+                    <strong>${range}</strong>
                 </div>
-                <div class="assigned-name">${i.d}</div>
+                <div class="assigned-name">${person}</div>
             `;
             list.appendChild(card);
-        });
+        }
     }
 
-    window.onload = () => showPlan('notarzt', 'NOTARZT (NEF)', document.getElementById('btn-notarzt'));
+    window.onload = () => initPlan('notarzt', 'NOTARZT (NEF)', document.querySelector('.dept-btn'));
 </script>
 
 </body>
