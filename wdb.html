@@ -478,18 +478,49 @@
         </div>
     </div>
 
-    <div class="algo-card" data-search="k1 acs herzinfarkt stemi ass heparin nitro">
+<div class="algo-card" data-search="k1 acs herzinformat brustschmerz stemi nstemi heparin nitro morphin ass">
         <div class="algo-title">K 1 - Akutes Koronarsyndrom (ACS)</div>
         <div class="step">
-            <div class="node"><strong>Symptomatik</strong>Schmerz, Enge, Ausstrahlung, Dyspnoe, Kaltschweiß</div>
+            <div class="node decision">Leitsymptom: Akuter Thoraxschmerz / Druckgefühl?</div>
+            <div class="arrow">Ja ↓</div>
+            <div class="node action-highlight">
+                <strong>Basismaßnahmen</strong>
+                • Lagerung (Oberkörper hoch)<br>
+                • O2-Gabe (nur bei SpO2 < 94 %)<br>
+                • 12-Kanal-EKG schreiben (innerhalb 10 Min!)
+            </div>
             <div class="arrow">↓</div>
-            <div class="node action-highlight">ABCDE | 12-Kanal-EKG (< 10 min) | OK-Hochlage | Monitoring</div>
+            <div class="node decision">EKG: STEMI oder V.a. ACS?</div>
+            <div class="arrow">Ja ↓</div>
+            <div class="node med-highlight">
+                <strong>Standard-Medikation (M 1 / M 15 / M 17)</strong>
+                • <strong>ASS:</strong> 250 mg i.v.<br>
+                • <strong>Heparin:</strong> 5.000 IE i.v.<br>
+                • <strong>Glyceroltrinitrat (Nitro):</strong> 1-2 Hübe (nur bei RR > 120 mmHg)
+            </div>
             <div class="arrow">↓</div>
-            <div class="node med-highlight"><strong>Medikation</strong>ASS 500 mg i.v./p.o. | Heparin 5000 IE (bei STEMI)</div>
+            <div class="node decision">Starke Schmerzen (VAS > 4)?</div>
+            <div class="arrow">Ja ↓</div>
+            <div class="node med-highlight" style="border-left-color: #9c27b0;">
+                <strong>Analgesie</strong>
+                • <strong>Morphin:</strong> 2 - 5 mg i.v. (langsam)<br>
+                • Ggf. Antiemetikum (z.B. Vomex/MCP)
+            </div>
             <div class="arrow">↓</div>
-            <div class="node decision">Nitro möglich? (RR > 100, kein Hinterwandinfarkt, keine PDE-5-Hemmer)</div>
-            <div class="arrow">↓</div>
-            <div class="node">Analgesie (NRS > 5) | Transport PCI-Zentrum</div>
+            <div class="node critical" style="background: var(--falken-blue); color: var(--falken-gold);">
+                Transport in Klinik mit Herzkatheterlabor (PCI)
+            </div>
+        </div>
+
+        <div class="side-info">
+            <div class="info-box">
+                <div class="info-title">Beachte:</div>
+                Bei Hinterwandinfarkt Vorsicht mit Nitro (Gefahr des Rechtsherzversagens!). Vor Nitro-Gabe immer nach Potenzmitteln (PDE-5-Hemmer) fragen.
+            </div>
+            <div class="info-box">
+                <div class="info-title">Ziel:</div>
+                Schnellstmögliche Reperfusion. STEMI-Meldung in der Zielklinik vorab telefonisch durchführen (Zeit ist Myokard!).
+            </div>
         </div>
     </div>
 
@@ -849,539 +880,527 @@
     </div>
 
 <div class="algo-card">
-    <div class="algo-title" style="background: var(--falken-blue); color: var(--falken-gold); padding: 10px; text-transform: uppercase; font-weight: bold;">
-        Algorithmus: VHF breitkomplexig (Metoprolol)
+ <div class="algo-card" data-search="k3 vhf breitkomplexig metoprolol heparin vorhofflimmern rhythmusstörung tachykardie">
+        <div class="algo-title">K 3 - VHF breitkomplexig (Metoprolol)</div>
+        <div class="step">
+            <div class="node decision">
+                <strong>Initialbefund:</strong><br>
+                Tachykardie? Breiter QRS? Monomorph? <br>
+                <strong>ABSOLUT unregelmäßig?</strong>
+            </div>
+            <div class="arrow">Ja ↓</div>
+            <div class="node action-highlight">
+                <strong>Verdacht: Vorhofflimmern + Schenkelblock</strong>
+            </div>
+            <div class="arrow">↓</div>
+            <div class="node decision">Bedarfstachykardie? (Schock, Sepsis, etc.)</div>
+            <div class="arrow">Nein ↓</div>
+            <div class="node decision">Bedrohliche Zeichen? (Schock, Ischämie, Synkope)</div>
+            <div class="arrow">Nein ↓</div>
+            
+            <div class="node med-highlight">
+                <strong>Metoprolol (M 20)</strong>
+                • <strong>Dosis:</strong> 2,5 mg i.v. (langsam)<br>
+                • <strong>Ausschluss:</strong> RR syst ≤ 120 mmHg, Asthma<br>
+                • <strong>Wdh:</strong> nach 5 Min (max. 15 mg)
+            </div>
+            <div class="arrow">↓</div>
+            <div class="node med-highlight" style="border-left-color: #607d8b; background: #eceff1;">
+                <strong>Heparin-Gabe erwägen</strong>
+                • <strong>Dosis:</strong> 5.000 I.E. Heparin i.v.<br>
+                • <strong>Kontra:</strong> Blutung, orale Antikoagulation
+            </div>
+            <div class="arrow">↓</div>
+            <div class="node critical" style="background: var(--falken-blue); color: var(--falken-gold);">
+                Kontinuierliches EKG-Monitoring & Transport
+            </div>
+        </div>
+            </div>
+
+        <div class="side-info">
+            <div class="info-box">
+                <div class="info-title">Wichtig:</div>
+                Bei bedrohlichen Zeichen (instabiler Patient) direkt zum <strong>Algorithmus Notfallkardioversion</strong> wechseln!
+            </div>
+            <div class="info-box">
+                <div class="info-title">Ziel:</div>
+                Frequenzkontrolle (HF < 100/min), keine sofortige Rhythmisierung im Feld ohne Antikoagulationsschutz (Emboliegefahr).
+            </div>
+        </div>
     </div>
-    <div style="padding: 15px; background: white;">
-
-        <div style="border: 1px solid #0054a6; border-radius: 5px; margin-bottom: 10px; overflow: hidden;">
-            <div style="background: #e3f2fd; padding: 5px 10px; font-weight: bold; border-bottom: 1px solid #ddd; font-size: 0.85em; color: #0054a6;">
-                INITIALBEFUND
-            </div>
-            <div style="padding: 10px; font-size: 0.9em; background: #fdfaf4;">
-                Tachykardie? Breiter QRS? Monomorph? <strong>ABSOLUT unregelmäßig?</strong><br>
-                ➔ Verdacht auf <strong>Vorhofflimmern + Schenkelblock</strong>
-            </div>
-        </div>
-
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px;">
-            <div style="border: 2px solid #d32f2f; border-radius: 5px; background: #fdf2f2; padding: 8px; font-size: 0.85em;">
-                <strong>JA: Bedarfstachykardie?</strong><br>
-                Reversible Ursache? (Schock, Sepsis...)<br>
-                ➔ <strong>KEINE Metoprolol-Gabe!</strong>
-            </div>
-            <div style="border: 1px solid #ddd; border-radius: 5px; background: #fafafa; padding: 8px; font-size: 0.85em;">
-                <strong>NEIN:</strong><br>
-                Weiter im Algorithmus.
-            </div>
-        </div>
-
-        <div style="border: 1px solid #ffcb05; border-radius: 5px; margin-bottom: 10px; overflow: hidden; background: #fffde7;">
-            <div style="padding: 10px; font-size: 0.85em;">
-                <strong>Bedrohliche Zeichen vorhanden?</strong> (Ischämie, Herzinsuffizienz, Schock, Synkope)<br>
-                ➔ JA: <strong>Algorithmus Notfallkardioversion</strong><br>
-                ➔ NEIN: Weiter zur medikamentösen Therapie.
-            </div>
-        </div>
-
-        <div style="border: 1px solid #2e7d32; border-radius: 5px; margin-bottom: 10px; overflow: hidden;">
-            <div style="background: #ffed00; color: black; padding: 5px 10px; font-weight: bold; text-align: center; font-size: 1em;">
-                METOPROLOL 2,5 MG I.V. (LANGSAM)
-            </div>
-            <div style="padding: 10px; font-size: 0.85em; background: #f1f8e9;">
-                <strong>Ausschluss:</strong> RR<sub>syst</sub> ≤ 120 mmHg, Asthma, β-Blocker-Allergie<br>
-                <strong>Gabe:</strong> 2,5 mg (= 2,5 ml) i.v. langsam.
-            </div>
-        </div>
-
-        <div style="border: 1px solid #0054a6; border-radius: 5px; margin-bottom: 10px; overflow: hidden;">
-            <div style="background: #cfd8dc; color: #263238; padding: 5px 10px; font-weight: bold; font-size: 0.85em;">
-                HEPARIN-GABE ERWÄGEN
-            </div>
-            <div style="padding: 10px; font-size: 0.85em; background: #eceff1;">
-                <strong>Gabe:</strong> 5.000 I.E. Heparin i.v.<br>
-                <strong>Kontra:</strong> Aktive Blutung, frischer Schlaganfall, orale Antikoagulation.
-            </div>
-        </div>
-
-        <div style="padding: 8px; border: 2px solid #2e7d32; background: #e8f5e9; border-radius: 5px; text-align: center; font-size: 0.85em;">
-            <strong>Reevaluation nach 5 Min:</strong><br>
-            Falls RR > 120 & HF > 100: <strong>Metoprolol-Wdh.</strong> (max. 15 mg).
-        </div>
-
-    </div>
-    <span style="display:none;">metoprolol heparin vorhofflimmern vhf rhythmusstörung tachykardie algorithmus dbrd</span>
-</div>
 
 <div class="algo-card">
-    <div class="algo-title" style="background: var(--falken-blue); color: var(--falken-gold); padding: 10px; text-transform: uppercase; font-weight: bold;">
-        Algorithmus: Verdacht auf Lungenembolie
-    </div>
-    <div style="padding: 15px; background: white;">
-
-        <div style="border: 1px solid #0054a6; border-radius: 5px; margin-bottom: 10px; overflow: hidden;">
-            <div style="background: #e3f2fd; padding: 5px 10px; font-weight: bold; border-bottom: 1px solid #ddd; font-size: 0.85em; color: #0054a6;">
-                1. INITIALMASSNAHMEN & DIAGNOSTIK
+<div class="algo-card" data-search="k5 lungenembolie lae heparin genfer score dyspnoe thoraxschmerz tachykardie">
+        <div class="algo-title">K 5 - Verdacht auf Lungenembolie (LAE)</div>
+        <div class="step">
+            <div class="node action-highlight">
+                <strong>1. Initialmaßnahmen & Diagnostik</strong>
+                • ABCDE-Schema (parallel ACS-Ausschluss)<br>
+                • Lagerung, O₂-Gabe (15 l/min), Monitoring<br>
+                • 12-Kanal-EKG & i.v.-Zugang
             </div>
-            <div style="padding: 10px; font-size: 0.9em; background: #fdfaf4;">
-                • <strong>ABCDE</strong>-Schema (ggf. parallel ACS-Ausschluss)<br>
-                • Lagerung, O₂-Gabe 15 l/min, Monitoring (EKG, SpO₂, 12-Kanal-EKG)<br>
-                • Anlage i.v.-Zugang
-            </div>
-        </div>
-
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px;">
-            <div style="border: 1px solid #ffcb05; border-radius: 5px; background: #fffde7; padding: 8px; font-size: 0.85em;">
+            <div class="arrow">↓</div>
+            <div class="node decision">
                 <strong>Genfer Score ≥ 2?</strong><br>
-                Verschlusszeichen, Puls ≥ 95/min, Alter > 65, vorangegangene OP/Fraktur?
+                Puls ≥ 95, Alter > 65, OP/Fraktur, Verschlusszeichen?
             </div>
-            <div style="border: 1px solid #d32f2f; border-radius: 5px; background: #fdf2f2; padding: 8px; font-size: 0.85em;">
-                <strong>Ausschluss suchen:</strong><br>
-                ACS, Aortendissektion, Pneumothorax, Schock.
+            <div class="arrow">Ja ↓</div>
+            <div class="node decision">
+                Ausschluss: Aktive Blutung / V.a. Aortendissektion?<br>
+                <small>(RR-Differenz > 20 mmHg / reißender Schmerz)</small>
             </div>
-        </div>
-
-        <div style="border: 1px solid #d32f2f; border-radius: 5px; margin-bottom: 10px; overflow: hidden;">
-            <div style="background: #d32f2f; color: white; padding: 5px 10px; font-weight: bold; font-size: 0.85em;">
-                2. KEINE HEPARIN-GABE BEI:
+            <div class="arrow">Nein ↓</div>
+            <div class="node med-highlight" style="background: #ffed00; border-left-color: #2e7d32;">
+                <strong>Heparin (M 15)</strong>
+                • <strong>Dosis:</strong> 80 I.E. / kg KG i.v.<br>
+                • < 50 kg: 4.000 IE | 70 kg: 5.500 IE<br>
+                • 90 kg: 7.200 IE | > 100 kg: 8.000 IE
             </div>
-            <div style="padding: 10px; font-size: 0.85em; background: #fdf2f2;">
-                • Hinweisen für <strong>aktive Blutung</strong><br>
-                • Verdacht auf <strong>Aortendissektion</strong> (RR-Differenz Arme > 20 mmHg, reißender Schmerz)<br>
-                • Bekannter Heparin-Allergie
+            <div class="arrow">↓</div>
+            <div class="node action-highlight" style="background: #e3f2fd; border-left-color: #0054a6;">
+                <strong>Zusatzmaßnahmen</strong>
+                • Bei Hypotension: 500 ml VEL-Bolus<br>
+                • Erwäge Notfallsonografie (Rechtsherzbelastung?)
             </div>
-        </div>
-
-        <div style="border: 1px solid #2e7d32; border-radius: 5px; margin-bottom: 10px; overflow: hidden;">
-            <div style="background: #ffed00; color: black; padding: 5px 10px; font-weight: bold; text-align: center; font-size: 1em;">
-                HEPARIN 80 I.E. / KG KG I.V.
-            </div>
-            <div style="padding: 10px; font-size: 0.85em; background: #f1f8e9;">
-                <strong>Gewichtsadaptierte Dosierung:</strong><br>
-                • < 50 kg: 4.000 I.E. | 60-70 kg: 5.500 I.E.<br>
-                • 80-90 kg: 7.200 I.E. | 90-100 kg: 8.000 I.E.<br>
-                <strong>Zusatz:</strong> Bei Hypotension 500 ml VEL-Bolus.
+            <div class="arrow">↓</div>
+            <div class="node critical" style="background: var(--falken-blue); color: var(--falken-gold);">
+                Transport in Klinik mit Intensivstation / CT
             </div>
         </div>
 
-        <div style="padding: 8px; border: 2px solid #0054a6; background: #e3f2fd; border-radius: 5px; text-align: center; font-size: 0.85em;">
-            <strong>Erwäge Notfallsonografie</strong> (Rechtsherzbelastung?)<br>
-            Thrombolysetherapie durch NA nur im schweren Schock / Reanimation!
+        <div class="side-info">
+            <div class="info-box">
+                <div class="info-title">Wichtig:</div>
+                Thrombolysetherapie (Lyse) durch NA nur im schweren Schock oder unter laufender Reanimation erwägen!
+            </div>
+            <div class="info-box">
+                <div class="info-title">Ziel:</div>
+                Antikoagulation zur Verhinderung von Appositionsthromben und Stabilisierung der Hämodynamik.
+            </div>
         </div>
-
     </div>
-    <span style="display:none;">lungenembolie lae heparin genfer score dyspnoe thoraxschmerz tachykardie</span>
-</div>
 
-<div class="algo-card">
-    <div class="algo-title" style="background: var(--falken-blue); color: var(--falken-gold); padding: 10px; text-transform: uppercase; font-weight: bold;">
-        Algorithmus: Hypoglykämie (BZ ≤ 60 mg/dl)
-    </div>
-    <div style="padding: 15px; background: white;">
 
-        <div style="border: 1px solid #0054a6; border-radius: 5px; margin-bottom: 10px; overflow: hidden;">
-            <div style="background: #e3f2fd; padding: 5px 10px; font-weight: bold; border-bottom: 1px solid #ddd; font-size: 0.85em; color: #0054a6;">
-                1. INITIALPHASE
+<div class="algo-card" data-search="n1 hypoglykämie unterzuckerung glucose bz-wert diabetes thiamin b1 insulin schock">
+        <div class="algo-title">N 1 - Hypoglykämie (BZ ≤ 60 mg/dl)</div>
+        <div class="step">
+            <div class="node action-highlight">
+                <strong>1. Initialphase & Diagnostik</strong>
+                • ABCDE-Herangehensweise<br>
+                • <strong>BZ-Messung:</strong> Grenzwert ≤ 60 mg/dl (3,3 mmol/l)
             </div>
-            <div style="padding: 10px; font-size: 0.9em; background: #fdfaf4;">
-                • <strong>ABCDE</strong>-Herangehensweise<br>
-                • <strong>BZ-Messung</strong> (Grenzwert: ≤ 60 mg/dl oder 3,3 mmol/l)
+            <div class="arrow">↓</div>
+            <div class="node decision">Patient wach / schluckfähig?</div>
+            
+            <div class="arrow">Ja ↓</div>
+            <div class="node med-highlight" style="border-left-color: #2e7d32; background: #f1f8e9;">
+                <strong>Orale Glucose-Zufuhr</strong>
+                • 5 – 10 g Glucose oral<br>
+                • (z.B. Jubin-Gel, Saft, Plättchen)
             </div>
-        </div>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px;">
-            <div style="border: 1px solid #d32f2f; border-radius: 5px; background: #fdf2f2; padding: 8px; font-size: 0.85em;">
-                <strong>BEWUSSTSEINSGETRÜBT?</strong><br>
-                • Stabile Seitenlage<br>
-                • <strong>i.v.-Zugang legen</strong>
+            <div class="arrow">Nein ↓</div>
+            <div class="node action-highlight" style="border-left-color: #d32f2f; background: #fdf2f2;">
+                <strong>Bewusstsein getrübt</strong>
+                • Stabile Seitenlage & Aspirationsschutz<br>
+                • Sicherer i.v.-Zugang (großlumig)
             </div>
-            <div style="border: 1px solid #2e7d32; border-radius: 5px; background: #f1f8e9; padding: 8px; font-size: 0.85em;">
-                <strong>WACH / SCHLUCKFÄHIG?</strong><br>
-                • Lagerung nach Kreislauf<br>
-                • <strong>Orale Zufuhr</strong> möglich
+            <div class="arrow">↓</div>
+            <div class="node med-highlight" style="background: #ffed00; border-left-color: #2e7d32;">
+                <strong>Glucose i.v. (M 12)</strong>
+                • <strong>Dosis:</strong> 5 – 10 g Glucose i.v.<br>
+                • (entspricht 25 – 50 ml G 20%)<br>
+                • <strong>Wichtig:</strong> Nachspülen mit VEL!
             </div>
-        </div>
 
-        <div style="border: 1px solid #2e7d32; border-radius: 5px; margin-bottom: 10px; overflow: hidden;">
-            <div style="background: #ffed00; color: black; padding: 5px 10px; font-weight: bold; text-align: center; font-size: 1em;">
-                GABE VON 5–10 g GLUCOSE
+            <div class="arrow">↓</div>
+            <div class="node decision">Alkoholabusus / Mangelernährung?</div>
+            <div class="arrow">Ja ↓</div>
+            <div class="node med-highlight" style="border-left-color: #9c27b0;">
+                <strong>Thiamin (Vitamin B1)</strong>
+                • 100 mg Thiamin i.v. langsam
             </div>
-            <div style="padding: 10px; font-size: 0.85em; background: #fafafa;">
-                • <strong>i.v. Weg:</strong> 25–50 ml Glucose 20%<br>
-                • <strong>Oraler Weg:</strong> 5–10 g Glucose oral (z.B. Saft, Plättchen)<br>
-                • <strong>Sonderfall:</strong> Bei Alkoholabusus/Mangelernährung zusätzlich <strong>100 mg Thiamin (Vit. B1) i.v.</strong>
-            </div>
-        </div>
 
-        <div style="border: 1px solid #ddd; border-radius: 5px; overflow: hidden;">
-            <div style="background: #f5f5f5; padding: 5px 10px; font-weight: bold; font-size: 0.85em;">
-                4. KONTROLLE (NACH 2-3 MINUTEN)
-            </div>
-            <div style="padding: 10px; font-size: 0.85em;">
+            <div class="arrow">↓</div>
+            <div class="node action-highlight" style="background: #f5f5f5; border-left-color: #757575;">
+                <strong>Reevaluation (nach 2-3 Min.)</strong>
                 • BZ-Kontrollmessung & ABCDE-Check<br>
-                • <strong>BZ nicht ausgeglichen?</strong> ➔ Erneute Gabe<br>
-                • <strong>Symptome bleiben trotz BZ-Anstieg?</strong> ➔ Suche nach anderen Ursachen!
+                • BZ < 60 mg/dl? ➔ Erneute Gabe
             </div>
         </div>
 
+        <div class="side-info">
+            <div class="info-box">
+                <div class="info-title">Cave:</div>
+                Glucose 20% ist stark gewebereizend. Paravasate führen zu Nekrosen! Nur bei sicher laufendem i.v.-Zugang und unter Aspiration verabreichen.
+            </div>
+            <div class="info-box">
+                <div class="info-title">Ziel:</div>
+                Anhebung des Blutzuckerspiegels in den normwertigen Bereich (> 80 mg/dl) und Wiederherstellung des Bewusstseins.
+            </div>
+        </div>
     </div>
-    <span style="display:none;">hypoglykämie unterzuckerung glucose bz-wert diabetes thiamin b1 insulin schock</span>
-</div>
 
-<div class="algo-card">
-    <div class="algo-title" style="background: var(--falken-blue); color: var(--falken-gold); padding: 10px; text-transform: uppercase; font-weight: bold;">
-        Algorithmus: Verdacht auf Schlaganfall
+<div class="algo-card" data-search="n2 schlaganfall apoplex stroke be-fast zeitfenster stroke unit neurologie">
+        <div class="algo-title">N 2 - Verdacht auf Schlaganfall (Apoplex)</div>
+        <div class="step">
+            <div class="node action-highlight">
+                <strong>1. Initialphase & Diagnostik</strong>
+                • ABCDE-Schema<br>
+                • <strong>BZ-Messung:</strong> Ausschluss Hypoglykämie (Ziel: 70–200 mg/dl)<br>
+                • <strong>Anamnese:</strong> Symptombeginn? (Time of onset / Last seen normal)
+            </div>
+            <div class="arrow">↓</div>
+            <div class="node decision">
+                <strong>BE-FAST Check positiv?</strong><br>
+                Balance, Eyes, Face, Arm, Speech, Time
+            </div>
+            <div class="arrow">Ja ↓</div>
+            <div class="node decision" style="border-color: #d32f2f; background: #fdf2f2;">
+                <strong>Vitale Bedrohung / Critical?</strong><br>
+                RR ≥ 220/120? GCS ≤ 8? Erbrochen?
+            </div>
+            <div class="arrow">↓</div>
+            <div class="node action-highlight" style="background: #e3f2fd; border-left-color: #0054a6;">
+                <strong>Standard-Maßnahmen</strong>
+                • Lagerung: Oberkörper 30° hoch (Pneumonieprophylaxe)<br>
+                • i.v. Zugang (großlumig, bevorzugt links)<br>
+                • 12-Kanal-EKG (Ausschluss VHF/ACS)
+            </div>
+            <div class="arrow">↓</div>
+            <div class="node critical" style="background: var(--falken-blue); color: var(--falken-gold);">
+                <strong>Load & Go: Transport in Stroke Unit</strong>
+                Voranmeldung mit "Time of Onset" und Symptomatik
+            </div>
+        </div>
+
+        <div class="side-info">
+            <div class="info-box">
+                <div class="info-title">Zeitziele:</div>
+                • Vor Ort: <strong>< 25 Min.</strong><br>
+                • Prähospital gesamt: <strong>< 60 Min.</strong><br>
+                <em>"Time is Brain!"</em>
+            </div>
+            <div class="info-box">
+                <div class="info-title">Wichtig:</div>
+                Blutdrucksenkung präklinisch nur bei RR > 220/120 mmHg (siehe K 4). Keine Glucose-Infusionen ohne Indikation (Gefahr der Ödembildung).
+            </div>
+        </div>
     </div>
-    <div style="padding: 15px; background: white;">
 
-        <div style="border: 1px solid #0054a6; border-radius: 5px; margin-bottom: 10px; overflow: hidden;">
-            <div style="background: #e3f2fd; padding: 5px 10px; font-weight: bold; border-bottom: 1px solid #ddd; font-size: 0.85em; color: #0054a6;">
-                1. INITIALPHASE & DIAGNOSTIK
+<div class="algo-card" data-search="t1 hämorrhagischer schock trauma blutung tranexamsäure txa tourniquet volumen beckenschlinge">
+        <div class="algo-title">T 1 - Management des hämorrhagischen Schocks</div>
+        <div class="step">
+            <div class="node action-highlight" style="border-left-color: #c80000; background: #fff5f5;">
+                <strong>1. Initialphase & Blutungskontrolle</strong>
+                • <strong>X-ABCDE:</strong> X = Kritische Blutung zuerst!<br>
+                • Äußere Blutung: Druckverband / Tourniquet<br>
+                • Innere Blutung: Beckenschlinge / Wärmeerhalt
             </div>
-            <div style="padding: 10px; font-size: 0.9em; background: #fdfaf4;">
-                • <strong>ABCDE</strong>-Herangehensweise<br>
-                • <strong>BZ-Messung</strong> (Ausschluss Hypoglykämie, Ziel: 70–200 mg/dl)<br>
-                • <strong>Anamnese:</strong> Symptombeginn (Time of onset)?
+            <div class="arrow">↓</div>
+            <div class="node decision">Blutung kontrollierbar?</div>
+            
+            <div style="display: flex; gap: 10px; justify-content: center;">
+                <div style="flex: 1;">
+                    <div class="arrow">Nein ↓</div>
+                    <div class="node action-highlight" style="border-left-color: #d32f2f; background: #fdf2f2; min-height: 80px;">
+                        <strong>Permissive Hypotension</strong>
+                        • Ziel-RR syst: 80–90 mmHg<br>
+                        • Cave: SHT / Schwangerschaft
+                    </div>
+                </div>
+                <div style="flex: 1;">
+                    <div class="arrow">Ja ↓</div>
+                    <div class="node action-highlight" style="border-left-color: #2e7d32; background: #f1f8e9; min-height: 80px;">
+                        <strong>Normotension anstreben</strong>
+                        • 1.000 ml kristalloide Lösung<br>
+                        • Ziel: Normaler Blutdruck
+                    </div>
+                </div>
+            </div>
+
+            <div class="arrow">↓</div>
+            <div class="node med-highlight" style="background: #ffed00; border-left-color: #2e7d32;">
+                <strong>Tranexamsäure (TXA) - M 22</strong>
+                • <strong>Dosis:</strong> 1g TXA in 100 ml NaCl<br>
+                • <strong>Zeit:</strong> Kurzinfusion über 10 Min.<br>
+                • <strong>Frist:</strong> Nur innerhalb von 3 Std.!
+            </div>
+
+            <div class="arrow">↓</div>
+            <div class="node critical" style="background: var(--falken-blue); color: var(--falken-gold);">
+                <strong>Load & Go: Schockraum-Zuweisung</strong>
+                Voranmeldung: "Massivblutung / Polytrauma"
             </div>
         </div>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px;">
-            <div style="border: 1px solid #ffcb05; border-radius: 5px; background: #fffde7; padding: 8px; font-size: 0.85em;">
-                <strong>BE-FAST CHECK</strong><br>
-                • <strong>B</strong>alance / <strong>E</strong>yes<br>
-                • <strong>F</strong>ace / <strong>A</strong>rm / <strong>S</strong>peech<br>
-                • <strong>T</strong>ime (Zeitkritisch!)
+        <div class="side-info">
+            <div class="info-box">
+                <div class="info-title">Merksatz:</div>
+                "The first clot is the best clot!" – Vermeide unnötige Bewegungen und exzessive Volumengabe, um die Erstgerinnung nicht zu zerstören.
             </div>
-            <div style="border: 1px solid #d32f2f; border-radius: 5px; background: #fdf2f2; padding: 8px; font-size: 0.85em;">
-                <strong>VITALE BEDROHUNG?</strong><br>
-                • RR<sub>sys</sub> ≥ 220 mmHg?<br>
-                • RR<sub>dia</sub> ≥ 120 mmHg?<br>
-                • GCS ≤ 8 (Atemwege!)
+            <div class="info-box">
+                <div class="info-title">Beachte:</div>
+                Wärmeerhalt ist Teil der Gerinnungstherapie! Unterkühlte Patienten (Hypothermie) bluten aufgrund gestörter Enzymaktivität stärker.
             </div>
         </div>
-
-        <div style="border: 1px solid #2e7d32; border-radius: 5px; margin-bottom: 10px; overflow: hidden;">
-            <div style="background: #ffed00; color: black; padding: 5px 10px; font-weight: bold; text-align: center; font-size: 1em;">
-                VERSORGUNG & TRANSPORT
-            </div>
-            <div style="padding: 10px; font-size: 0.85em; background: #fafafa;">
-                • <strong>Lagerung:</strong> Oberkörper 30° hoch<br>
-                • <strong>i.v. Zugang:</strong> 500 ml kristalloide Infusion<br>
-                • <strong>Ziel:</strong> Transport in Stroke Unit mit Voranmeldung
-            </div>
-        </div>
-
-        <div style="border: 1px solid #ddd; border-radius: 5px; overflow: hidden;">
-            <div style="background: #f5f5f5; padding: 5px 10px; font-weight: bold; font-size: 0.85em;">
-                4. ZEITZIELE
-            </div>
-            <div style="padding: 10px; font-size: 0.85em;">
-                • Versorgungszeit vor Ort: <strong>< 25 Minuten</strong><br>
-                • Präklinische Gesamtzeit: <strong>< 60 Minuten</strong>
-            </div>
-        </div>
-
     </div>
-    <span style="display:none;">schlaganfall apoplex stroke be-fast zeitfenster stroke unit neurologie</span>
-</div>
 
-<div class="algo-card">
-    <div class="algo-title" style="background: var(--falken-blue); color: var(--falken-gold); padding: 10px; text-transform: uppercase; font-weight: bold;">
-        Algorithmus: Verdacht auf Schlaganfall
-    </div>
-    <div style="padding: 15px; background: white;">
-
-        <div style="border: 1px solid #0054a6; border-radius: 5px; margin-bottom: 10px; overflow: hidden;">
-            <div style="background: #e3f2fd; padding: 5px 10px; font-weight: bold; border-bottom: 1px solid #ddd; font-size: 0.85em; color: #0054a6;">
-                1. INITIALPHASE & DIAGNOSTIK
+<div class="algo-card" data-search="k6 hypotonie schock volumen vel katecholamine sepsis anaphylaxie kardiogen">
+        <div class="algo-title">K 6 - Hypotonie / Schock (Zirkulationsversagen)</div>
+        <div class="step">
+            <div class="node action-highlight">
+                <strong>1. Initialphase & Ursachensuche</strong>
+                • ABCDE-Schema & Monitoring<br>
+                • Ursache klären: Volumenmangel? Pumpproblem? Anaphylaxie? Sepsis?
             </div>
-            <div style="padding: 10px; font-size: 0.9em; background: #fdfaf4;">
-                • <strong>ABCDE</strong>-Herangehensweise<br>
-                • <strong>BZ-Messung</strong> (Ausschluss Hypoglykämie, Ziel: 70–200 mg/dl)<br>
-                • <strong>Anamnese:</strong> Wann zuletzt symptomfrei (Time of onset)?
+            <div class="arrow">↓</div>
+            <div class="node decision">
+                <strong>Schockzeichen vorhanden?</strong><br>
+                Rekap-Zeit > 2s? Vigilanzminderung? qSOFA positiv?
             </div>
-        </div>
-
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px;">
-            <div style="border: 1px solid #ffcb05; border-radius: 5px; background: #fffde7; padding: 8px; font-size: 0.85em;">
-                <strong>BE-FAST CHECK</strong><br>
-                • <strong>B</strong>alance / <strong>E</strong>yes<br>
-                • <strong>F</strong>ace / <strong>A</strong>rm / <strong>S</strong>peech<br>
-                • <strong>T</strong>ime (Zeitkritisch!)
+            <div class="arrow">Ja ↓</div>
+            <div class="node action-highlight" style="border-left-color: #2e7d32; background: #f1f8e9;">
+                <strong>Lagerung nach Ursache</strong>
+                • <strong>Standard:</strong> Schocklagerung (Beine hoch)<br>
+                • <strong>Kardiogen / Dyspnoe:</strong> Oberkörper 30° hoch
             </div>
-            <div style="border: 1px solid #d32f2f; border-radius: 5px; background: #fdf2f2; padding: 8px; font-size: 0.85em;">
-                <strong>VITALE BEDROHUNG?</strong><br>
-                • RR<sub>sys</sub> ≥ 220 mmHg?<br>
-                • RR<sub>dia</sub> ≥ 120 mmHg?<br>
-                • GCS ≤ 8 (Atemwege!)
-            </div>
-        </div>
-
-        <div style="border: 1px solid #2e7d32; border-radius: 5px; margin-bottom: 10px; overflow: hidden;">
-            <div style="background: #ffed00; color: black; padding: 5px 10px; font-weight: bold; text-align: center; font-size: 1em;">
-                VERSORGUNG & TRANSPORT
-            </div>
-            <div style="padding: 10px; font-size: 0.85em; background: #fafafa;">
-                • <strong>Lagerung:</strong> Oberkörper 30° hoch<br>
-                • <strong>i.v. Zugang:</strong> 500 ml kristalloide Infusion<br>
-                • <strong>Ziel:</strong> Transport in Stroke Unit mit Voranmeldung
-            </div>
-        </div>
-
-        <div style="border: 1px solid #ddd; border-radius: 5px; overflow: hidden;">
-            <div style="background: #f5f5f5; padding: 5px 10px; font-weight: bold; font-size: 0.85em;">
-                4. ZEITZIELE
-            </div>
-            <div style="padding: 10px; font-size: 0.85em;">
-                • Versorgungszeit vor Ort: <strong>< 25 Minuten</strong><br>
-                • Präklinische Gesamtzeit: <strong>< 60 Minuten</strong>
-            </div>
-        </div>
-
-    </div>
-    <span style="display:none;">schlaganfall apoplex stroke be-fast zeitfenster stroke unit neurologie</span>
-</div>
-
-<div class="algo-card">
-    <div class="algo-title" style="background: var(--falken-blue); color: var(--falken-gold); padding: 10px; text-transform: uppercase; font-weight: bold;">
-        Management des hämorrhagischen Schocks
-    </div>
-    <div style="padding: 15px; background: white;">
-
-        <div style="border: 1px solid #0054a6; border-radius: 5px; margin-bottom: 10px; overflow: hidden;">
-            <div style="background: #e3f2fd; padding: 5px 10px; font-weight: bold; border-bottom: 1px solid #ddd; font-size: 0.85em; color: #0054a6;">
-                1. INITIALPHASE & BLUTUNGSKONTROLLE
-            </div>
-            <div style="padding: 10px; font-size: 0.9em; background: #fdfaf4;">
-                • <strong>X-ABCDE</strong>-Herangehensweise (X = kritische Blutung zuerst!)<br>
-                • <strong>Äußere Blutung:</strong> Manuelle Kompression, Druckverband, ggf. Tourniquet<br>
-                • <strong>Innere Blutung:</strong> Beckenschlinge bei Trauma erwägen, Wärmeerhalt konsequent
-            </div>
-        </div>
-
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px;">
-            <div style="border: 1px solid #d32f2f; border-radius: 5px; background: #fdf2f2; padding: 8px; font-size: 0.85em;">
-                <strong>UNSTABILE BLUTUNG</strong><br>
-                • <strong>Permissive Hypotension:</strong><br>
-                • Ziel-RR<sub>syst</sub> 80–90 mmHg<br>
-                • Ausnahme: SHT / Schwangerschaft (normaler RR)
-            </div>
-            <div style="border: 1px solid #2e7d32; border-radius: 5px; background: #f1f8e9; padding: 8px; font-size: 0.85em;">
-                <strong>KONTROLLIERTE BLUTUNG</strong><br>
-                • 1.000 ml kristalloide Lösung<br>
-                • Ziel: <strong>Normaler Blutdruck</strong>
-            </div>
-        </div>
-
-        <div style="border: 1px solid #2e7d32; border-radius: 5px; margin-bottom: 10px; overflow: hidden;">
-            <div style="background: #ffed00; color: black; padding: 5px 10px; font-weight: bold; text-align: center; font-size: 1em;">
-                TRANEXAMSÄURE (TXA) GABE
-            </div>
-            <div style="padding: 10px; font-size: 0.85em; background: #fafafa;">
-                • <strong>Dosis:</strong> 1g TXA in 100 ml NaCl 0,9% als Kurzinfusion (10 Min.)<br>
-                • <strong>Zeitfenster:</strong> Nur innerhalb von 3 Std. nach Trauma!<br>
-                • <strong>Ausschluss:</strong> Allergie, akute Thrombose/Embolie
-            </div>
-        </div>
-
-        <div style="border: 1px solid #ddd; border-radius: 5px; overflow: hidden;">
-            <div style="background: #f5f5f5; padding: 5px 10px; font-weight: bold; font-size: 0.85em;">
-                4. ZÜGIGER TRANSPORT
-            </div>
-            <div style="padding: 10px; font-size: 0.85em;">
-                • "The first clot is the best clot!" (Bewegungen vermeiden)<br>
-                • Transportpriorität vor langwierigen Maßnahmen<br>
-                • Bei fehlendem Effekt der Volumengabe an innere Blutungen denken!
-            </div>
-        </div>
-
-    </div>
-    <span style="display:none;">hämorrhagischer schock trauma blutung tranexamsäure txa tourniquet volumen beckenschlinge</span>
-</div>
-
-<div class="algo-card">
-    <div class="algo-title" style="background: var(--falken-blue); color: var(--falken-gold); padding: 10px; text-transform: uppercase; font-weight: bold;">
-        Algorithmus: Hypotonie / Schock
-    </div>
-    <div style="padding: 15px; background: white;">
-        <div style="border: 1px solid #0054a6; border-radius: 5px; margin-bottom: 10px; overflow: hidden;">
-            <div style="background: #e3f2fd; padding: 5px 10px; font-weight: bold; border-bottom: 1px solid #ddd; font-size: 0.85em; color: #0054a6;">
-                1. INITIALPHASE & URSACHENSUCHE
-            </div>
-            <div style="padding: 10px; font-size: 0.9em; background: #fdfaf4;">
-                • <strong>ABCDE</strong>-Schema<br>
-                • Ursache klären: Volumenmangel? Pumpprogram? Anaphylaxie? Sepsis?
-            </div>
-        </div>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 10px;">
-            <div style="border: 1px solid #d32f2f; border-radius: 5px; background: #fdf2f2; padding: 8px; font-size: 0.85em;">
-                <strong>KRITISCH?</strong><br>
-                • Schockzeichen (Rekap > 2s)<br>
-                • Vigilanzminderung<br>
-                • qSOFA positiv?
-            </div>
-            <div style="border: 1px solid #2e7d32; border-radius: 5px; background: #f1f8e9; padding: 8px; font-size: 0.85em;">
-                <strong>LAGERUNG</strong><br>
-                • Schocklagerung (Beine hoch)<br>
-                • Ausnahme: Kardiogen (30° hoch)
-            </div>
-        </div>
-        <div style="border: 1px solid #2e7d32; border-radius: 5px; margin-bottom: 10px; overflow: hidden;">
-            <div style="background: #ffed00; color: black; padding: 5px 10px; font-weight: bold; text-align: center; font-size: 1em;">
-                VOLUMENSUBSTITUTION
-            </div>
-            <div style="padding: 10px; font-size: 0.85em; background: #fafafa;">
+            <div class="arrow">↓</div>
+            <div class="node med-highlight" style="background: #ffed00; border-left-color: #2e7d32;">
+                <strong>Volumensubstitution (M 30)</strong>
                 • <strong>Kristalloide:</strong> 500 – 1.000 ml VEL als Bolus<br>
-                • <strong>Ziel:</strong> RR<sub>syst</sub> > 90 mmHg (bei Trauma 80-90 mmHg)
+                • <strong>Ziele:</strong> RR syst > 90 mmHg (Trauma: 80-90)
             </div>
-        </div>
-    </div>
-</div>
-
-<div class="algo-card">
-    <div class="algo-title" style="background: var(--falken-blue); color: var(--falken-gold); padding: 10px; text-transform: uppercase; font-weight: bold;">
-        Algorithmus: Hyperglykämie
-    </div>
-    <div style="padding: 15px; background: white;">
-        <div style="border: 1px solid #0054a6; border-radius: 5px; margin-bottom: 10px; overflow: hidden;">
-            <div style="background: #e3f2fd; padding: 5px 10px; font-weight: bold; border-bottom: 1px solid #ddd; font-size: 0.85em; color: #0054a6;">
-                1. DIAGNOSTIK
+            <div class="arrow">↓</div>
+            <div class="node decision">Kein Anstieg nach 1.000 ml VEL?</div>
+            <div class="arrow">Ja ↓</div>
+            <div class="node med-highlight" style="border-left-color: #c80000;">
+                <strong>Katecholamine erwägen</strong>
+                • <strong>Noradrenalin:</strong> Titriert nach RR-Ziel<br>
+                • (Vorbereitung laut M 21)
             </div>
-            <div style="padding: 10px; font-size: 0.9em; background: #fdfaf4;">
-                • <strong>BZ-Messung</strong> (> 250 mg/dl / 13,9 mmol/l)<br>
-                • Symptome: Polydipsie, Exsikkose, Kußmaul-Atmung?
-            </div>
-        </div>
-        <div style="border: 1px solid #2e7d32; border-radius: 5px; margin-bottom: 10px; overflow: hidden;">
-            <div style="background: #ffed00; color: black; padding: 5px 10px; font-weight: bold; text-align: center; font-size: 1em;">
-                THERAPIE: FLÜSSIGKEIT
-            </div>
-            <div style="padding: 10px; font-size: 0.85em; background: #fafafa;">
-                • <strong>Volumen:</strong> 1.000 ml VEL i.v. (langsam)<br>
-                • <strong>ACHTUNG:</strong> Kein Insulin durch Rettungsdienst (Gefahr Hirnödem)!
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="algo-card">
-    <div class="algo-title" style="background: var(--falken-blue); color: var(--falken-gold); padding: 10px; text-transform: uppercase; font-weight: bold;">
-        Algorithmus: SHT
-    </div>
-    <div style="padding: 15px; background: white;">
-        <div style="border: 1px solid #0054a6; border-radius: 5px; margin-bottom: 10px; overflow: hidden;">
-            <div style="background: #e3f2fd; padding: 5px 10px; font-weight: bold; font-size: 0.85em; color: #0054a6;">
-                1. EVALUATION (GCS)
-            </div>
-            <div style="padding: 10px; font-size: 0.9em; background: #fdfaf4;">
-                • <strong>SHT Leicht:</strong> GCS 13-15 | <strong>Mittel:</strong> 9-12 | <strong>Schwer:</strong> ≤ 8<br>
-                • Pupillenkontrolle (Anisokorie?)
-            </div>
-        </div>
-        <div style="border: 1px solid #d32f2f; border-radius: 5px; margin-bottom: 10px; overflow: hidden; background: #fdf2f2;">
-            <div style="padding: 10px; font-size: 0.85em;">
-                <strong>GCS ≤ 8?</strong> ➔ Atemwegssicherung (Intubation) erwägen!
-            </div>
-        </div>
-        <div style="border: 1px solid #2e7d32; border-radius: 5px; overflow: hidden;">
-            <div style="background: #ffed00; color: black; padding: 5px 10px; font-weight: bold; text-align: center;">
-                MASSNAHMEN
-            </div>
-            <div style="padding: 10px; font-size: 0.85em; background: #fafafa;">
-                • HWS-Immobilisation (Stifneck)<br>
-                • Oberkörper 30° hoch (CPP sichern)<br>
-                • Ziel-RR<sub>syst</sub> > 120 mmHg
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="algo-card">
-    <div class="algo-title" style="background: var(--falken-blue); color: var(--falken-gold); padding: 10px; text-transform: uppercase; font-weight: bold;">
-        Algorithmus: Akutes Abdomen
-    </div>
-    <div style="padding: 15px; background: white;">
-        <div style="border: 1px solid #0054a6; border-radius: 5px; margin-bottom: 10px; overflow: hidden;">
-            <div style="background: #e3f2fd; padding: 5px 10px; font-weight: bold; font-size: 0.85em; color: #0054a6;">
-                1. BASISDIAGNOSTIK
-            </div>
-            <div style="padding: 10px; font-size: 0.9em; background: #fdfaf4;">
-                • <strong>OPQRST</strong> (Schmerzcharakteristik)<br>
-                • Auskultation/Palpation (Abwehrspannung?)
-            </div>
-        </div>
-        <div style="border: 1px solid #d32f2f; border-radius: 5px; margin-bottom: 10px; background: #fdf2f2; padding: 8px; font-size: 0.85em;">
-            <strong>AUSSCHLUSS:</strong> ACS (Hinterwandinfarkt), Aortendissektion, Ileus
-        </div>
-        <div style="border: 1px solid #2e7d32; border-radius: 5px; overflow: hidden;">
-            <div style="background: #ffed00; color: black; padding: 5px 10px; font-weight: bold; text-align: center;">
-                MASSNAHMEN
-            </div>
-            <div style="padding: 10px; font-size: 0.85em; background: #fafafa;">
-                • Knierollenlagerung (Entlastung Bauchdecke)<br>
-                • Nahrungskarenz ("Nüchtern") & i.v. Zugang<br>
-                • Analgesie nach ärztlicher Rücksprache
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="algo-card">
-    <div class="algo-title" style="background: var(--falken-blue); color: var(--falken-gold); padding: 10px; text-transform: uppercase; font-weight: bold;">
-        Extremitäten: TVT / Kompartment / Fraktur
-    </div>
-    <div style="padding: 15px; background: white;">
-
-        <div style="border: 1px solid #0054a6; border-radius: 5px; margin-bottom: 10px; overflow: hidden;">
-            <div style="background: #e3f2fd; padding: 5px 10px; font-weight: bold; border-bottom: 1px solid #ddd; font-size: 0.85em; color: #0054a6;">
-                TIEFE VENENTHROMBOSE (TVT)
-            </div>
-            <div style="padding: 10px; font-size: 0.9em; background: #fdfaf4;">
-                • <strong>Leitsymptom:</strong> Einseitige Beinschwellung & Rötung<br>
-                • <strong>Schmerz:</strong> Druckschmerz bei Palpation (Wade/Leiste)<br>
-                • <strong>Vitalwerte:</strong> Oft Tachykardie (Cave: Lungenembolie!)
+            <div class="arrow">↓</div>
+            <div class="node critical" style="background: var(--falken-blue); color: var(--falken-gold);">
+                Transport mit kontinuierlichem Monitoring
             </div>
         </div>
 
-        <div style="border: 1px solid #d32f2f; border-radius: 5px; margin-bottom: 10px; overflow: hidden;">
-            <div style="background: #fdf2f2; padding: 5px 10px; font-weight: bold; border-bottom: 1px solid #d32f2f; font-size: 0.85em; color: #d32f2f;">
-                KOMPARTMENTSYNDROM (6x P) - ZEITKRITISCH!
+        <div class="side-info">
+            <div class="info-box">
+                <div class="info-title">Cave:</div>
+                Bei Zeichen eines Lungenödems (feuchte Rasselgeräusche) Volumengabe sofort stoppen! Gefahr der Dekompensation bei kardiogenem Schock.
             </div>
-            <div style="padding: 10px; font-size: 0.85em; display: grid; grid-template-columns: 1fr 1fr; gap: 5px;">
-                <div><strong>P</strong>ain (Schmerz)</div>
-                <div><strong>P</strong>aleness (Blässe)</div>
-                <div><strong>P</strong>ulslessness (Pulslos)</div>
-                <div><strong>P</strong>aresthesia (Kribbeln)</div>
-                <div><strong>P</strong>aralysis (Lähmung)</div>
-                <div><strong>P</strong>rostration (Erschöpfung)</div>
+            <div class="info-box">
+                <div class="info-title">qSOFA Score:</div>
+                1. Atemfrequenz ≥ 22/min<br>
+                2. Veränderte Vigilanz (GCS < 15)<br>
+                3. RR systolisch ≤ 100 mmHg
+            </div>
+        </div>
+    </div>
+
+<div class="algo-card" data-search="n3 hyperglykämie überzuckerung bz-wert diabetes ketoazidose exsikkose volumen insulin">
+        <div class="algo-title">N 3 - Hyperglykämie (BZ > 250 mg/dl)</div>
+        <div class="step">
+            <div class="node action-highlight">
+                <strong>1. Diagnostik & Leitsymptome</strong>
+                • <strong>BZ-Messung:</strong> > 250 mg/dl (13,9 mmol/l)<br>
+                • Polydipsie (Durst) & Polyurie<br>
+                • Exsikkose (Austrocknung) & Kußmaul-Atmung
+            </div>
+            <div class="arrow">↓</div>
+            <div class="node decision">
+                <strong>Vigilanzminderung oder Schock?</strong><br>
+                (Ketoazidotisches / Hyperosmolares Koma)
+            </div>
+            <div class="arrow">Ja ↓</div>
+            <div class="node action-highlight" style="border-left-color: #0054a6; background: #e3f2fd;">
+                <strong>Basismaßnahmen</strong>
+                • ABCDE-Schema & Monitoring<br>
+                • Sicherer i.v. Zugang (großlumig)
+            </div>
+            <div class="arrow">↓</div>
+            <div class="node med-highlight" style="background: #ffed00; border-left-color: #2e7d32;">
+                <strong>Volumentherapie (M 30)</strong>
+                • <strong>Kristalloide:</strong> 1.000 ml VEL i.v.<br>
+                • <strong>Gabe:</strong> Initial zügig, dann bedarfsorientiert
+            </div>
+            <div class="arrow">↓</div>
+            <div class="node critical" style="background: #ff5722; color: white; border: none;">
+                <strong>KEINE INSULIN-GABE!</strong>
+                Gefahr des osmotischen Hirnödems durch zu schnellen BZ-Abfall.
+            </div>
+            <div class="arrow">↓</div>
+            <div class="node critical" style="background: var(--falken-blue); color: var(--falken-gold);">
+                Transport mit kontinuierlicher Überwachung
             </div>
         </div>
 
-        <div style="border: 1px solid #2e7d32; border-radius: 5px; margin-bottom: 10px; overflow: hidden;">
-            <div style="background: #ffed00; color: black; padding: 5px 10px; font-weight: bold; text-align: center; font-size: 1em;">
-                FRAKTURVERSORGUNG & DMS-CHECK
+        <div class="side-info">
+            <div class="info-box">
+                <div class="info-title">Wichtig:</div>
+                Präklinisch steht der **Flüssigkeitsersatz** an erster Stelle. Eine Senkung des Blutzuckers mittels Insulin erfolgt ausschließlich im klinischen Setting unter engmaschiger Laborkontrolle.
             </div>
-            <div style="padding: 10px; font-size: 0.85em; background: #fafafa;">
-                <strong>DMS-Check zwingend VOR und NACH Schienung:</strong><br>
+            <div class="info-box">
+                <div class="info-title">Geruch:</div>
+                Achte auf den typischen **Aceton-Geruch** (Nagellackentferner/fauliger Apfel) in der Ausatemluft bei diabetischer Ketoazidose.
+            </div>
+        </div>
+    </div>
+
+<div class="algo-card" data-search="t2 sht schädel hirn trauma gcs intubation anisokorie cpp stifneck hws">
+        <div class="algo-title">T 2 - Schädel-Hirn-Trauma (SHT)</div>
+        <div class="step">
+            <div class="node action-highlight">
+                <strong>1. Evaluation & Diagnostik</strong>
+                • <strong>GCS-Score bestimmen:</strong> (Leicht: 13-15 | Mittel: 9-12 | Schwer: ≤ 8)<br>
+                • <strong>Pupillenkontrolle:</strong> Isokorie? Lichtreaktion? Anisokorie?<br>
+                • Ausschluss Begleitverletzungen (HWS!)
+            </div>
+            <div class="arrow">↓</div>
+            <div class="node decision" style="border-color: #d32f2f; background: #fdf2f2;">
+                <strong>GCS ≤ 8 oder Atemwegsbedrohung?</strong>
+            </div>
+            <div class="arrow">Ja ↓</div>
+            <div class="node action-highlight" style="background: #ffcdd2; border-left-color: #b71c1c;">
+                <strong>Atemwegssicherung (M 10)</strong>
+                • Frühzeitige Intubation (RSI) erwägen<br>
+                • <strong>Ziel:</strong> Normokapnie (etCO₂: 35-40 mmHg)
+            </div>
+            <div class="arrow">↓</div>
+            <div class="node action-highlight" style="border-left-color: #2e7d32; background: #f1f8e9;">
+                <strong>Lagerung & Immobilisation</strong>
+                • Oberkörper 30° hoch (venöser Abfluss ↑)<br>
+                • Achsengerechte Lagerung (HWS-Stütze / Stifneck)
+            </div>
+            <div class="arrow">↓</div>
+            <div class="node med-highlight" style="background: #ffed00; border-left-color: #2e7d32;">
+                <strong>Hämodynamik & Monitoring</strong>
+                • <strong>Ziel-RR:</strong> RR syst > 120 mmHg (CPP sichern!)<br>
+                • Volumengabe: Kristalloide (VEL) nach Bedarf
+            </div>
+            <div class="arrow">↓</div>
+            <div class="node critical" style="background: var(--falken-blue); color: var(--falken-gold);">
+                <strong>Transport in Neurochirurgie</strong>
+                Voranmeldung mit Angabe von GCS und Pupillenstatus
+            </div>
+        </div>
+
+        <div class="side-info">
+            <div class="info-box">
+                <div class="info-title">CPP Formel:</div>
+                CPP = MAP - ICP. <br>
+                Um den Hirndruck (CPP) bei steigendem Intrakraniellen Druck (ICP) zu halten, muss der Mitteldruck (MAP) ausreichend hoch sein.
+            </div>
+            <div class="info-box">
+                <div class="info-title">Wichtig:</div>
+                Keine Hypotonie zulassen! Eine einmalige hypotone Phase (RR syst < 90) verdoppelt beim SHT die Letalität.
+            </div>
+        </div>
+    </div>
+
+<div class="algo-card" data-search="c1 akutes abdomen bauchschmerz abwehrspannung ileus opqrst analgesie abdominal">
+        <div class="algo-title">C 1 - Akutes Abdomen</div>
+        <div class="step">
+            <div class="node action-highlight">
+                <strong>1. Basisdiagnostik & Anamnese</strong>
+                • <strong>OPQRST:</strong> Schmerzbeginn, Charakter, Ausstrahlung?<br>
+                • <strong>SAMPLER:</strong> Letzte Mahlzeit / Stuhlgang?<br>
+                • Körperliche Untersuchung: Auskultation & Palpation
+            </div>
+            <div class="arrow">↓</div>
+            <div class="node decision" style="border-color: #d32f2f; background: #fdf2f2;">
+                <strong>Ausschluss lebensbedrohlicher Differentialdiagnosen:</strong><br>
+                ACS (Hinterwand)? Aortendissektion? Extrauteringravidität?
+            </div>
+            <div class="arrow">↓</div>
+            <div class="node action-highlight" style="border-left-color: #2e7d32; background: #f1f8e9;">
+                <strong>Lagerung & Basismaßnahmen</strong>
+                • <strong>Knierollenlagerung:</strong> Zur Entlastung der Bauchdecke<br>
+                • <strong>Nahrungskarenz:</strong> Absolutes "Nüchtern-Gebot" (OP-Gefahr!)<br>
+                • Sicherer i.v. Zugang & Monitoring
+            </div>
+            <div class="arrow">↓</div>
+            <div class="node med-highlight" style="background: #ffed00; border-left-color: #2e7d32;">
+                <strong>Analgesie & Therapie (M 17 / M 21)</strong>
+                • <strong>Buscopan:</strong> Bei kolikartigen Schmerzen<br>
+                • <strong>Morphin / Fentanyl:</strong> Titriert nach VAS (nach Rücksprache)<br>
+                • Flüssigkeit: VEL bei Zeichen der Dehydration / Schock
+            </div>
+            <div class="arrow">↓</div>
+            <div class="node critical" style="background: var(--falken-blue); color: var(--falken-gold);">
+                <strong>Transport in Chirurgie / Gynäkologie</strong>
+                Voranmeldung bei V.a. Perforation oder Ileus
+            </div>
+        </div>
+
+        <div class="side-info">
+            <div class="info-box">
+                <div class="info-title">Cave:</div>
+                Eine **Abwehrspannung** (brettharter Bauch) ist ein Alarmzeichen für eine Peritonitis (Bauchfellentzündung) und erfordert sofortiges chirurgisches Handeln!
+            </div>
+            <div class="info-box">
+                <div class="info-title">Merke:</div>
+                Nicht jeder Bauchschmerz ist chirurgisch. Denke beim "oberen Bauchschmerz" immer an ein EKG zum Ausschluss eines Myokardinfarkts.
+            </div>
+        </div>
+    </div>
+
+<div class="algo-card" data-search="t3 tvt thrombose kompartment fraktur dms-check schwellung schmerz puls 6p">
+        <div class="algo-title">T 3 - Extremitäten (TVT / Kompartment / Fraktur)</div>
+        <div class="step">
+            <div class="node action-highlight" style="border-left-color: #0054a6; background: #e3f2fd;">
+                <strong>1. Initial-Check & DMS</strong>
                 • <strong>D</strong>urchblutung (Puls, Rekap-Zeit)<br>
                 • <strong>M</strong>otorik (Zehen/Finger bewegen)<br>
                 • <strong>S</strong>ensibilität (Gefühl vorhanden?)
             </div>
+            <div class="arrow">↓</div>
+            <div class="node decision">Welches Leitsymptom liegt vor?</div>
+            
+            <div style="display: flex; gap: 10px; justify-content: center; align-items: stretch;">
+                <div style="flex: 1; border: 1px solid #ddd; border-radius: 5px; padding: 5px; background: #fdfaf4;">
+                    <div style="font-weight: bold; color: #0054a6; font-size: 0.8em; text-align: center;">V.a. TVT</div>
+                    <div style="font-size: 0.75em; margin-top: 5px;">
+                        • Einseitige Schwellung/Rötung<br>
+                        • Wade druckschmerzhaft<br>
+                        • <strong>Maßnahme:</strong> Bein flach, Bettruhe!
+                    </div>
+                </div>
+                <div style="flex: 1; border: 1px solid #d32f2f; border-radius: 5px; padding: 5px; background: #fdf2f2;">
+                    <div style="font-weight: bold; color: #d32f2f; font-size: 0.8em; text-align: center;">Kompartment</div>
+                    <div style="font-size: 0.75em; margin-top: 5px;">
+                        • <strong>6x P:</strong> Pain, Paleness, Pulslessness, Paresthesia, Paralysis, Prostration
+                    </div>
+                </div>
+            </div>
+
+            <div class="arrow">↓</div>
+            <div class="node med-highlight" style="background: #ffed00; border-left-color: #2e7d32;">
+                <strong>Versorgung & Analgesie</strong>
+                • <strong>TVT:</strong> KEINE Massage, KEINE Kompression!<br>
+                • <strong>Fraktur:</strong> DMS-Check -> Schienung -> DMS-Check<br>
+                • <strong>Schmerz:</strong> Analgesie nach VAS (M 17 / M 21)
+            </div>
+
+            <div class="arrow">↓</div>
+            <div class="node critical" style="background: var(--falken-blue); color: var(--falken-gold);">
+                <strong>Zügiger Transport</strong>
+                Kompartment = Chirurgischer Notfall (Zeitkritisch!)
+            </div>
         </div>
 
-        <div style="border: 1px solid #ddd; border-radius: 5px; overflow: hidden;">
-            <div style="background: #f5f5f5; padding: 5px 10px; font-weight: bold; font-size: 0.85em;">
-                GEMEINSAME MASSNAHMEN
+        <div class="side-info">
+            <div class="info-box">
+                <div class="info-title">Cave TVT:</div>
+                Gefahr der **Lungenembolie**! Jede unnötige Bewegung oder Massage des Beins kann den Thrombus lösen. Transport mit absoluter Bettruhe.
             </div>
-            <div style="padding: 10px; font-size: 0.85em;">
-                • <strong>TVT:</strong> Bein flach lagern, KEINE Massage, Immobilisation.<br>
-                • <strong>Fraktur/Kompartment:</strong> Schienung, Analgesie, Kühlung (nur Fraktur).
+            <div class="info-box">
+                <div class="info-title">Beachte:</div>
+                Beim **Kompartmentsyndrom** die Extremität auf **Herzniveau** lagern (nicht hochlagern!), um den Perfusionsdruck nicht weiter zu senken.
             </div>
         </div>
-
     </div>
-    <span style="display:none;">tvt thrombose kompartment fraktur dms-check schwellung schmerz puls 6p</span>
-</div>
 
 </div>
 
@@ -2404,7 +2423,7 @@
     </div>
 </div>
 
-    <div style="font-family: Arial, sans-serif; border: 1px solid #d32f2f; border-radius: 8px; overflow: hidden; max-width: 600px; margin: 20px auto;">
+<div style="font-family: Arial, sans-serif; border: 1px solid #d32f2f; border-radius: 8px; overflow: hidden; max-width: 600px; margin: 20px auto;">
     <div style="background: #d32f2f; color: white; padding: 12px; font-weight: bold; font-size: 1.1em; text-align: center;">
         CRM-Leitsätze (Crew Resource Management)
     </div>
