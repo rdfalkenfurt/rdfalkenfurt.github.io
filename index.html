@@ -14,9 +14,11 @@
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--bg-light);
-            margin: 0; padding: 0;
+            margin: 0; 
+            padding: 0;
             display: flex;
             flex-direction: column;
+            min-height: 100vh;
             align-items: center;
         }
 
@@ -30,14 +32,18 @@
             box-sizing: border-box;
         }
 
-        .logo { max-height: 120px; margin-bottom: 15px; }
+        .logo { 
+            max-height: 120px; 
+            margin-bottom: 15px; 
+        }
 
         .container {
             max-width: 900px;
             width: 90%;
             margin: 40px auto;
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            /* Definiert zwei Spalten */
+            grid-template-columns: 1fr 1fr; 
             gap: 25px;
         }
 
@@ -54,6 +60,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            box-sizing: border-box;
         }
 
         .dashboard-card:hover {
@@ -62,12 +69,48 @@
             border-color: var(--falken-gold);
         }
 
-        .icon { font-size: 4em; margin-bottom: 15px; }
-        .card-title { font-size: 1.5em; font-weight: bold; text-transform: uppercase; }
-        .card-desc { font-size: 0.9em; color: #555; margin-top: 10px; }
+        /* Spezial-Regel für die Pyramiden-Form (die 3. Karte) */
+        .dashboard-card:last-child {
+            grid-column: span 2; /* Nimmt den Platz von 2 Spalten ein */
+            justify-self: center; /* Zentriert die Karte in diesem Platz */
+            width: calc(50% - 12.5px); /* Macht sie exakt so breit wie die anderen (50% minus halber Gap) */
+        }
 
+        .icon { 
+            font-size: 4em; 
+            margin-bottom: 15px; 
+        }
+        
+        .card-title { 
+            font-size: 1.5em; 
+            font-weight: bold; 
+            text-transform: uppercase; 
+        }
+        
+        .card-desc { 
+            font-size: 0.9em; 
+            color: #555; 
+            margin-top: 10px; 
+        }
+
+        /* Responsive Design für Handys */
         @media (max-width: 600px) {
-            .container { grid-template-columns: 1fr; }
+            .container { 
+                grid-template-columns: 1fr; 
+            }
+            .dashboard-card:last-child {
+                grid-column: span 1;
+                width: 100%;
+            }
+        }
+
+        footer {
+            margin-top: auto; 
+            padding: 20px; 
+            color: #888; 
+            font-size: 0.8em;
+            text-align: center;
+            width: 100%;
         }
     </style>
 </head>
@@ -93,7 +136,7 @@
         <div class="card-desc">Medizinische Algorithmen & Handlungsanweisungen</div>
     </a>
 
-<a href="dienstplan.html" class="dashboard-card">
+    <a href="dienstplan.html" class="dashboard-card">
         <div class="icon">🗓️</div>
         <div class="card-title">DIENSTPLAN</div>
         <div class="card-desc">Dienstpläne & Ansprechpartner</div>
@@ -101,7 +144,7 @@
 
 </div>
 
-<footer style="margin-top: auto; padding: 20px; color: #888; font-size: 0.8em;">
+<footer>
     © 2026 Rettungsdienst Falkenfurt | Ärztliche Leitung Rettungsdienst
 </footer>
 
