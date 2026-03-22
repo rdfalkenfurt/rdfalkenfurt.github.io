@@ -272,62 +272,61 @@
 
 <script>
     // Daten für die Kartenansicht
- const rs_data = [
-        { name: "Suprarenin", wirkstoff: "Adrenalin", ind: "Herz-Lungen-Wiederbelebung (Reanimation).", ki: "Keine in der Notfallsituation.", erw: "REA: 1mg alle 3-5min. i.v.", kind: "REA: max. 1mg alle 3-5min. i.v.", app: "i.v. | i.o.", bes: "Wirkdauer 3-5 min. Nur Notkompetenz!" },
-        { name: "Glucose", wirkstoff: "Glucose", ind: "Hypoglykämie (Blutzuckerabfall).", ki: "Keine relevanten KI.", erw: "10ml G10 in 250ml VEL i.v. | p.o.", kind: "Nur Oral-Gabe (p.o.).", app: "i.v. | p.o.", bes: "Alternativ Dextro-Energy. Zugang prüfen!" },
-        { name: "NaCl 0,9 %", wirkstoff: "Natriumchloridlösung", ind: "Trägerlösung; Spüllösung.", ki: "Keine relevanten KI.", erw: "Nach Indikation (max. 500ml).", kind: "Nach Indikation (max. 500ml).", app: "i.v. | i.o. | lokal", bes: "Keine besondere Lagerung nötig." },
-        { name: "Jonosteril", wirkstoff: "Isotone Elektrolytlösung", ind: "Volumensubstitution.", ki: "Keine nennenswerten KI.", erw: "500 - 1000 mL i.v.", kind: "500 mL i.v.", app: "i.v.", bes: "Möglichst warme Infusion." }
-    ];
+const rs_data = [
+    { name: "Suprarenin", wirkstoff: "Adrenalin", ind: "Herz-Lungen-Wiederbelebung (Reanimation).", ki: "Keine in der Notfallsituation.", erw: "1 mg alle 3-5 min i.v.", kind: "0,01 mg/kg (10 µg/kg) i.v.", app: "i.v. | i.o.", bes: "Standard: 1mg Adrenalin auf 10ml NaCl (1:10.000)." },
+    { name: "Glucose 10%", wirkstoff: "Glucose", ind: "Hypoglykämie (BZ < 60 mg/dl).", ki: "Keine relevanten KI.", erw: "100 - 200 ml (10-20g) i.v.", kind: "2 ml/kg KG i.v. (langsam!)", app: "i.v. | p.o.", bes: "Nur bei sicherem i.v. Zugang (Nekrosegefahr)!" },
+    { name: "NaCl 0,9 %", wirkstoff: "Natriumchloridlösung", ind: "Trägerlösung, Spülung.", ki: "Keine.", erw: "Nach Indikation.", kind: "Nach Indikation.", app: "i.v. | i.o. | lokal", bes: "Standard für Medikamentenverdünnung." },
+    { name: "Jonosteril", wirkstoff: "Isotone Elektrolytlösung", ind: "Volumensubstitution.", ki: "Lungenödem.", erw: "500 - 1000 ml i.v.", kind: "20 ml/kg KG i.v.", app: "i.v.", bes: "Kristalloide Lösung der Wahl." }
+];
 
-    const nfs_data = [
-        { name: "Akrinor", wirkstoff: "Cafedrin + Theodrenalin", ind: "Hypotonie", ki: "Glaukom, schnelle Rhythmusstörungen", erw: "1 ml fraktioniert titriert i.v. (max. 3 Amp/Tag)", kind: "Keine klare Empfehlung", app: "i.v. | i.m.", bes: "Blutdrucksteigernd, beta- und alpha-Wirkung." },
-        { name: "Suprarenin", wirkstoff: "Adrenalin", ind: "Reanimation, Bradykardie, Anaphylaxie, Pseudokrupp", ki: "/", erw: "REA: 1mg alle 3-5min | Anaphylaxie: 0,5mg", kind: "REA: max 1mg | Anaphylaxie: 0,15-0,3mg", app: "i.v. | i.m. | Inhalation", bes: "Bei Bradykardie 1mg auf 100ml NaCl." },
-        { name: "Urapidil", wirkstoff: "Urapidil", ind: "Hypertensive Krise (RR syst > 220 / diast > 120)", ki: "Aortenstenose", erw: "10-50 mg i.v. langsam", kind: "Keine Empfehlung", app: "i.v.", bes: "Alpha-1-Blocker, senkt RR." },
-        { name: "Diazepam", wirkstoff: "Diazepam", ind: "Erregung, ACS, Krampfanfälle", ki: "Ateminsuffizienz, Myasthenia gravis", erw: "2,5 mg (max. 5 mg)", kind: "<15kg: 5mg | >15kg: 10mg (rektal)", app: "i.v. | i.o. | rektal", bes: "Wirkdauer < 15 Std." },
-        { name: "Midazolam", wirkstoff: "Midazolam", ind: "ACS, Sedation, Krampfanfall", ki: "Myasthenia gravis", erw: "Sedierung: 2mg | Krampf: 10mg", kind: "Nasal: <10kg: 2,5mg | 10-20kg: 5mg | >20kg: 10mg", app: "i.v. | i.n.", bes: "Max. 1ml pro Nasenloch." },
-        { name: "Morphin", wirkstoff: "Morphinhydrochlorid", ind: "ACS (NRS > 5), Schmerzen NRS > 8", ki: "GCS < 14, SpO2 < 92%, AF < 10, HF < 50", erw: "2mg alle 2min (bis max. 10mg)", kind: "Nicht empfohlen", app: "i.v. | i.o.", bes: "Monitoring zwingend." },
-        { name: "Ketamin", wirkstoff: "Esketaminhydrochlorid", ind: "Trauma-Schmerz, Schrittmacher", ki: "ACS, Hypertonie (>180/100)", erw: "Analgesie: 0,125mg/kg | Narkose: 0,5-1,0mg/kg", kind: "Analgesie: 0,25mg/kg | Narkose: 0,5-1,0mg/kg", app: "i.v.", bes: "Psycho-Nebenwirkungen beachten." },
-        { name: "Novalgin", wirkstoff: "Metamizol", ind: "Abdominale Schmerzen, Koliken", ki: "Schwangerschaft", erw: ">53kg: 1g in 500ml VEL über 15min", kind: "<53kg: 0,5mg in 500ml VEL über 15min", app: "i.v.", bes: "Schnelle Gabe vermeiden." },
-        { name: "Paracetamol", wirkstoff: "Paracetamol", ind: "Schmerzen, Fieber", ki: "Leberinsuffizienz", erw: "1g i.v. über 15min", kind: "15mg/kg KG i.v.", app: "i.v. | p.o. | rektal", bes: "Maximale Tagesdosis beachten." },
-        { name: "Vomex", wirkstoff: "Dimenhydrinat", ind: "Übelkeit, Erbrechen", ki: "Glaukom, Epilepsie", erw: "62-125mg i.v. langsam", kind: "1,25mg/kg KG i.v.", app: "i.v. | i.m. | rektal", bes: "Sedierung möglich." },
-        { name: "VEL", wirkstoff: "Vollelektrolytlösung", ind: "Volumen, Offenhalten", ki: "Keine", erw: "Nach Indikation", kind: "Nach Indikation", app: "i.v. | i.o.", bes: "Balancierte Lösung." }
-    ];
+const nfs_data = [
+    { name: "Akrinor", wirkstoff: "Cafedrin + Theodrenalin", ind: "Hypotonie", ki: "Glaukom, Tachyarrhythmie", erw: "0,5 - 1 ml i.v. titriert", kind: "Keine Empfehlung", app: "i.v.", bes: "Blutdrucksteigernd, positiv inotrop." },
+    { name: "Suprarenin", wirkstoff: "Adrenalin", ind: "Anaphylaxie, Bradykardie, Pseudokrupp", ki: "Keine im Notfall", erw: "Anaphylaxie: 0,5 mg i.m. | Brady: Perfusor", kind: "Anaphylaxie: 0,01 mg/kg i.m.", app: "i.m. | i.v. | Inhal.", bes: "Inhalation bei Pseudokrupp: 2-5 mg pur." },
+    { name: "Urapidil", wirkstoff: "Urapidil", ind: "Hypertensive Krise", ki: "Aortenstenose", erw: "5 - 12,5 mg i.v. langsam", kind: "Keine Empfehlung", app: "i.v.", bes: "Alpha-1-Blocker. RR-Senkung max. 20%." },
+    { name: "Midazolam", wirkstoff: "Midazolam", ind: "Krampfanfall, ACS (Sedierung)", ki: "Schwere Ateminsuffizienz", erw: "Krampf: 10 mg i.n. | Sed: 1 - 2 mg i.v.", kind: "0,1 mg/kg i.v. | 0,2 mg/kg i.n.", app: "i.v. | i.n.", bes: "Kurze Halbwertszeit, Atemweg sichern." },
+    { name: "Morphin", wirkstoff: "Morphin", ind: "Starke Schmerzen (NRS > 6)", ki: "SpO2 < 90, AF < 10, GCS < 14", erw: "2 - 3 mg i.v. (alle 5 Min. titrieren)", kind: "0,1 mg/kg i.v. (sehr langsam)", app: "i.v.", bes: "Standard-Analgetikum, Monitoring Pflicht!" },
+    { name: "Esketamin", wirkstoff: "Esketamin", ind: "Trauma-Schmerz, Narkose", ki: "ACS, schwere Hypertonie", erw: "Analgesie: 0,125 mg/kg | Narkose: 0,5 mg/kg", kind: "Analgesie: 0,25 mg/kg i.v.", app: "i.v. | i.n.", bes: "Analgesie immer in Kombi mit Midazolam!" },
+    { name: "Novalgin", wirkstoff: "Metamizol", ind: "Koliken, Fieber, Schmerz", ki: "Asthma, Schwangerschaft", erw: "1 g (2,5 ml) Kurzinfusion", kind: "10 - 15 mg/kg KG Kurzinfusion", app: "i.v. Inf.", bes: "Gefahr des RR-Abfalls bei zu schneller Gabe." },
+    { name: "Paracetamol", wirkstoff: "Paracetamol", ind: "Fieber, leichte Schmerzen", ki: "Leberinsuffizienz", erw: "1 g i.v. (über 15 Min.)", kind: "15 mg/kg KG i.v.", app: "i.v.", bes: "Max. 4g Tagesdosis beachten." },
+    { name: "Vomex", wirkstoff: "Dimenhydrinat", ind: "Übelkeit, Erbrechen", ki: "Glaukom, Epilepsie, < 6 kg KG", erw: "62,5 mg (1 Amp.) i.v. langsam", kind: "1,25 mg/kg KG i.v.", app: "i.v.", bes: "Nicht bei Kindern unter 6 kg anwenden." },
+    { name: "VEL", wirkstoff: "Vollelektrolytlösung", ind: "Standardinfusion", ki: "Keine", erw: "Nach Bedarf", kind: "Nach Bedarf", app: "i.v.", bes: "z.B. Sterofundin, Jonosteril." }
+];
 
-    const na_data = [
-        { name: "Fentanyl", wirkstoff: "Fentanyl", ind: "Narkose, Schmerzen NRS >6", ki: "Fehlende Beatmungsmöglichkeit", erw: "0,05-0,1 mg (Analgesie) / 0,2-0,3 mg (Narkose)", kind: "1-3 ug/kg", app: "i.v., i.m.", bes: "100-125x stärker als Morphin, Monitoring!" },
-        { name: "Piritramid", wirkstoff: "Dipidolor", ind: "Starke Schmerzen", ki: "Atemdepression, Ileus", erw: "7,5-15 mg i.v. langsam (max. 60mg/Tag)", kind: "keine Empfehlung", app: "i.v., s.c.", bes: "Weniger Histaminfreisetzung als Morphin" },
-        { name: "Sufentanil", wirkstoff: "Sufentanil", ind: "Narkoseeinleitung, Analgesie", ki: "Atemdepression, Schock", erw: "5-10 ug i.v. fraktioniert", kind: "keine Empfehlung", app: "i.v.", bes: "Sehr potent, Atemdepression!" },
-        { name: "Propofol", wirkstoff: "Propofol", ind: "Narkoseeinleitung, Dauersedierung", ki: "Herz-Kreislauf-Erkrankung, Schwangerschaft", erw: "100ml / 250ml nach Bedarf", kind: "100ml / 250ml nach Bedarf", app: "i.v.", bes: "Wirkdauer 5-8 Min. Atemwegssicherung!" },
-        { name: "Thiopental", wirkstoff: "Trapanal", ind: "Narkoseeinleitung, Krampfstatus", ki: "Schock, Asthma", erw: "3-5 mg/kg KG i.v.", kind: "keine Empfehlung", app: "i.v.", bes: "Atem- & Kreislaufdepression" },
-        { name: "Metoprolol", wirkstoff: "Beloc", ind: "Herz-Rhythmusstörungen, Hypertonie", ki: "Bradykardie, kardiogener Schock, Asthma", erw: "2,5-5 mg i.v. (max. 15 mg)", kind: "keine Empfehlung", app: "i.v.", bes: "Beta-1-selektiv, Vorsicht bei COPD" },
-        { name: "Flumazenil", wirkstoff: "Anexate", ind: "Benzodiazepin-Antagonisierung", ki: "Epilepsie, Mischintox", erw: "0,2 mg i.v. (max. 1 mg)", kind: "0,01 mg/kg KG i.v.", app: "i.v.", bes: "Krampfauslösung möglich, kurze HWZ" },
-        { name: "Naloxon", wirkstoff: "Narcanti", ind: "Opioidintoxikation", ki: "Abhängigkeit (Entzug)", erw: "0,1-0,2 mg i.v. bis Atemantrieb", kind: "0,01 mg/kg KG i.v.", app: "i.v., i.m., i.n.", bes: "Re-Narkosegefahr!" },
-        { name: "Bluttransfusion", wirkstoff: "Blutplasma", ind: "Blutverlust, Gerinnungsstörung", ki: "keine relevanten KI", erw: "100ml bis 1000ml", kind: "100ml bis 1000ml", app: "i.v.", bes: "Gekühlte Lagerung" }
-    ];
+const na_data = [
+    { name: "Fentanyl", wirkstoff: "Fentanyl", ind: "Narkose, starke Schmerzen", ki: "Fehlende Beatmungsmöglichkeit", erw: "0,1 - 0,2 mg i.v. (Narkose)", kind: "1 - 3 µg/kg i.v. (0,001-0,003 mg)", app: "i.v.", bes: "Starke Atemdepression! Monitoring." },
+    { name: "Sufentanil", wirkstoff: "Sufentanil", ind: "Narkoseeinleitung", ki: "Atemdepression", erw: "10 - 20 µg i.v. (0,01-0,02 mg)", kind: "0,1 - 0,2 µg/kg i.v.", app: "i.v.", bes: "Sehr potent, Opioid-Perfusor Standard." },
+    { name: "Piritramid", wirkstoff: "Dipidolor", ind: "Posttraumatische Schmerzen", ki: "Atemdepression", erw: "7,5 - 15 mg i.v. langsam", kind: "0,05 - 0,1 mg/kg KG i.v.", app: "i.v.", bes: "Geringeres Emesis-Risiko als Morphin." },
+    { name: "Propofol", wirkstoff: "Propofol 1%", ind: "Narkose, Sedierung", ki: "Soja-/Eiallergie, Schock", erw: "1,5 - 2,5 mg/kg KG i.v.", kind: "2,5 - 4 mg/kg KG i.v.", app: "i.v.", bes: "Wirkt nur hypnotisch, nicht analgetisch!" },
+    { name: "Thiopental", wirkstoff: "Trapanal", ind: "Status epilepticus, Narkose", ki: "Schock, Asthma", erw: "3 - 5 mg/kg KG i.v.", kind: "4 - 5 mg/kg KG i.v.", app: "i.v.", bes: "RR-Abfall, streng i.v. (Nekrosen)!" },
+    { name: "Beloc", wirkstoff: "Metoprolol", ind: "Tachyarrhythmie, Hypertonie", ki: "AV-Block II/III, Bradykardie", erw: "2,5 - 5 mg i.v. (max. 15 mg)", kind: "Keine Empfehlung", app: "i.v.", bes: "Vorsicht bei obstruktiven Atemwegen." },
+    { name: "Anexate", wirkstoff: "Flumazenil", ind: "Benzodiazepin-Antagonisierung", ki: "Mischintoxikation, Epilepsie", erw: "0,2 mg i.v., alle 60 Sek. (max. 1 mg)", kind: "0,01 mg/kg KG i.v.", app: "i.v.", bes: "Kurze Wirkdauer, Nachsedierung beachten!" },
+    { name: "Narcanti", wirkstoff: "Naloxon", ind: "Opioid-Antagonisierung", ki: "Bekannte Abhängigkeit", erw: "0,1 - 0,4 mg i.v. titriert", kind: "0,01 mg/kg KG i.v.", app: "i.v. | i.n.", bes: "Re-Narkosegefahr (Opioid wirkt länger)!" },
+    { name: "Bluttransfusion", wirkstoff: "Blutplasma", ind: "Blutverlust, Gerinnungsstörung", ki: "keine relevanten KI", erw: "100ml bis 1000ml", kind: "100ml bis 1000ml", app: "i.v.", bes: "Gekühlte Lagerung" }
+];
 
     // Daten für den Rechner (mg pro kg)
 const calc_meds = {
-        // --- ANALGESIE & NARKOSE ---
-        "esketamin_analgesie": { name: "Esketamin (Analgesie - 0,125mg/kg)", dose: 0.125, unit: "mg" },
-        "esketamin_narkose": { name: "Esketamin (Narkose - 0,5mg/kg)", dose: 0.5, unit: "mg" },
-        "morphin": { name: "Morphin (0,1mg/kg)", dose: 0.1, unit: "mg" },
-        "fentanyl_kind": { name: "Fentanyl Kind (2µg/kg)", dose: 0.002, unit: "mg" },
-        "sufentanil": { name: "Sufentanil (0,15µg/kg)", dose: 0.00015, unit: "mg" },
-        "piritramid": { name: "Piritramid (0,1mg/kg)", dose: 0.1, unit: "mg" },
-        "propofol": { name: "Propofol (2mg/kg)", dose: 2, unit: "mg" },
-        "thiopental": { name: "Thiopental (4mg/kg)", dose: 4, unit: "mg" },
+    // --- AUS NFS_DATA ---
+    "esketamin_analgesie": { name: "Esketamin (Analgesie)", dose: 0.125, unit: "mg", label: "0,125 mg/kg", konz: 5 }, 
+    "esketamin_narkose": { name: "Esketamin (Narkose)", dose: 0.5, unit: "mg", label: "0,5 mg/kg", konz: 5 },
+    "morphin": { name: "Morphin", dose: 0.1, unit: "mg", label: "0,1 mg/kg", konz: 1 }, 
+    "paracetamol": { name: "Paracetamol", dose: 15, unit: "mg", label: "15 mg/kg", konz: 10 }, 
+    "vomex": { name: "Vomex", dose: 1.25, unit: "mg", label: "1,25 mg/kg", konz: 12.5 }, 
+    
+    // --- AUS NA_DATA ---
+    "fentanyl_kind": { name: "Fentanyl (Kind)", dose: 0.002, unit: "mg", label: "2 µg/kg", konz: 0.05 }, // 2 µg = 0,002 mg
+    "sufentanil": { name: "Sufentanil", dose: 0.00015, unit: "mg", label: "0,15 µg/kg", konz: 0.005 }, // 0,15 µg = 0,00015 mg
+    "piritramid": { name: "Piritramid (Dipidolor)", dose: 0.1, unit: "mg", label: "0,1 mg/kg", konz: 7.5 },
+    "propofol": { name: "Propofol", dose: 2, unit: "mg", label: "2 mg/kg", konz: 10 }, 
+    "thiopental": { name: "Thiopental", dose: 4, unit: "mg", label: "4 mg/kg", konz: 25 },
+    "flumazenil_kind": { name: "Flumazenil (Kind)", dose: 0.01, unit: "mg", label: "0,01 mg/kg", konz: 0.1 },
+    "naloxon_kind": { name: "Naloxon (Kind)", dose: 0.01, unit: "mg", label: "0,01 mg/kg", konz: 0.4 },
 
-        // --- SEDIERUNG & NOTFALL ---
-        "midazolam_kind": { name: "Midazolam Kind (0,2mg/kg)", dose: 0.2, unit: "mg" },
-        "paracetamol": { name: "Paracetamol (15mg/kg)", dose: 15, unit: "mg" },
-        "vomex": { name: "Vomex (1,25mg/kg)", dose: 1.25, unit: "mg" },
-        "naloxon_kind": { name: "Naloxon Kind (0,01mg/kg)", dose: 0.01, unit: "mg" },
-        "flumazenil_kind": { name: "Flumazenil Kind (0,01mg/kg)", dose: 0.01, unit: "mg" },
-        
-        // --- KREISLAUF ---
-        "urapidil": { name: "Urapidil (max. 0,5mg/kg)", dose: 0.5, unit: "mg" },
-        "supra_anaphylaxie": { name: "Adrenalin (Anaphylaxie Kind - 0,01mg/kg)", dose: 0.01, unit: "mg" }
-    };
+    // --- AUS RS_DATA / SONSTIGE ---
+    "midazolam_kind": { name: "Midazolam (Kind)", dose: 0.2, unit: "mg", label: "0,2 mg/kg", konz: 1 },
+    "urapidil": { name: "Urapidil", dose: 0.5, unit: "mg", label: "max. 0,5 mg/kg", konz: 5 },
+    "supra_anaphylaxie": { name: "Adrenalin (Anaph. Kind)", dose: 0.01, unit: "mg", label: "0,01 mg/kg", konz: 0.1 }
+};
 
     function render(type) {
         const container = document.getElementById('med-container');
@@ -366,30 +365,20 @@ const calc_meds = {
                     <div class="dosis-box"><strong>Kinder</strong><br>${m.kind}</div>
                 </div>
                 <div class="besonderheiten">
-                    <div class="bes-title">Cave / Besonderheiten</div>
-                    <strong>App:</strong> ${m.app}<br>${m.bes}
+                    <strong>App:</strong> ${m.app} | ${m.bes}
                 </div>
-                <div class="footer-sig">Freigabe ÄLRD Müller | 21.03.2026</div>
             `;
             container.appendChild(card);
         });
-                if(type === 'na') {
-            const hint = document.createElement('div');
-            hint.className = 'gen-hint';
-            hint.innerText = "Selbstverständlich sind alle anderen Medikamente die nicht aufgelistet sind freigegeben (Generalfreigabe).";
-            container.appendChild(hint);
-        }
     }
 
     function renderCalculator() {
         const container = document.getElementById('med-container');
         container.innerHTML = `
             <div class="calc-container">
-                <h2 style="color:var(--falken-blue); margin-top:0;">🧮 Dosierungsrechner</h2>
-                <p><small>Berechnung basiert auf hinterlegten mg/kg Körpergewicht Werten.</small></p>
-                <hr>
+                <h2 style="margin-top:0;">🧮 Dosierungsrechner</h2>
                 <div class="calc-input-group">
-                    <label>Medikament wählen:</label>
+                    <label>Medikament:</label>
                     <select id="calcMed" onchange="calculate()">
                         <option value="">-- Bitte wählen --</option>
                         ${Object.keys(calc_meds).map(key => `<option value="${key}">${calc_meds[key].name}</option>`).join('')}
@@ -397,11 +386,7 @@ const calc_meds = {
                 </div>
                 <div class="calc-input-group">
                     <label>Gewicht (kg):</label>
-                    <input type="number" id="weight" placeholder="z.B. 75" onkeyup="calculate()" onchange="calculate()">
-                </div>
-                <div class="calc-input-group">
-                    <label>Größe (cm) - optional:</label>
-                    <input type="number" id="height" placeholder="z.B. 180">
+                    <input type="number" id="weight" placeholder="z.B. 80" onkeyup="calculate()" onchange="calculate()">
                 </div>
                 <div id="calcResult" class="calc-result"></div>
             </div>
@@ -410,15 +395,30 @@ const calc_meds = {
 
     function calculate() {
         const medKey = document.getElementById('calcMed').value;
-        const weight = document.getElementById('weight').value;
+        const weightInput = document.getElementById('weight').value;
         const resultDiv = document.getElementById('calcResult');
 
-        if (medKey && weight > 0) {
+        if (medKey && weightInput > 0) {
+            const weight = parseFloat(weightInput);
             const med = calc_meds[medKey];
-            const finalDose = (med.dose * weight).toFixed(2);
+            
+            const mgDose = med.dose * weight;
+            const mlDose = mgDose / med.konz;
+            const mcgDose = mgDose * 1000;
+
             resultDiv.style.display = 'block';
-            resultDiv.innerHTML = `Empfohlene Dosis: ${finalDose} ${med.unit}<br>
-            <span style="font-size:0.7em; font-weight:normal; color:#555;">Basis: ${med.dose} ${med.unit}/kg KG</span>`;
+            resultDiv.innerHTML = `
+                <div style="font-size: 0.9em; color: #666; font-weight: normal;">AUFZUZIEHENDE MENGE:</div>
+                <div style="font-size: 2.5em; color: #1b5e20; margin: 5px 0;"><strong>${mlDose.toLocaleString('de-DE', {minimumFractionDigits: 1, maximumFractionDigits: 2})} ml</strong></div>
+                <hr>
+                <div style="display: flex; justify-content: space-between; font-size: 1.1em;">
+                    <span>Dosis: <strong>${mgDose.toLocaleString('de-DE', {maximumFractionDigits: 2})} mg</strong></span>
+                    <span style="color:#c80000;">(${mcgDose.toLocaleString('de-DE')} µg)</span>
+                </div>
+                <div style="font-size: 0.75em; color: #555; margin-top: 10px; font-weight: normal; background: #eee; padding: 5px;">
+                    Grundlage: ${med.label} | Konz: ${med.konz} mg/ml
+                </div>
+            `;
         } else {
             resultDiv.style.display = 'none';
         }
@@ -439,6 +439,7 @@ const calc_meds = {
         });
     }
 
+    // Start mit RS
     render('rs');
 </script>
 </body>
