@@ -24,19 +24,30 @@
             color: #333;
         }
 
-        header {
-            background-color: var(--falken-blue);
-            color: white;
-            padding: 20px;
-            border-bottom: 5px solid var(--falken-gold);
-            text-align: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+header {
+    background-color: var(--falken-blue);
+    color: white;
+    padding: 20px;
+    text-align: center;
+    /* position: sticky und top: 0 hier entfernt, damit das Logo wegscrollt */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* NEU: Nur dieser Teil klebt jetzt oben am Rand */
+.sticky-container {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: var(--falken-blue);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 15px; /* Abstand nach unten */
+    border-bottom: 5px solid var(--falken-gold); /* Die goldene Linie wandert hierhin */
+}
 
         .header-top {
             display: flex;
@@ -214,7 +225,9 @@
         <a href="wdb.html" class="nav-link">📋 LEITLINIEN (WDB)</a>
         <a href="dienstplan.html" class="nav-link">🗓️ DIENSTPLAN (DIENSTPLAN)</a>
     </nav>
-    
+</header>
+
+<div class="sticky-container">
     <div class="search-container">
         <input type="text" id="medSearch" placeholder="Medikament oder Wirkstoff suchen..." onkeyup="searchMeds()">
     </div>
@@ -224,6 +237,7 @@
         <button class="tab-btn" onclick="switchView('nfs', this)">NFS</button>
         <button class="tab-btn" onclick="switchView('na', this)">NA</button>
     </div>
+</div>
 </header>
 
 <div class="container" id="med-container"></div>
