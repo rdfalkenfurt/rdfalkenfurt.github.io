@@ -24,30 +24,28 @@
             color: #333;
         }
 
-header {
-    background-color: var(--falken-blue);
-    color: white;
-    padding: 20px;
-    text-align: center;
-    /* position: sticky und top: 0 hier entfernt, damit das Logo wegscrollt */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+        header {
+            background-color: var(--falken-blue);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-/* NEU: Nur dieser Teil klebt jetzt oben am Rand */
-.sticky-container {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    background-color: var(--falken-blue);
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-bottom: 15px; /* Abstand nach unten */
-    border-bottom: 5px solid var(--falken-gold); /* Die goldene Linie wandert hierhin */
-}
+        .sticky-container {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: var(--falken-blue);
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-bottom: 15px;
+            border-bottom: 5px solid var(--falken-gold);
+        }
 
         .header-top {
             display: flex;
@@ -83,7 +81,6 @@ header {
             letter-spacing: 0.5px;
         }
 
-        /* --- NAVIGATION BUTTONS --- */
         .nav-bar {
             display: flex;
             justify-content: center;
@@ -113,7 +110,6 @@ header {
             transform: translateY(-2px);
         }
 
-        /* Markiert die aktuelle Seite (Medikamente) */
         .nav-active {
             background: var(--falken-gold);
             color: var(--falken-blue);
@@ -182,6 +178,7 @@ header {
         .tag-rs { background-color: var(--rs-green); }
         .tag-nfs { background-color: var(--nfs-blue); }
         .tag-na { background-color: var(--na-red); }
+        .tag-calc { background-color: #6f42c1; }
 
         .grid-row { display: grid; grid-template-columns: 1fr 1fr; }
         .section-box { padding: 12px; border: 1px solid #eee; font-size: 0.9em; }
@@ -197,13 +194,43 @@ header {
         .besonderheiten { border: 2px solid #c80000; padding: 12px; margin: 10px; font-style: italic; font-size: 0.85em; background-color: #fffafa; }
         .bes-title { color: #c80000; font-weight: bold; font-style: normal; margin-bottom: 3px; text-transform: uppercase; }
 
-        .footer-sig { text-align: right; padding: 5px 15px; font-size: 0.7em; color: #777; font-style: italic; }
-        .gen-hint { text-align: center; padding: 20px; background: #eee; margin-top: 20px; border-radius: 5px; font-weight: bold; color: #666; font-size: 0.9em; }
+        /* RECHNER STYLES */
+        .calc-container {
+            background: white;
+            border: 3px solid var(--falken-blue);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .calc-input-group {
+            margin-bottom: 15px;
+        }
+        .calc-input-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .calc-input-group input, .calc-input-group select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            font-size: 1em;
+        }
+        .calc-result {
+            margin-top: 20px;
+            padding: 15px;
+            background: var(--indikation-blue);
+            border-left: 5px solid var(--nfs-blue);
+            font-size: 1.2em;
+            font-weight: bold;
+            display: none;
+        }
 
+        .footer-sig { text-align: right; padding: 5px 15px; font-size: 0.7em; color: #777; font-style: italic; }
+        
         @media (max-width: 600px) { 
             .grid-row, .dosis-grid { grid-template-columns: 1fr; } 
             .header-top { flex-direction: column; text-align: center; gap: 10px; }
-            .title-group { text-align: center; }
             .main-title { font-size: 1.6em; }
         }
     </style>
@@ -220,15 +247,15 @@ header {
     </div>
 
     <nav class="nav-bar">
-        <a href="index.html" class="nav-link">🏠 INTRANET</a>
-        <a href="medis.html" class="nav-link nav-active">💊 MEDIKAMENTE</a>
-        <a href="wdb.html" class="nav-link">📋 LEITLINIEN (WDB)</a>
-        <a href="dienstplan.html" class="nav-link">🗓️ DIENSTPLAN (DIENSTPLAN)</a>
+        <a href="#" class="nav-link">🏠 INTRANET</a>
+        <a href="#" class="nav-link nav-active">💊 MEDIKAMENTE</a>
+        <a href="#" class="nav-link">📋 LEITLINIEN (WDB)</a>
+        <a href="#" class="nav-link">🗓️ DIENSTPLAN</a>
     </nav>
 </header>
 
 <div class="sticky-container">
-    <div class="search-container">
+    <div class="search-container" id="search-box">
         <input type="text" id="medSearch" placeholder="Medikament oder Wirkstoff suchen..." onkeyup="searchMeds()">
     </div>
 
@@ -236,14 +263,16 @@ header {
         <button class="tab-btn active" onclick="switchView('rs', this)">RS</button>
         <button class="tab-btn" onclick="switchView('nfs', this)">NFS</button>
         <button class="tab-btn" onclick="switchView('na', this)">NA</button>
+        <button class="tab-btn" style="border-color: 
+#ffd700;" onclick="switchView('calc', this)">🧮 DOSIERUNGSRECHNER</button>
     </div>
 </div>
-</header>
 
 <div class="container" id="med-container"></div>
 
 <script>
-    const rs_data = [
+    // Daten für die Kartenansicht
+ const rs_data = [
         { name: "Suprarenin", wirkstoff: "Adrenalin", ind: "Herz-Lungen-Wiederbelebung (Reanimation).", ki: "Keine in der Notfallsituation.", erw: "REA: 1mg alle 3-5min. i.v.", kind: "REA: max. 1mg alle 3-5min. i.v.", app: "i.v. | i.o.", bes: "Wirkdauer 3-5 min. Nur Notkompetenz!" },
         { name: "Glucose", wirkstoff: "Glucose", ind: "Hypoglykämie (Blutzuckerabfall).", ki: "Keine relevanten KI.", erw: "10ml G10 in 250ml VEL i.v. | p.o.", kind: "Nur Oral-Gabe (p.o.).", app: "i.v. | p.o.", bes: "Alternativ Dextro-Energy. Zugang prüfen!" },
         { name: "NaCl 0,9 %", wirkstoff: "Natriumchloridlösung", ind: "Trägerlösung; Spüllösung.", ki: "Keine relevanten KI.", erw: "Nach Indikation (max. 500ml).", kind: "Nach Indikation (max. 500ml).", app: "i.v. | i.o. | lokal", bes: "Keine besondere Lagerung nötig." },
@@ -276,14 +305,43 @@ header {
         { name: "Bluttransfusion", wirkstoff: "Blutplasma", ind: "Blutverlust, Gerinnungsstörung", ki: "keine relevanten KI", erw: "100ml bis 1000ml", kind: "100ml bis 1000ml", app: "i.v.", bes: "Gekühlte Lagerung" }
     ];
 
-    let currentType = 'rs';
+    // Daten für den Rechner (mg pro kg)
+const calc_meds = {
+        // --- ANALGESIE & NARKOSE ---
+        "esketamin_analgesie": { name: "Esketamin (Analgesie - 0,125mg/kg)", dose: 0.125, unit: "mg" },
+        "esketamin_narkose": { name: "Esketamin (Narkose - 0,5mg/kg)", dose: 0.5, unit: "mg" },
+        "morphin": { name: "Morphin (0,1mg/kg)", dose: 0.1, unit: "mg" },
+        "fentanyl_kind": { name: "Fentanyl Kind (2µg/kg)", dose: 0.002, unit: "mg" },
+        "sufentanil": { name: "Sufentanil (0,15µg/kg)", dose: 0.00015, unit: "mg" },
+        "piritramid": { name: "Piritramid (0,1mg/kg)", dose: 0.1, unit: "mg" },
+        "propofol": { name: "Propofol (2mg/kg)", dose: 2, unit: "mg" },
+        "thiopental": { name: "Thiopental (4mg/kg)", dose: 4, unit: "mg" },
+
+        // --- SEDIERUNG & NOTFALL ---
+        "midazolam_kind": { name: "Midazolam Kind (0,2mg/kg)", dose: 0.2, unit: "mg" },
+        "paracetamol": { name: "Paracetamol (15mg/kg)", dose: 15, unit: "mg" },
+        "vomex": { name: "Vomex (1,25mg/kg)", dose: 1.25, unit: "mg" },
+        "naloxon_kind": { name: "Naloxon Kind (0,01mg/kg)", dose: 0.01, unit: "mg" },
+        "flumazenil_kind": { name: "Flumazenil Kind (0,01mg/kg)", dose: 0.01, unit: "mg" },
+        
+        // --- KREISLAUF ---
+        "urapidil": { name: "Urapidil (max. 0,5mg/kg)", dose: 0.5, unit: "mg" },
+        "supra_anaphylaxie": { name: "Adrenalin (Anaphylaxie Kind - 0,01mg/kg)", dose: 0.01, unit: "mg" }
+    };
 
     function render(type) {
-        currentType = type;
         const container = document.getElementById('med-container');
+        const searchBox = document.getElementById('search-box');
         container.innerHTML = '';
-        let data, tagClass, label;
+        
+        if (type === 'calc') {
+            searchBox.style.display = 'none';
+            renderCalculator();
+            return;
+        }
 
+        searchBox.style.display = 'block';
+        let data, tagClass, label;
         if(type === 'rs') { data = rs_data; tagClass = 'tag-rs'; label = 'RS'; }
         else if(type === 'nfs') { data = nfs_data; tagClass = 'tag-nfs'; label = 'NFS'; }
         else { data = na_data; tagClass = 'tag-na'; label = 'NA'; }
@@ -309,42 +367,75 @@ header {
                 </div>
                 <div class="besonderheiten">
                     <div class="bes-title">Cave / Besonderheiten</div>
-                    <strong>App:</strong> ${m.app || 'i.v.'}<br>${m.bes}
+                    <strong>App:</strong> ${m.app}<br>${m.bes}
                 </div>
                 <div class="footer-sig">Freigabe ÄLRD Müller | 21.03.2026</div>
             `;
             container.appendChild(card);
         });
-
-        if(type === 'na') {
+                if(type === 'na') {
             const hint = document.createElement('div');
             hint.className = 'gen-hint';
             hint.innerText = "Selbstverständlich sind alle anderen Medikamente die nicht aufgelistet sind freigegeben (Generalfreigabe).";
             container.appendChild(hint);
         }
-        searchMeds(); 
+    }
+
+    function renderCalculator() {
+        const container = document.getElementById('med-container');
+        container.innerHTML = `
+            <div class="calc-container">
+                <h2 style="color:var(--falken-blue); margin-top:0;">🧮 Dosierungsrechner</h2>
+                <p><small>Berechnung basiert auf hinterlegten mg/kg Körpergewicht Werten.</small></p>
+                <hr>
+                <div class="calc-input-group">
+                    <label>Medikament wählen:</label>
+                    <select id="calcMed" onchange="calculate()">
+                        <option value="">-- Bitte wählen --</option>
+                        ${Object.keys(calc_meds).map(key => `<option value="${key}">${calc_meds[key].name}</option>`).join('')}
+                    </select>
+                </div>
+                <div class="calc-input-group">
+                    <label>Gewicht (kg):</label>
+                    <input type="number" id="weight" placeholder="z.B. 75" onkeyup="calculate()" onchange="calculate()">
+                </div>
+                <div class="calc-input-group">
+                    <label>Größe (cm) - optional:</label>
+                    <input type="number" id="height" placeholder="z.B. 180">
+                </div>
+                <div id="calcResult" class="calc-result"></div>
+            </div>
+        `;
+    }
+
+    function calculate() {
+        const medKey = document.getElementById('calcMed').value;
+        const weight = document.getElementById('weight').value;
+        const resultDiv = document.getElementById('calcResult');
+
+        if (medKey && weight > 0) {
+            const med = calc_meds[medKey];
+            const finalDose = (med.dose * weight).toFixed(2);
+            resultDiv.style.display = 'block';
+            resultDiv.innerHTML = `Empfohlene Dosis: ${finalDose} ${med.unit}<br>
+            <span style="font-size:0.7em; font-weight:normal; color:#555;">Basis: ${med.dose} ${med.unit}/kg KG</span>`;
+        } else {
+            resultDiv.style.display = 'none';
+        }
     }
 
     function switchView(type, btn) {
         document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
-        document.getElementById('medSearch').value = ''; 
         render(type);
     }
 
     function searchMeds() {
         const input = document.getElementById('medSearch').value.toLowerCase();
-        const cards = document.querySelectorAll('.med-card');
-        
-        cards.forEach(card => {
+        document.querySelectorAll('.med-card').forEach(card => {
             const name = card.getAttribute('data-name');
             const wirkstoff = card.getAttribute('data-wirkstoff');
-            
-            if (name.includes(input) || wirkstoff.includes(input)) {
-                card.style.display = "block";
-            } else {
-                card.style.display = "none";
-            }
+            card.style.display = (name.includes(input) || wirkstoff.includes(input)) ? "block" : "none";
         });
     }
 
