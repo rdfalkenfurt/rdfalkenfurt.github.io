@@ -365,11 +365,19 @@ const calc_meds = {
                     <div class="dosis-box"><strong>Kinder</strong><br>${m.kind}</div>
                 </div>
                 <div class="besonderheiten">
-                    <strong>App:</strong> ${m.app} | ${m.bes}
+                    <div class="bes-title">Cave / Besonderheiten</div>
+                    <strong>App:</strong> ${m.app || 'i.v.'}<br>${m.bes}
                 </div>
+                <div class="footer-sig">Freigabe ÄLRD Müller | 21.03.2026</div>
             `;
             container.appendChild(card);
         });
+                if(type === 'na') {
+            const hint = document.createElement('div');
+            hint.className = 'gen-hint';
+            hint.innerText = "Selbstverständlich sind alle anderen Medikamente die nicht aufgelistet sind freigegeben (Generalfreigabe).";
+            container.appendChild(hint);
+        }
     }
 
     function renderCalculator() {
