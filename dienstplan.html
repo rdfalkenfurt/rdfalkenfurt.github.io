@@ -8,6 +8,14 @@
             --falken-blue: #000e2b;
             --falken-gold: #ffd700;
             --bg-light: #f4f4f4;
+            --danger: #e74c3c;
+            --success: #2ecc71;
+            
+            /* Feste Personen-Farben */
+            --p-mueller: #e74c3c;  /* Leon Müller = ROT */
+            --p-lehmann: #3498db;  /* Mathis Lehmann = BLAU */
+            --p-moser: #2ecc71;    /* Jan Moser = GRÜN */
+            --p-schaefer: #f39c12; /* Thomas Schäfer = ORANGE */
         }
 
         body { 
@@ -17,94 +25,77 @@
             display: flex; flex-direction: column; align-items: center;
         }
 
-        /* --- HEADER & GLOBALE NAVIGATION --- */
         header {
             background-color: var(--falken-blue);
-            color: white;
-            padding: 30px;
+            color: white; padding: 30px;
             border-bottom: 5px solid var(--falken-gold);
-            text-align: center;
-            width: 100%;
-            box-sizing: border-box;
+            text-align: center; width: 100%; box-sizing: border-box;
         }
 
         .logo { max-height: 100px; margin-bottom: 10px; }
 
-        .nav-bar {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-top: 20px;
-            flex-wrap: wrap;
-        }
-
+        .nav-bar { display: flex; justify-content: center; gap: 15px; margin-top: 20px; flex-wrap: wrap; }
         .nav-link {
-            text-decoration: none;
-            color: white;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 10px 25px;
-            border-radius: 25px;
-            border: 2px solid var(--falken-gold);
-            font-weight: bold;
-            font-size: 0.9em;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            text-decoration: none; color: white; background: rgba(255, 255, 255, 0.1);
+            padding: 10px 25px; border-radius: 25px; border: 2px solid var(--falken-gold);
+            font-weight: bold; font-size: 0.9em; transition: all 0.3s ease;
+            display: flex; align-items: center; gap: 8px;
         }
+        .nav-link:hover, .nav-active { background: var(--falken-gold); color: var(--falken-blue); transform: translateY(-2px); }
 
-        .nav-link:hover, .nav-active {
-            background: var(--falken-gold);
-            color: var(--falken-blue);
-            transform: translateY(-2px);
-        }
-
-        /* --- INTERNE ABTEILUNGS-STEUERUNG --- */
-        .sub-nav { 
-            display: flex; justify-content: center; gap: 10px; 
-            margin: 30px 0; flex-wrap: wrap; 
-        }
-
+        .sub-nav { display: flex; justify-content: center; gap: 10px; margin: 30px 0; flex-wrap: wrap; }
         .dept-btn { 
             background-color: #fff; border: 2px solid var(--falken-blue); color: var(--falken-blue); 
-            padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: bold;
-            transition: all 0.3s ease;
+            padding: 10px 25px; border-radius: 8px; cursor: pointer; font-weight: bold;
+            text-transform: uppercase; transition: all 0.3s ease;
         }
+        .dept-btn:hover { background-color: var(--falken-blue); color: white; }
+        .dept-btn.active { background-color: var(--falken-blue); color: var(--falken-gold); border-color: var(--falken-gold); }
 
-        .dept-btn.active { 
-            background-color: var(--falken-blue); color: var(--falken-gold); 
-            border-color: var(--falken-gold); 
-        }
-
-        /* --- DIENSTPLAN KARTEN --- */
         .container { max-width: 800px; width: 90%; margin-bottom: 50px; }
-        
-        .month-divider { 
-            display: flex; align-items: center; margin: 35px 0 15px; 
-            font-weight: bold; color: var(--falken-blue); text-transform: uppercase; 
-        }
+        .month-divider { display: flex; align-items: center; margin: 35px 0 15px; font-weight: bold; color: var(--falken-blue); text-transform: uppercase; }
         .month-divider::after { content: ""; flex: 1; height: 2px; background: #ddd; margin-left: 15px; }
 
         .week-card { 
             background: white; border-radius: 10px; margin-bottom: 12px; display: flex; align-items: center; 
-            border-left: 8px solid #ccc; box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            border-left: 10px solid #ccc; box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); position: relative;
         }
-        .week-card:hover { transform: translateX(10px) scale(1.02); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .week-card:hover { transform: translateY(-5px) scale(1.01); box-shadow: 0 12px 24px rgba(0,0,0,0.15); z-index: 10; }
+
+        @keyframes pulse-gold {
+            0% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.6); }
+            70% { box-shadow: 0 0 0 15px rgba(255, 215, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0); }
+        }
+        .active-week { 
+            background-color: #fffbe6; 
+            border-top: 2px solid var(--falken-gold); 
+            border-bottom: 2px solid var(--falken-gold);
+            animation: pulse-gold 2s infinite;
+        }
 
         .week-info { padding: 15px 20px; width: 35%; border-right: 1px solid #f0f0f0; }
         .week-info span { display: block; font-size: 11px; color: #888; font-weight: bold; }
         .week-info strong { font-size: 16px; color: var(--falken-blue); }
-        .assigned-name { padding: 15px 20px; width: 65%; font-size: 18px; font-weight: bold; }
+        .assigned-area { padding: 15px 20px; width: 65%; display: flex; justify-content: space-between; align-items: center; }
+        
+        .name-container { display: flex; flex-direction: column; }
+        .assigned-name { font-size: 19px; font-weight: 800; letter-spacing: 0.5px; } 
+        .no-staff { color: var(--danger); font-style: italic; font-weight: 900; }
+        
+        .replacement-label { font-size: 11px; color: var(--danger); font-weight: bold; margin-top: 4px; }
+        .strikethrough-name { font-size: 14px; color: #888; text-decoration: line-through; }
+        
+        .color-mueller { border-left-color: var(--p-mueller); color: var(--p-mueller); }
+        .color-lehmann { border-left-color: var(--p-lehmann); color: var(--p-lehmann); }
+        .color-moser { border-left-color: var(--p-moser); color: var(--p-moser); }
+        .color-schaefer { border-left-color: var(--p-schaefer); color: var(--p-schaefer); }
 
-        .active-week { background-color: #fff9c4; border-top: 2px solid var(--falken-gold); border-bottom: 2px solid var(--falken-gold); }
-        .now-badge { background: var(--falken-gold); color: black; padding: 2px 8px; border-radius: 15px; font-size: 10px; margin-left: 8px; }
-
-        /* Personen-Farben */
-        .color-mueller { border-left-color: #0056b3; color: #0056b3; }
-        .color-lehmann { border-left-color: #c0392b; color: #c0392b; }
-        .color-moser { border-left-color: #27ae60; color: #27ae60; }
-        .color-schaefer { border-left-color: #16a085; color: #16a085; }
+        .admin-controls { display: flex; gap: 5px; }
+        .strike-btn { background: white; border: 1px solid #ddd; color: #888; cursor: pointer; border-radius: 5px; padding: 5px 8px; font-size: 10px; transition: 0.2s; }
+        .reset-btn { background: #fff; border: 1px solid var(--success); color: var(--success); cursor: pointer; border-radius: 5px; padding: 5px 8px; font-size: 10px; }
+        .admin-lock { position: fixed; bottom: 20px; right: 20px; background: white; padding: 12px; border-radius: 50%; box-shadow: 0 4px 10px rgba(0,0,0,0.2); cursor: pointer; z-index: 100; font-size: 20px; }
     </style>
 </head>
 <body>
@@ -112,7 +103,6 @@
 <header>
     <img src="https://r2.fivemanage.com/duNnRRRqkxrMPfikEWhQR/Bild_2026-03-21_105520774-removebg-preview.png" alt="Logo" class="logo">
     <h1 style="margin: 0; letter-spacing: 2px;">DIENSTPLAN - RETTUNGSDIENST FALKENFURT</h1>
-    
     <nav class="nav-bar">
         <a href="index.html" class="nav-link">🏠 INTRANET</a>
         <a href="medis.html" class="nav-link">💊 MEDIKAMENTE</a>
@@ -122,40 +112,86 @@
 </header>
 
 <div class="sub-nav">
-    <button class="dept-btn active" onclick="initPlan('notarzt', 'NOTARZT (NEF)', this)">NEF</button>
-    <button class="dept-btn" onclick="initPlan('orgl', 'ORG. LEITER (ORGL)', this)">ORGL</button>
-    <button class="dept-btn" onclick="initPlan('elrd', 'EINSATZLEITER (ELRD)', this)">ELRD</button>
-    <button class="dept-btn" onclick="initPlan('lna', 'LEITENDER NOTARZT (LNA)', this)">LNA</button>
+    <button class="dept-btn active" onclick="changeDept('notarzt', this)">NEF</button>
+    <button class="dept-btn" onclick="changeDept('orgl', this)">ORGL</button>
+    <button class="dept-btn" onclick="changeDept('elrd', this)">ELRD</button>
+    <button class="dept-btn" onclick="changeDept('lna', this)">LNA</button>
 </div>
 
 <div class="container" id="schedule-list"></div>
-
-<footer style="margin: 40px 0 20px; color: #888; font-size: 0.8em;">
-    © 2026 Rettungsdienst Falkenfurt | Ärztliche Leitung Rettungsdienst
-</footer>
+<div class="admin-lock" onclick="toggleAdmin()">🔒</div>
 
 <script>
-    const teams = {
-        notarzt: { members: ["Dr. med. Leon Müller", "Dr. med. Mathis Lehmann"], colors: ["color-mueller", "color-lehmann"] },
-        orgl:    { members: ["Jan Moser", "Thomas Schäfer"], colors: ["color-moser", "color-schaefer"] },
-        elrd:    { members: ["Thomas Schäfer", "Jan Moser", "Dr. med. Leon Müller"], colors: ["color-schaefer", "color-moser", "color-mueller"] },
-        lna:     { members: ["Dr. med. Leon Müller"], colors: ["color-mueller"] }
+    const personStyles = {
+        "Dr. med. Leon Müller": "color-mueller",
+        "Dr. med. Mathis Lehmann": "color-lehmann",
+        "Jan Moser": "color-moser",
+        "Thomas Schäfer": "color-schaefer"
     };
+
+    const teams = {
+        notarzt: ["Dr. med. Leon Müller", "Dr. med. Mathis Lehmann"],
+        orgl:    ["Jan Moser", "Thomas Schäfer"],
+        elrd:    ["Thomas Schäfer", "Jan Moser", "Dr. med. Leon Müller"],
+        lna:     ["Dr. med. Leon Müller"] 
+    };
+
+    let currentType = 'notarzt';
+    let isAdmin = false;
 
     function getISOWeek(date) {
         const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
         d.setUTCDate(d.getUTCDate() + 4 - (d.getUTCDay() || 7));
-        const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
-        return Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
+        return Math.ceil((((d - new Date(Date.UTC(d.getUTCFullYear(), 0, 1))) / 86400000) + 1) / 7);
     }
 
-    function initPlan(type, title, btn) {
+    function toggleAdmin() {
+        if(prompt("Passwort:") === "2504") { 
+            isAdmin = !isAdmin; 
+            document.querySelector('.admin-lock').innerText = isAdmin ? "🔓" : "🔒";
+            renderPlan(); 
+        }
+    }
+
+    // GLOBALER STRIKE: Wird jetzt personenzentriert gespeichert
+    function strikePerson(kw, type) {
+        const team = teams[type];
+        const personToStrike = team[kw % team.length];
+        const until = prompt(`Globaler Ausfall für ${personToStrike}!\nBis zu welchem Datum ist die Person weg?\n(Format: JJJJ-MM-TT)`);
+        if (!until) return;
+        
+        let s = JSON.parse(localStorage.getItem('falken_global_strikes')) || [];
+        
+        // Neuen Strike hinzufügen
+        s.push({ 
+            name: personToStrike,
+            until: until
+        });
+        
+        localStorage.setItem('falken_global_strikes', JSON.stringify(s));
+        renderPlan();
+    }
+
+    function resetPersonStrike(name) {
+        let s = JSON.parse(localStorage.getItem('falken_global_strikes')) || [];
+        // Entfernt alle globalen Strikes für diese Person
+        s = s.filter(strike => strike.name !== name);
+        localStorage.setItem('falken_global_strikes', JSON.stringify(s));
+        renderPlan();
+    }
+
+    function changeDept(type, btn) {
+        currentType = type;
         document.querySelectorAll('.dept-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
+        renderPlan();
+    }
 
+    function renderPlan() {
         const list = document.getElementById('schedule-list');
         list.innerHTML = "";
         const today = new Date();
+        const globalStrikes = JSON.parse(localStorage.getItem('falken_global_strikes')) || [];
         let lastMonth = -1;
 
         for (let i = -1; i < 11; i++) {
@@ -171,31 +207,76 @@
                 list.appendChild(div);
             }
 
-            const team = teams[type];
-            const index = kw % team.members.length;
-            const person = team.members[index];
-            const color = team.colors[index];
+            const team = teams[currentType];
+            let normalIdx = kw % team.length;
+            let originalPerson = team[normalIdx];
+            
+            // Logik: Wer ist GLOBAL in dieser spezifischen Woche gesperrt?
+            let unavailableNamesInThisWeek = [];
+            globalStrikes.forEach(strike => {
+                const limit = new Date(strike.until + "T23:59:59");
+                if (d <= limit) {
+                    unavailableNamesInThisWeek.push(strike.name);
+                }
+            });
 
-            const end = new Date(d);
-            end.setDate(d.getDate() + 6);
-            const range = d.toLocaleDateString('de-DE', {day:'2-digit', month:'2-digit'}) + " - " + end.toLocaleDateString('de-DE', {day:'2-digit', month:'2-digit'});
+            let assignedPerson = originalPerson;
+            let isErsatz = false;
+            let noStaffAvailable = false;
 
+            // Ist überhaupt jemand aus dem aktuellen Team verfügbar?
+            const anyoneAvailable = team.some(member => !unavailableNamesInThisWeek.includes(member));
+
+            if (!anyoneAvailable) {
+                noStaffAvailable = true;
+            } else if (unavailableNamesInThisWeek.includes(originalPerson)) {
+                isErsatz = true;
+                let searchIdx = normalIdx;
+                // Suche den nächsten im Team, der NICHT auf der globalen Sperrliste steht
+                for (let j = 0; j < team.length; j++) {
+                    searchIdx = (searchIdx + 1) % team.length;
+                    if (!unavailableNamesInThisWeek.includes(team[searchIdx])) {
+                        assignedPerson = team[searchIdx];
+                        break;
+                    }
+                }
+            }
+
+            const colorClass = noStaffAvailable ? "" : (personStyles[assignedPerson] || "");
             const isThisWeek = (i === 0);
             const card = document.createElement('div');
-            card.className = `week-card ${color} ${isThisWeek ? 'active-week' : ''}`;
+            card.className = `week-card ${colorClass} ${isThisWeek ? 'active-week' : ''}`;
+            
+            let nameHTML = "";
+            if (noStaffAvailable) {
+                nameHTML = `<div class="assigned-name no-staff">⚠️ KEIN PERSONAL VERFÜGBAR</div>`;
+            } else {
+                nameHTML = `<div class="assigned-name">${assignedPerson}</div>`;
+                if (isErsatz) {
+                    nameHTML += `<div class="replacement-label">ERSATZ FÜR: <span class="strikethrough-name">${originalPerson}</span></div>`;
+                }
+            }
+
+            const endWeek = new Date(d.getTime() + 6*24*60*60*1000);
+            const range = d.toLocaleDateString('de-DE', {day:'2-digit', month:'2-digit'}) + " - " + endWeek.toLocaleDateString('de-DE', {day:'2-digit', month:'2-digit'});
+
             card.innerHTML = `
                 <div class="week-info">
-                    <span>KW ${kw} ${isThisWeek ? '<span class="now-badge">AKTUELL</span>' : ''}</span>
+                    <span>KW ${kw} ${isThisWeek ? '⭐' : ''}</span>
                     <strong>${range}</strong>
                 </div>
-                <div class="assigned-name">${person}</div>
+                <div class="assigned-area">
+                    <div class="name-container">${nameHTML}</div>
+                    <div class="admin-controls" style="display: ${isAdmin ? 'flex' : 'none'}">
+                        <button class="strike-btn" onclick="strikePerson(${kw}, '${currentType}')">📅 Ausfall</button>
+                        ${(isErsatz || noStaffAvailable) ? `<button class="reset-btn" onclick="resetPersonStrike('${originalPerson}')">↩️ Reset</button>` : ''}
+                    </div>
+                </div>
             `;
             list.appendChild(card);
         }
     }
-
-    window.onload = () => initPlan('notarzt', 'NOTARZT (NEF)', document.querySelector('.dept-btn'));
+    window.onload = renderPlan;
 </script>
-
 </body>
 </html>
