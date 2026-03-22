@@ -256,7 +256,7 @@
     </div>
     <div style="padding: 20px; background: #ffffff;">
 
-        <div style="margin-bottom: 20px;">
+<div style="margin-bottom: 20px;">
             <div style="background: #eceff1; padding: 8px 12px; font-weight: bold; color: var(--falken-blue); border-left: 5px solid #e30613;">I. REANIMATION & HERZKREISLAUF</div>
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; padding: 10px; font-size: 0.85em;">
                 <div>1. <strong>Kreislaufstillstand Erwachsene - CPR</strong></div>
@@ -293,6 +293,8 @@
                 <div>19. <strong>Schädel-Hirn-Trauma (SHT)</strong></div>
                 <div>21. <strong>TVT / Kompartment / Fraktur</strong></div>
                 <div>39. <strong>Starke Schmerzzustände</strong></div>
+                <div>46. <strong>Pneumothorax / Spannungspneu</strong></div>
+                <div>47. <strong>Hämatothorax / Hämatopneu</strong></div>
             </div>
         </div>
 
@@ -929,164 +931,157 @@
         </div>
     </div>
 
-<div class="algo-card">
 <div class="algo-card" data-search="k5 lungenembolie lae heparin genfer score dyspnoe thoraxschmerz tachykardie">
-        <div class="algo-title">K 5 - Verdacht auf Lungenembolie (LAE)</div>
-        <div class="step">
-            <div class="node action-highlight">
-                <strong>1. Initialmaßnahmen & Diagnostik</strong>
-                • ABCDE-Schema (parallel ACS-Ausschluss)<br>
-                • Lagerung, O₂-Gabe (15 l/min), Monitoring<br>
-                • 12-Kanal-EKG & i.v.-Zugang
-            </div>
-            <div class="arrow">↓</div>
-            <div class="node decision">
-                <strong>Genfer Score ≥ 2?</strong><br>
-                Puls ≥ 95, Alter > 65, OP/Fraktur, Verschlusszeichen?
-            </div>
-            <div class="arrow">Ja ↓</div>
-            <div class="node decision">
-                Ausschluss: Aktive Blutung / V.a. Aortendissektion?<br>
-                <small>(RR-Differenz > 20 mmHg / reißender Schmerz)</small>
-            </div>
-            <div class="arrow">Nein ↓</div>
-            <div class="node med-highlight" style="background: #ffed00; border-left-color: #2e7d32;">
-                <strong>Heparin (M 15)</strong>
-                • <strong>Dosis:</strong> 80 I.E. / kg KG i.v.<br>
-                • < 50 kg: 4.000 IE | 70 kg: 5.500 IE<br>
-                • 90 kg: 7.200 IE | > 100 kg: 8.000 IE
-            </div>
-            <div class="arrow">↓</div>
-            <div class="node action-highlight" style="background: #e3f2fd; border-left-color: #0054a6;">
-                <strong>Zusatzmaßnahmen</strong>
-                • Bei Hypotension: 500 ml VEL-Bolus<br>
-                • Erwäge Notfallsonografie (Rechtsherzbelastung?)
-            </div>
-            <div class="arrow">↓</div>
-            <div class="node critical" style="background: var(--falken-blue); color: var(--falken-gold);">
-                Transport in Klinik mit Intensivstation / CT
-            </div>
+    <div class="algo-title">K 5 - Verdacht auf Lungenembolie (LAE)</div>
+    
+    <div class="step">
+        <div class="node action-highlight">
+            <strong>1. Initialmaßnahmen & Diagnostik</strong>
+            • ABCDE-Schema (parallel ACS-Ausschluss)<br>
+            • Lagerung, O₂-Gabe (15 l/min), Monitoring<br>
+            • 12-Kanal-EKG & i.v.-Zugang
         </div>
-
-        <div class="side-info">
-            <div class="info-box">
-                <div class="info-title">Wichtig:</div>
-                Thrombolysetherapie (Lyse) durch NA nur im schweren Schock oder unter laufender Reanimation erwägen!
-            </div>
-            <div class="info-box">
-                <div class="info-title">Ziel:</div>
-                Antikoagulation zur Verhinderung von Appositionsthromben und Stabilisierung der Hämodynamik.
-            </div>
+        <div class="arrow">↓</div>
+        <div class="node decision">
+            <strong>Genfer Score ≥ 2?</strong><br>
+            Puls ≥ 95, Alter > 65, OP/Fraktur, Verschlusszeichen?
+        </div>
+        <div class="arrow">Ja ↓</div>
+        <div class="node decision">
+            Ausschluss: Aktive Blutung / V.a. Aortendissektion?<br>
+            <small>(RR-Differenz > 20 mmHg / reißender Schmerz)</small>
+        </div>
+        <div class="arrow">Nein ↓</div>
+        <div class="node med-highlight" style="background: #ffed00; border-left-color: #2e7d32;">
+            <strong>Heparin (M 15)</strong>
+            • <strong>Dosis:</strong> 80 I.E. / kg KG i.v.<br>
+            • < 50 kg: 4.000 IE | 70 kg: 5.500 IE<br>
+            • 90 kg: 7.200 IE | > 100 kg: 8.000 IE
+        </div>
+        <div class="arrow">↓</div>
+        <div class="node action-highlight" style="background: #e3f2fd; border-left-color: #0054a6;">
+            <strong>Zusatzmaßnahmen</strong>
+            • Bei Hypotension: 500 ml VEL-Bolus<br>
+            • Erwäge Notfallsonografie (Rechtsherzbelastung?)
+        </div>
+        <div class="arrow">↓</div>
+        <div class="node critical" style="background: var(--falken-blue); color: var(--falken-gold);">
+            Transport in Klinik mit Intensivstation / CT
+        </div>
+    </div> <div class="side-info">
+        <div class="info-box">
+            <div class="info-title">Wichtig:</div>
+            Thrombolysetherapie (Lyse) durch NA nur im schweren Schock oder unter laufender Reanimation erwägen!
+        </div>
+        <div class="info-box">
+            <div class="info-title">Ziel:</div>
+            Antikoagulation zur Verhinderung von Appositionsthromben und Stabilisierung der Hämodynamik.
         </div>
     </div>
-
+</div>
 
 <div class="algo-card" data-search="n1 hypoglykämie unterzuckerung glucose bz-wert diabetes thiamin b1 insulin schock">
-        <div class="algo-title">N 1 - Hypoglykämie (BZ ≤ 60 mg/dl)</div>
-        <div class="step">
-            <div class="node action-highlight">
-                <strong>1. Initialphase & Diagnostik</strong>
-                • ABCDE-Herangehensweise<br>
-                • <strong>BZ-Messung:</strong> Grenzwert ≤ 60 mg/dl (3,3 mmol/l)
-            </div>
-            <div class="arrow">↓</div>
-            <div class="node decision">Patient wach / schluckfähig?</div>
-            
-            <div class="arrow">Ja ↓</div>
-            <div class="node med-highlight" style="border-left-color: #2e7d32; background: #f1f8e9;">
-                <strong>Orale Glucose-Zufuhr</strong>
-                • 5 – 10 g Glucose oral<br>
-                • (z.B. Jubin-Gel, Saft, Plättchen)
-            </div>
+    <div class="algo-title">N 1 - Hypoglykämie (BZ ≤ 60 mg/dl)</div>
 
-            <div class="arrow">Nein ↓</div>
-            <div class="node action-highlight" style="border-left-color: #d32f2f; background: #fdf2f2;">
-                <strong>Bewusstsein getrübt</strong>
-                • Stabile Seitenlage & Aspirationsschutz<br>
-                • Sicherer i.v.-Zugang (großlumig)
-            </div>
-            <div class="arrow">↓</div>
-            <div class="node med-highlight" style="background: #ffed00; border-left-color: #2e7d32;">
-                <strong>Glucose i.v. (M 12)</strong>
-                • <strong>Dosis:</strong> 5 – 10 g Glucose i.v.<br>
-                • (entspricht 25 – 50 ml G 20%)<br>
-                • <strong>Wichtig:</strong> Nachspülen mit VEL!
-            </div>
-
-            <div class="arrow">↓</div>
-            <div class="node decision">Alkoholabusus / Mangelernährung?</div>
-            <div class="arrow">Ja ↓</div>
-            <div class="node med-highlight" style="border-left-color: #9c27b0;">
-                <strong>Thiamin (Vitamin B1)</strong>
-                • 100 mg Thiamin i.v. langsam
-            </div>
-
-            <div class="arrow">↓</div>
-            <div class="node action-highlight" style="background: #f5f5f5; border-left-color: #757575;">
-                <strong>Reevaluation (nach 2-3 Min.)</strong>
-                • BZ-Kontrollmessung & ABCDE-Check<br>
-                • BZ < 60 mg/dl? ➔ Erneute Gabe
-            </div>
+    <div class="step">
+        <div class="node action-highlight">
+            <strong>1. Initialphase & Diagnostik</strong>
+            • ABCDE-Herangehensweise<br>
+            • <strong>BZ-Messung:</strong> Grenzwert ≤ 60 mg/dl (3,3 mmol/l)
+        </div>
+        <div class="arrow">↓</div>
+        <div class="node decision">Patient wach / schluckfähig?</div>
+        
+        <div class="arrow">Ja ↓</div>
+        <div class="node med-highlight" style="border-left-color: #2e7d32; background: #f1f8e9;">
+            <strong>Orale Glucose-Zufuhr</strong>
+            • 5 – 10 g Glucose oral<br>
+            • (z.B. Jubin-Gel, Saft, Plättchen)
         </div>
 
-        <div class="side-info">
-            <div class="info-box">
-                <div class="info-title">Cave:</div>
-                Glucose 20% ist stark gewebereizend. Paravasate führen zu Nekrosen! Nur bei sicher laufendem i.v.-Zugang und unter Aspiration verabreichen.
-            </div>
-            <div class="info-box">
-                <div class="info-title">Ziel:</div>
-                Anhebung des Blutzuckerspiegels in den normwertigen Bereich (> 80 mg/dl) und Wiederherstellung des Bewusstseins.
-            </div>
+        <div class="arrow">Nein ↓</div>
+        <div class="node action-highlight" style="border-left-color: #d32f2f; background: #fdf2f2;">
+            <strong>Bewusstsein getrübt</strong>
+            • Stabile Seitenlage & Aspirationsschutz<br>
+            • Sicherer i.v.-Zugang (großlumig)
         </div>
-    </div>
+        <div class="arrow">↓</div>
+        <div class="node med-highlight" style="background: #ffed00; border-left-color: #2e7d32;">
+            <strong>Glucose i.v. (M 12)</strong>
+            • <strong>Dosis:</strong> 5 – 10 g Glucose i.v.<br>
+            • (entspricht 25 – 50 ml G 20%)<br>
+            • <strong>Wichtig:</strong> Nachspülen mit VEL!
+        </div>
+
+        <div class="arrow">↓</div>
+        <div class="node decision">Alkoholabusus / Mangelernährung?</div>
+        <div class="arrow">Ja ↓</div>
+        <div class="node med-highlight" style="border-left-color: #9c27b0;">
+            <strong>Thiamin (Vitamin B1)</strong>
+            • 100 mg Thiamin i.v. langsam
+        </div>
+
+        <div class="arrow">↓</div>
+        <div class="node action-highlight" style="background: #f5f5f5; border-left-color: #757575;">
+            <strong>Reevaluation (nach 2-3 Min.)</strong>
+            • BZ-Kontrollmessung & ABCDE-Check<br>
+            • BZ < 60 mg/dl? ➔ Erneute Gabe
+        </div>
+    </div> <div class="side-info">
+        <div class="info-box">
+            <div class="info-title">Cave:</div>
+            Glucose 20% ist stark gewebereizend. Paravasate führen zu Nekrosen! Nur bei sicher laufendem i.v.-Zugang und unter Aspiration verabreichen.
+        </div>
+        <div class="info-box">
+            <div class="info-title">Ziel:</div>
+            Anhebung des Blutzuckerspiegels in den normwertigen Bereich (> 80 mg/dl) und Wiederherstellung des Bewusstseins.
+        </div>
+    </div> </div>
 
 <div class="algo-card" data-search="n2 schlaganfall apoplex stroke be-fast zeitfenster stroke unit neurologie">
-        <div class="algo-title">N 2 - Verdacht auf Schlaganfall (Apoplex)</div>
-        <div class="step">
-            <div class="node action-highlight">
-                <strong>1. Initialphase & Diagnostik</strong>
-                • ABCDE-Schema<br>
-                • <strong>BZ-Messung:</strong> Ausschluss Hypoglykämie (Ziel: 70–200 mg/dl)<br>
-                • <strong>Anamnese:</strong> Symptombeginn? (Time of onset / Last seen normal)
-            </div>
-            <div class="arrow">↓</div>
-            <div class="node decision">
-                <strong>BE-FAST Check positiv?</strong><br>
-                Balance, Eyes, Face, Arm, Speech, Time
-            </div>
-            <div class="arrow">Ja ↓</div>
-            <div class="node decision" style="border-color: #d32f2f; background: #fdf2f2;">
-                <strong>Vitale Bedrohung / Critical?</strong><br>
-                RR ≥ 220/120? GCS ≤ 8? Erbrochen?
-            </div>
-            <div class="arrow">↓</div>
-            <div class="node action-highlight" style="background: #e3f2fd; border-left-color: #0054a6;">
-                <strong>Standard-Maßnahmen</strong>
-                • Lagerung: Oberkörper 30° hoch (Pneumonieprophylaxe)<br>
-                • i.v. Zugang (großlumig, bevorzugt links)<br>
-                • 12-Kanal-EKG (Ausschluss VHF/ACS)
-            </div>
-            <div class="arrow">↓</div>
-            <div class="node critical" style="background: var(--falken-blue); color: var(--falken-gold);">
-                <strong>Load & Go: Transport in Stroke Unit</strong>
-                Voranmeldung mit "Time of Onset" und Symptomatik
-            </div>
-        </div>
+    <div class="algo-title">N 2 - Verdacht auf Schlaganfall (Apoplex)</div>
 
-        <div class="side-info">
-            <div class="info-box">
-                <div class="info-title">Zeitziele:</div>
-                • Vor Ort: <strong>< 25 Min.</strong><br>
-                • Prähospital gesamt: <strong>< 60 Min.</strong><br>
-                <em>"Time is Brain!"</em>
-            </div>
-            <div class="info-box">
-                <div class="info-title">Wichtig:</div>
-                Blutdrucksenkung präklinisch nur bei RR > 220/120 mmHg (siehe K 4). Keine Glucose-Infusionen ohne Indikation (Gefahr der Ödembildung).
-            </div>
+    <div class="step">
+        <div class="node action-highlight">
+            <strong>1. Initialphase & Diagnostik</strong>
+            • ABCDE-Schema<br>
+            • <strong>BZ-Messung:</strong> Ausschluss Hypoglykämie (Ziel: 70–200 mg/dl)<br>
+            • <strong>Anamnese:</strong> Symptombeginn? (Time of onset / Last seen normal)
         </div>
-    </div>
+        <div class="arrow">↓</div>
+        <div class="node decision">
+            <strong>BE-FAST Check positiv?</strong><br>
+            Balance, Eyes, Face, Arm, Speech, Time
+        </div>
+        <div class="arrow">Ja ↓</div>
+        <div class="node decision" style="border-color: #d32f2f; background: #fdf2f2;">
+            <strong>Vitale Bedrohung / Critical?</strong><br>
+            RR ≥ 220/120? GCS ≤ 8? Erbrochen?
+        </div>
+        <div class="arrow">↓</div>
+        <div class="node action-highlight" style="background: #e3f2fd; border-left-color: #0054a6;">
+            <strong>Standard-Maßnahmen</strong>
+            • Lagerung: Oberkörper 30° hoch (Pneumonieprophylaxe)<br>
+            • i.v. Zugang (großlumig, bevorzugt links)<br>
+            • 12-Kanal-EKG (Ausschluss VHF/ACS)
+        </div>
+        <div class="arrow">↓</div>
+        <div class="node critical" style="background: var(--falken-blue); color: var(--falken-gold);">
+            <strong>Load & Go: Transport in Stroke Unit</strong>
+            Voranmeldung mit "Time of Onset" und Symptomatik
+        </div>
+    </div> <div class="side-info">
+        <div class="info-box">
+            <div class="info-title">Zeitziele:</div>
+            • Vor Ort: <strong>< 25 Min.</strong><br>
+            • Prähospital gesamt: <strong>< 60 Min.</strong><br>
+            <em>"Time is Brain!"</em>
+        </div>
+        <div class="info-box">
+            <div class="info-title">Wichtig:</div>
+            Blutdrucksenkung präklinisch nur bei RR > 220/120 mmHg (siehe K 4). Keine Glucose-Infusionen ohne Indikation (Gefahr der Ödembildung).
+        </div>
+    </div> </div>
 
 <div class="algo-card" data-search="t1 hämorrhagischer schock trauma blutung tranexamsäure txa tourniquet volumen beckenschlinge">
         <div class="algo-title">T 1 - Management des hämorrhagischen Schocks</div>
@@ -1398,6 +1393,103 @@
             <div class="info-box">
                 <div class="info-title">Beachte:</div>
                 Beim **Kompartmentsyndrom** die Extremität auf **Herzniveau** lagern (nicht hochlagern!), um den Perfusionsdruck nicht weiter zu senken.
+            </div>
+        </div>
+    </div>
+
+    <div class="algo-card" data-search="t4 pneumothorax spannungspneu thorax trauma nadeldekompression entlastung monaldi bulao">
+        <div class="algo-title">T 4 - Pneumothorax / Spannungspneumothorax</div>
+        <div class="step">
+            <div class="node action-highlight">
+                <strong>1. Basisdiagnostik & Symptome</strong>
+                • Einseitig abgeschwächtes Atemgeräusch?<br>
+                • Stechender Schmerz, Dyspnoe, Tachypnoe?<br>
+                • Ggf. hypersonorer Klopfschall
+            </div>
+            <div class="arrow">↓</div>
+            <div class="node decision" style="border-color: #d32f2f; background: #fdf2f2;">
+                <strong>Zeichen eines Spannungspneumothorax?</strong><br>
+                Zunehmende Atemnot + Obere Einflussstauung + Schock (RR ↓, HF ↑) + Trachealabweichung?
+            </div>
+            
+            <div class="arrow">Ja ↓</div>
+            <div class="node critical" style="background: #c80000; color: white; border: none;">
+                <strong>NOTFALL-ENTLASTUNG (M 11)</strong>
+                • <strong>Nadeldekompression (Monaldi):</strong> 2. ICR Medio-Clavicular-Linie<br>
+                • <strong>Bülau-Position:</strong> 4./5. ICR vordere/mittlere Axillarlinie
+            </div>
+
+            <div class="arrow">Nein ↓</div>
+            <div class="node action-highlight" style="border-left-color: #2e7d32; background: #f1f8e9;">
+                <strong>Konservative Maßnahmen</strong>
+                • O2-Gabe (High-Flow 15l/min)<br>
+                • Oberkörper hochlagern (wenn kreislaufstabil)<br>
+                • Monitoring & großlumiger i.v. Zugang
+            </div>
+            <div class="arrow">↓</div>
+            <div class="node critical" style="background: var(--falken-blue); color: var(--falken-gold);">
+                <strong>Load & Go: Transport in Thoraxchirurgie</strong>
+                Voranmeldung: "Traumatischer Pneumothorax"
+            </div>
+        </div>
+
+        <div class="side-info">
+            <div class="info-box">
+                <div class="info-title">Cave:</div>
+                Ein Spannungspneumothorax ist ein **unmittelbar lebensbedrohlicher** Zustand. Die Entlastung muss bei klinischer Diagnose erfolgen, ohne auf ein Röntgenbild zu warten!
+            </div>
+            <div class="info-box">
+                <div class="info-title">Beachte:</div>
+                Bei beatmeten Patienten kann sich ein einfacher Pneumothorax durch den Überdruck sehr schnell in einen Spannungspneumothorax umwandeln.
+            </div>
+        </div>
+    </div>
+
+    <div class="algo-card" data-search="t5 hämatothorax hämatopneumothorax blutung brustkorb volumen schock">
+        <div class="algo-title">T 5 - Hämatothorax / Hämatopneumothorax</div>
+        <div class="step">
+            <div class="node action-highlight">
+                <strong>1. Diagnostik</strong>
+                • Trauma-Anamnese (stumpf/penetrierend)<br>
+                • Gedämpfter Klopfschall (Blutansammlung)<br>
+                • Zeichen des hämorrhagischen Schocks (RR ↓, Blässe)
+            </div>
+            <div class="arrow">↓</div>
+            <div class="node action-highlight" style="border-left-color: #c80000; background: #fff5f5;">
+                <strong>X-ABCDE: Blutungskontrolle & Volumen</strong>
+                • <strong>Sauerstoff:</strong> 15l O2 über Maske<br>
+                • <strong>Volumen:</strong> Aggressive Zufuhr von VEL (M 30) zur Schockbekämpfung<br>
+                • Ziel-RR: 80-90 mmHg (Permissive Hypotension)
+            </div>
+            <div class="arrow">↓</div>
+            <div class="node med-highlight" style="background: #ffed00; border-left-color: #2e7d32;">
+                <strong>Blutstillung (M 22)</strong>
+                • <strong>Tranexamsäure (TXA):</strong> 1g in 100 ml NaCl über 10 Min.<br>
+                • Oberkörper tieflagern bei Schock (außer bei schwerer Atemnot)
+            </div>
+            <div class="arrow">↓</div>
+            <div class="node decision">Zusätzlich Pneumothorax-Zeichen?</div>
+            <div class="arrow">Ja ↓</div>
+            <div class="node action-highlight" style="background: #e3f2fd; border-left-color: #0054a6;">
+                <strong>Kombinierte Versorgung</strong>
+                • Behandlung wie Hämatopneumothorax<br>
+                • Monitoring auf Spannungszeichen (Gefahr durch Blut + Luft!)
+            </div>
+            <div class="arrow">↓</div>
+            <div class="node critical" style="background: var(--falken-blue); color: var(--falken-gold);">
+                <strong>Priorisierter Transport (Schockraum)</strong>
+                Zielklinik mit Thoraxchirurgie & Blutbank
+            </div>
+        </div>
+
+        <div class="side-info">
+            <div class="info-box">
+                <div class="info-title">Info:</div>
+                Ein Hämatothorax kann bis zu **2,5 Liter Blut** pro Thoraxseite aufnehmen. Dies entspricht dem halben Blutvolumen eines Erwachsenen!
+            </div>
+            <div class="info-box">
+                <div class="info-title">Wichtig:</div>
+                Nadeldekompression bringt beim reinen Hämatothorax (nur Blut, keine Luft) keinen Erfolg, da Blut zu viskos für die Kanüle ist. Hier hilft nur die chirurgische Drainage.
             </div>
         </div>
     </div>
