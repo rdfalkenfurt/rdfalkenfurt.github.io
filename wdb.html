@@ -20,13 +20,11 @@
         }
 
         /* --- NEUER HEADER BEREICH --- */
-        header {
+           header {
             background-color: var(--falken-blue);
             color: white;
-            padding: 20px;
-            border-bottom: 5px solid var(--falken-gold);
+            padding: 20px 20px 0 20px; /* Padding unten auf 0 */
             text-align: center;
-            position: sticky; top: 0; z-index: 1000;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -99,6 +97,21 @@
             background: var(--falken-gold);
             color: var(--falken-blue);
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+/* --- STICKY BEREICH (Bleibt beim Scrollen stehen) --- */
+        .sticky-bar {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background-color: var(--falken-blue);
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-bottom: 20px;
+            border-bottom: 5px solid var(--falken-gold); /* Goldene Linie bleibt sichtbar */
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
         }
 
         .search-container { 
@@ -216,10 +229,11 @@
         <a href="wdb.html" class="nav-link nav-active">📋 LEITLINIEN (WDB)</a>
         <a href="dienstplan.html" class="nav-link">🗓️ DIENSTPLAN (DIENSTPLAN)</a>
     </nav>
-
+</header> <div class="sticky-bar">
     <div class="search-container">
         <input type="text" id="algoSearch" placeholder="Suche Leitlinie/Algorithmus (z.B. ACS, CPR)..." onkeyup="search()">
     </div>
+</div>
 </header>
 
 <div class="container">
